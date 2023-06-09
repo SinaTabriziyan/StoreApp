@@ -46,7 +46,6 @@ dependencies {
     implementation(Deps.material)
     implementation(Deps.constraintLayout)
 
-
     testImplementation(TestImpl.junit)
     androidTestImplementation(TestImpl.testJUnit)
     androidTestImplementation(TestImpl.espresso)

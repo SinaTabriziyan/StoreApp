@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
@@ -13,6 +14,20 @@
             <option value="$PROJECT_DIR$/buildSrc" />
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/core/common_utils" />
+            <option value="$PROJECT_DIR$/core/local" />
+            <option value="$PROJECT_DIR$/core/network" />
+            <option value="$PROJECT_DIR$/data" />
+            <option value="$PROJECT_DIR$/data/data-category" />
+            <option value="$PROJECT_DIR$/data/data-home" />
+            <option value="$PROJECT_DIR$/data/data-products" />
+            <option value="$PROJECT_DIR$/data/data-search" />
+            <option value="$PROJECT_DIR$/domain" />
+            <option value="$PROJECT_DIR$/domain/domain-main" />
+            <option value="$PROJECT_DIR$/features" />
+            <option value="$PROJECT_DIR$/features/feature-category" />
+            <option value="$PROJECT_DIR$/features/feature-details" />
+            <option value="$PROJECT_DIR$/features/feature-home" />
+            <option value="$PROJECT_DIR$/features/feature-search" />
           </set>
         </option>
       </GradleProjectSettings>

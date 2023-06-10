@@ -1,10 +1,10 @@
 package com.sina.common.di.mdoule
 
-import com.sina.common.constatnts.Constants.BASE_URL
-import com.sina.common.constatnts.Constants.CONSUMER_KEY
-import com.sina.common.constatnts.Constants.CONSUMER_KEY_VALUE
-import com.sina.common.constatnts.Constants.CONSUMER_SECRET
-import com.sina.common.constatnts.Constants.CONSUMER_SECRET_VALUE
+import com.sina.common.constatnts.server.ServerParams.BASE_URL
+import com.sina.common.constatnts.server.ServerParams.CONSUMER_KEY
+import com.sina.common.constatnts.server.ServerParams.CONSUMER_KEY_VALUE
+import com.sina.common.constatnts.server.ServerParams.CONSUMER_SECRET
+import com.sina.common.constatnts.server.ServerParams.CONSUMER_SECRET_VALUE
 import com.sina.common.di.qualifire.BaseUrl
 import com.sina.common.di.qualifire.ConsumerKey
 import com.sina.common.di.qualifire.ConsumerSecret

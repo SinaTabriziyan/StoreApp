@@ -41,6 +41,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:common_utils"))
+
     implementation(Deps.core)
     implementation(Deps.appcompat)
     implementation(Deps.material)

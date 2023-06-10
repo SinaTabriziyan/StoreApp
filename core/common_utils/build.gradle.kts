@@ -1,6 +1,8 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -22,11 +24,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
 }
 
@@ -40,4 +42,13 @@ dependencies {
     testImplementation(TestImpl.junit)
     androidTestImplementation(TestImpl.testJUnit)
     androidTestImplementation(TestImpl.espresso)
+
+    implementation(DI.hilt)
+    kapt(DI.hiltAndroidCompiler)
+    kapt(DI.hiltCompiler)
+
+    implementation(RestApi.retrofit)
+    implementation(RestApi.gsonConverter)
+    implementation(RestApi.okHttpLoggingInterceptor)
+    implementation(RestApi.scalarConverter)
 }

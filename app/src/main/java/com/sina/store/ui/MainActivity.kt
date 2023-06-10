@@ -1,7 +1,8 @@
-package com.sina.store
+package com.sina.store.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.sina.store.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

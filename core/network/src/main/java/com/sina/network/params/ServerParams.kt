@@ -1,4 +1,4 @@
-package com.sina.common.constatnts.server
+package com.sina.network.params
 
 object ServerParams {
     const val BASE_URL = "https://woocommerce.maktabsharif.ir/wp-json/wc/v3/"

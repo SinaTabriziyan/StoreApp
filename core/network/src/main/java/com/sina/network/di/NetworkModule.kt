@@ -1,13 +1,13 @@
 package com.sina.network.di
 
-import com.sina.common.constatnts.server.ServerParams.BASE_URL
-import com.sina.common.constatnts.server.ServerParams.CONSUMER_KEY
-import com.sina.common.constatnts.server.ServerParams.CONSUMER_KEY_VALUE
-import com.sina.common.constatnts.server.ServerParams.CONSUMER_SECRET
-import com.sina.common.constatnts.server.ServerParams.CONSUMER_SECRET_VALUE
-import com.sina.common.di.qualifire.BaseUrl
-import com.sina.common.di.qualifire.ConsumerKey
-import com.sina.common.di.qualifire.ConsumerSecret
+import com.sina.network.params.ServerParams.BASE_URL
+import com.sina.network.params.ServerParams.CONSUMER_KEY
+import com.sina.network.params.ServerParams.CONSUMER_KEY_VALUE
+import com.sina.network.params.ServerParams.CONSUMER_SECRET
+import com.sina.network.params.ServerParams.CONSUMER_SECRET_VALUE
+import com.sina.network.annotation.BaseUrl
+import com.sina.network.annotation.ConsumerKey
+import com.sina.network.annotation.ConsumerSecret
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

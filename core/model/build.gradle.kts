@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.sina.data_home"
+    namespace = "com.sina.model"
     compileSdk = 33
 
     defaultConfig {
@@ -22,24 +22,20 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = "17"
+        jvmTarget = "1.8"
     }
 }
 
 dependencies {
 
-    implementation(Deps.core)
-    implementation(Deps.appcompat)
-    implementation(Deps.material)
-    implementation(Deps.constraintLayout)
-
-    testImplementation(TestImpl.junit)
-    androidTestImplementation(TestImpl.testJUnit)
-    androidTestImplementation(TestImpl.espresso)
-    implementation(RestApi.gsonConverter)
-
+    implementation("androidx.core:core-ktx:1.8.0")
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("com.google.android.material:material:1.9.0")
+    testImplementation("junit:junit:4.13.2")
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 }

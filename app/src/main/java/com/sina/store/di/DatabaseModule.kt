@@ -1,6 +1,6 @@
 package com.sina.store.di
 
-import com.sina.common.constatnts.local.LocalParams.DATABASE_NAME
+import com.sina.local.params.LocalParams.DATABASE_NAME
 import com.sina.local.data.annotation.DatabaseName
 import dagger.Module
 import dagger.Provides

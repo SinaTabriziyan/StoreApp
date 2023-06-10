@@ -1,7 +1,7 @@
-package com.sina.common.di.qualifire
+package com.sina.network.annotation
 
 import javax.inject.Qualifier
 
 @Qualifier
 @Retention(AnnotationRetention.BINARY)
-annotation class BaseUrl
+annotation class ConsumerKey

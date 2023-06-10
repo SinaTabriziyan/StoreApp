@@ -1,13 +1,7 @@
-package com.sina.data_home.model.products
+package com.sina.model.data.products_dto
 
 
 import com.google.gson.annotations.SerializedName
-import com.sina.data_home.model.products.Attribute
-import com.sina.data_home.model.products.Category
-import com.sina.data_home.model.products.Dimensions
-import com.sina.data_home.model.products.Image
-import com.sina.data_home.model.products.Links
-import com.sina.data_home.model.products.Tag
 
 data class ProductsDTOItem(
     @SerializedName("attributes")
@@ -146,11 +140,4 @@ data class ProductsDTOItem(
     val virtual: Boolean?,
     @SerializedName("weight")
     val weight: String?,
-)
-
-data class ProductsItem(
-    val id: Int?,
-    val images: List<Image?>?,
-    val name: String?,
-    val price: String?,
 )

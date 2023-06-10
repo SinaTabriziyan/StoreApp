@@ -33,7 +33,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":core:common-utils"))
+    implementation(project(":core:common"))
     implementation(project(":core:model"))
 
     implementation(Deps.core)

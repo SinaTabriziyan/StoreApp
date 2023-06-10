@@ -37,7 +37,7 @@ dependencies {
     implementation(Deps.material)
     implementation(Deps.constraintLayout)
     implementation(project(mapOf("path" to ":core:model")))
-    implementation(project(mapOf("path" to ":core:common-utils")))
+    implementation(project(mapOf("path" to ":core:common")))
     implementation(project(mapOf("path" to ":core:network")))
 
     testImplementation(TestImpl.junit)

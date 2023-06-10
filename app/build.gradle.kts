@@ -42,6 +42,8 @@ android {
 
 dependencies {
     implementation(project(":core:common_utils"))
+    implementation(project(":core:local"))
+    implementation(project(":core:network"))
 
     implementation(Deps.core)
     implementation(Deps.appcompat)

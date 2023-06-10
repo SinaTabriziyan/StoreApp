@@ -1,4 +1,4 @@
-package com.sina.common.di.qualifire
+package com.sina.local.data.annotation
 
 import javax.inject.Qualifier
 

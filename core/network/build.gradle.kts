@@ -33,7 +33,8 @@ android {
 }
 
 dependencies {
-    implementation(project(":core:common_utils"))
+    implementation(project(":core:common-utils"))
+    implementation(project(":core:model"))
 
     implementation(Deps.core)
     implementation(Deps.appcompat)

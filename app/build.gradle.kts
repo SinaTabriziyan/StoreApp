@@ -41,7 +41,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":core:common_utils"))
+    implementation(project(":core:common-utils"))
     implementation(project(":core:local"))
     implementation(project(":core:network"))
 

@@ -14,6 +14,6 @@ class ProductsRemoteDataSourceImpl(
     override suspend fun getLatestProducts(): List<ProductsItem> =
         productsService.getLatestProducts().map { mapProductsDtoItemToProductsItem(it) }
 
-    override suspend fun getTopRatedProducts(page: Int, orderBy: String): List<ProductsItem> =
+    override suspend fun getTopRatedProducts(page: Int): List<ProductsItem> =
         productsService.getTopRatedProductsService(page).map { mapProductsDtoItemToProductsItem(it) }
 }

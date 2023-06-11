@@ -21,24 +21,7 @@ sealed class ResponseState<out T> {
     }
 }
 
-fun <T> Flow<T>.asResult(): Flow<ResponseState<T>> = map<T, ResponseState<T>> { ResponseState.Success(it) }
-    .onStart { emit(ResponseState.Loading) }
-    .catch { emit(ResponseState.Error(it)) }
-
-
-//fun <T> Flow<ResponseState<T>>.create() =map { it.pure() }
-//fun <T> ResponseState<T>.pure() :T= when(this){
-//    is ResponseState.Error -> TODO()
-//is    ResponseState.Loading -> TODO()
-//    is ResponseState.Success -> TODO()
-//}
-
-//abstract class InteracResult<P, Q> {
-//    operator fun invoke(params: P, timeOutMs: Long = diffaultTimeOut):Flow<>
-//
-//    companion object {
-//        private val diffaultTimeOut = TimeUnit.MINUTES.toMillis(5)
-//    }
-//
-//    protected abstract fun doWork(params: P): Flow<Q>
-//}
+fun <T> Flow<T>.asResult(): Flow<ResponseState<T>> =
+    map<T, ResponseState<T>> { ResponseState.Success(it) }
+        .onStart { emit(ResponseState.Loading) }
+        .catch { emit(ResponseState.Error(it)) }

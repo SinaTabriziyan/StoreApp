@@ -1,6 +1,8 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -36,9 +38,18 @@ dependencies {
     implementation(Deps.appcompat)
     implementation(Deps.material)
     implementation(Deps.constraintLayout)
+    implementation(project(mapOf("path" to ":core:network")))
+    implementation(project(mapOf("path" to ":core:model")))
+    implementation(project(mapOf("path" to ":domain:domain-main")))
+    implementation(project(mapOf("path" to ":core:common")))
 
     testImplementation(TestImpl.junit)
     androidTestImplementation(TestImpl.testJUnit)
     androidTestImplementation(TestImpl.espresso)
+
+
+    implementation(DI.hilt)
+    kapt(DI.hiltCompiler)
+    kapt(DI.hiltAndroidCompiler)
 
 }

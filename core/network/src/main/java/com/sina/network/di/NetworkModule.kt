@@ -8,6 +8,8 @@ import com.sina.network.params.ServerParams.CONSUMER_SECRET_VALUE
 import com.sina.network.annotation.BaseUrl
 import com.sina.network.annotation.ConsumerKey
 import com.sina.network.annotation.ConsumerSecret
+import com.sina.network.di.tools.provideApi
+import com.sina.network.services.products.ProductsService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -89,4 +91,8 @@ object NetworkModule {
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
+
+    @Provides
+    @Singleton
+    fun provideProductService(retrofit: Retrofit) = provideApi<ProductsService>(retrofit)
 }

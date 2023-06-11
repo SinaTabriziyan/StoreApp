@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.sina.feature_main"
+    namespace = "com.sina.feature_home"
     compileSdk = 33
 
     defaultConfig {
@@ -31,9 +31,6 @@ android {
 }
 
 dependencies {
-    implementation(project(mapOf("path" to ":core:common")))
-    implementation(project(mapOf("path" to ":features:feature-home")))
-    implementation(project(mapOf("path" to ":features:feature-category")))
 
     implementation(Deps.core)
     implementation(Deps.appcompat)
@@ -43,7 +40,6 @@ dependencies {
     testImplementation(TestImpl.junit)
     androidTestImplementation(TestImpl.testJUnit)
     androidTestImplementation(TestImpl.espresso)
-
 
     implementation(LifeCycle.lifeCycleViewModel)
     implementation(LifeCycle.lifeCycleViewLivedata)

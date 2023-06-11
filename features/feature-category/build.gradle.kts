@@ -42,6 +42,12 @@ dependencies {
     testImplementation(TestImpl.junit)
     androidTestImplementation(TestImpl.testJUnit)
     androidTestImplementation(TestImpl.espresso)
+    implementation(LifeCycle.lifeCycleViewModel)
+    implementation(LifeCycle.lifeCycleViewLivedata)
+
+    implementation(Navigation.navigationFragment)
+    implementation(Navigation.navigationUi)
+
     implementation(DI.hilt)
     kapt(DI.hiltCompiler)
 }

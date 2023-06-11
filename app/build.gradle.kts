@@ -42,6 +42,7 @@ android {
 
 dependencies {
     implementation(project(mapOf("path" to ":features:feature-category")))
+    implementation(project(mapOf("path" to ":features:feature-main")))
 
 
     implementation(project(":core:common"))
@@ -52,7 +53,6 @@ dependencies {
     implementation(Deps.appcompat)
     implementation(Deps.material)
     implementation(Deps.constraintLayout)
-    implementation(project(mapOf("path" to ":features:feature-main")))
 
     testImplementation(TestImpl.junit)
     androidTestImplementation(TestImpl.testJUnit)

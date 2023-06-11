@@ -1,5 +1,7 @@
 package com.sina.data_home.repository
 
+import com.sina.common.responsestate.ResponseState
+import com.sina.common.responsestate.asResult
 import com.sina.data_home.remote.ProductsRemoteDataSource
 import com.sina.domain_main.repository.ProductsRepository
 import com.sina.model.ui.products_item.ProductsItem
@@ -10,7 +12,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
-class ProductsRepositoryImpl @Inject constructor(
+class ProductsRepositoryImpl (
     private val productsRemoteDataSource: ProductsRemoteDataSource,
     @IODispatcher private val dispatcher: CoroutineDispatcher,
 ) : ProductsRepository {

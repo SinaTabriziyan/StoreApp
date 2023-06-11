@@ -5,7 +5,7 @@ import com.sina.model.ui.products_item.ProductsItem
 import com.sina.network.services.products.ProductsService
 import javax.inject.Inject
 
-class ProductsRemoteDataSourceImpl @Inject constructor(
+class ProductsRemoteDataSourceImpl(
     private val productsService: ProductsService,
 ) : ProductsRemoteDataSource {
     override suspend fun getVisitedProducts() =
@@ -15,5 +15,5 @@ class ProductsRemoteDataSourceImpl @Inject constructor(
         productsService.getLatestProducts().map { mapProductsDtoItemToProductsItem(it) }
 
     override suspend fun getTopRatedProducts(page: Int, orderBy: String): List<ProductsItem> =
-        productsService.getTopRatedProductsService(page,orderBy).map { mapProductsDtoItemToProductsItem(it) }
+        productsService.getTopRatedProductsService(page).map { mapProductsDtoItemToProductsItem(it) }
 }

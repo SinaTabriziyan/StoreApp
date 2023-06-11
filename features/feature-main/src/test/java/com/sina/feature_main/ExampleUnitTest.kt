@@ -1,4 +1,4 @@
-package com.sina.feature_home
+package com.sina.feature_main
 
 import org.junit.Test
 

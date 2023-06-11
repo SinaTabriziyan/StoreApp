@@ -15,7 +15,6 @@ dependencyResolutionManagement {
 rootProject.name = "store"
 include ':app'
 include ':core:common'
-include ':features:feature-home'
 include ':data:data-product'
 include ':features:feature-category'
 include ':features:feature-product'
@@ -27,3 +26,4 @@ include ':core:network'
 include ':core:local'
 include ':domain:domain-main'
 include ':core:model'
+include ':features:feature-main'

@@ -47,6 +47,8 @@ dependencies {
 
     implementation(DI.hilt)
     kapt(DI.hiltCompiler)
+    kapt(DI.hiltAndroidCompiler)
+
     implementation(RestApi.retrofit)
     implementation(RestApi.gsonConverter)
     implementation(RestApi.okHttpLoggingInterceptor)

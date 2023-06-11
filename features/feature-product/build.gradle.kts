@@ -1,8 +1,10 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("androidx.navigation.safeargs.kotlin")
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
+    id("kotlin-parcelize")
 }
 
 android {
@@ -46,6 +48,11 @@ dependencies {
     testImplementation(TestImpl.junit)
     androidTestImplementation(TestImpl.testJUnit)
     androidTestImplementation(TestImpl.espresso)
+    implementation(LifeCycle.lifeCycleViewModel)
+    implementation(LifeCycle.lifeCycleViewLivedata)
+
+    implementation(Navigation.navigationFragment)
+    implementation(Navigation.navigationUi)
     implementation(DI.hilt)
     kapt(DI.hiltCompiler)
 }

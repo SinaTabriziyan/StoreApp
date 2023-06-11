@@ -45,6 +45,7 @@ dependencies {
     androidTestImplementation(TestImpl.espresso)
     implementation(DI.hilt)
     kapt(DI.hiltCompiler)
+    kapt(DI.hiltAndroidCompiler)
 
     implementation(ORM.room)
     kapt(ORM.roomCompiler)

@@ -1,6 +1,10 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("androidx.navigation.safeargs.kotlin")
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
+    id("kotlin-parcelize")
 }
 
 android {
@@ -36,11 +40,14 @@ android {
 }
 
 dependencies {
+    implementation(project(mapOf("path" to ":domain:domain-main")))
 
     implementation(Deps.core)
     implementation(Deps.appcompat)
     implementation(Deps.material)
     implementation(Deps.constraintLayout)
+    implementation(project(mapOf("path" to ":core:model")))
+    implementation(project(mapOf("path" to ":core:common")))
 
     testImplementation(TestImpl.junit)
     androidTestImplementation(TestImpl.testJUnit)
@@ -51,4 +58,6 @@ dependencies {
 
     implementation(Navigation.navigationFragment)
     implementation(Navigation.navigationUi)
+    implementation(DI.hilt)
+    kapt(DI.hiltCompiler)
 }

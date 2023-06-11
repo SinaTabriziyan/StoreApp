@@ -51,5 +51,6 @@ dependencies {
 
     implementation(DI.hilt)
     kapt(DI.hiltCompiler)
+    kapt(DI.hiltAndroidCompiler)
 
 }

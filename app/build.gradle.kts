@@ -43,6 +43,10 @@ android {
 dependencies {
     implementation(project(mapOf("path" to ":features:feature-category")))
     implementation(project(mapOf("path" to ":features:feature-main")))
+    implementation(project(mapOf("path" to ":data:data-home")))
+    implementation(project(mapOf("path" to ":domain:domain-main")))
+    implementation(project(mapOf("path" to ":features:feature-home")))
+    implementation(project(mapOf("path" to ":features:feature-category")))
 
 
     implementation(project(":core:common"))
@@ -64,13 +68,16 @@ dependencies {
     implementation(Navigation.navigationFragment)
     implementation(Navigation.navigationUi)
 
+    implementation(DI.hilt)
+    kapt(DI.hiltCompiler)
+    kapt(DI.hiltAndroidCompiler)
+
     implementation(RestApi.retrofit)
     implementation(RestApi.gsonConverter)
     implementation(RestApi.okHttpLoggingInterceptor)
     implementation(RestApi.scalarConverter)
 
-    implementation(DI.hilt)
-    kapt(DI.hiltCompiler)
+
 
     implementation(ORM.room)
     kapt(ORM.roomCompiler)

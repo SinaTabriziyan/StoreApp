@@ -9,13 +9,13 @@ import kotlinx.coroutines.withTimeout
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds
 
-abstract class Interactor<PARAMS, RESPONSE> {
+abstract class Interactor<P, R> {
 
     operator fun invoke(
-        params: PARAMS, timeout: Duration = DefaultTimeout,
-    ): Flow<InteractState<RESPONSE>> = doWork(params).map { r ->
+        params: P, timeout: Duration = DefaultTimeout,
+    ): Flow<InteractState<R>> = doWork(params).map { r ->
         withTimeout(timeout) {
-            InteractState.Success(r) as InteractState<RESPONSE>
+            InteractState.Success(r) as InteractState<R>
         }
     }.catch { e ->
         Log.e("TAG", "invoke: Error ${e.message.toString()}", )
@@ -24,7 +24,7 @@ abstract class Interactor<PARAMS, RESPONSE> {
         emit(InteractState.Loading)
     }
 
-    protected abstract fun doWork(params: PARAMS): Flow<RESPONSE>
+    protected abstract fun doWork(params: P): Flow<R>
 
     companion object {
         private val DefaultTimeout = 100.milliseconds

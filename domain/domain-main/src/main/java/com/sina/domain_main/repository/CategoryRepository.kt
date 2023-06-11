@@ -7,5 +7,4 @@ import kotlinx.coroutines.flow.Flow
 
 interface CategoryRepository {
     fun getTopRatedProducts(page: Int, orderBy: String): Flow<ResponseState<List<CategoryItem>>>
-
 }

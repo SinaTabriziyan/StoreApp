@@ -10,4 +10,10 @@
         android:layout_height="match_parent"
         android:text="Category" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvCategoryItems"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/item_category" />
+
 </FrameLayout>

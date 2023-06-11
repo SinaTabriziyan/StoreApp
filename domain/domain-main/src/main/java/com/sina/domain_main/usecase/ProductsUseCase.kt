@@ -5,6 +5,7 @@ import com.sina.domain_main.repository.ProductsRepository
 import com.sina.domain_main.interactor.Interactor
 import com.sina.model.ui.products_item.ProductsItem
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Singleton
 
 class ProductsUseCase(private val productsRepository: ProductsRepository) :
     Interactor<ProductsUseCase.Params, ResponseState<List<ProductsItem>>>() {

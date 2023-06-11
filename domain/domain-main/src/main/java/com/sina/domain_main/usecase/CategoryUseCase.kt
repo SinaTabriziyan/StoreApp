@@ -5,8 +5,9 @@ import com.sina.domain_main.interactor.Interactor
 import com.sina.domain_main.repository.CategoryRepository
 import com.sina.model.ui.category_item.CategoryItem
 import kotlinx.coroutines.flow.Flow
-
-class CategoryUseCase(private val categoryRepository: CategoryRepository) :
+import javax.inject.Inject
+import javax.inject.Singleton
+class CategoryUseCase (private val categoryRepository: CategoryRepository) :
     Interactor<CategoryUseCase.Params, ResponseState<List<CategoryItem>>>() {
 
     data class Params(

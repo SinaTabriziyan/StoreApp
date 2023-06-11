@@ -21,8 +21,8 @@ object Versions {
     const val okHttpLoggingInterceptor = "4.10.0"
     const val scalarConverter = "2.1.0"
 
-    const val hilt = "2.44"
-    const val hiltCompiler = "2.44"
+    const val hilt = "2.46.1"
+    const val hiltCompiler = "2.46.1"
 
     const val room = "2.5.1"
     const val roomCompiler = "2.5.1"

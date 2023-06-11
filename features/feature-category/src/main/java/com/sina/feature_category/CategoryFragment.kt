@@ -6,28 +6,55 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.sina.common.responsestate.ResponseState
+import com.sina.feature_category.databinding.FragmentCategoryBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class CategoryFragment : Fragment() {
+class CategoryFragment : Fragment(R.layout.fragment_category) {
+    private val TAG = "CategoryFragment"
+    private var _binding: FragmentCategoryBinding? = null
+    private val binding get() = _binding!!
 
-    companion object {
-        fun newInstance() = CategoryFragment()
+    private val viewModel: CategoryViewModel by viewModels()
+    private lateinit var categoryAdapter: CategoryAdapter
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        _binding = FragmentCategoryBinding.bind(view)
+        implRecycler()
+        observes()
     }
 
-    private lateinit var viewModel: CategoryViewModel
+    private fun implRecycler() {
+        categoryAdapter=CategoryAdapter {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View? {
-        return inflater.inflate(R.layout.fragment_category, container, false)
+        }
+        binding.rvCategoryItems.apply {
+            layoutManager = LinearLayoutManager(binding.root.context)
+            adapter = categoryAdapter
+        }
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(CategoryViewModel::class.java)
-        // TODO: Use the ViewModel
+    private fun observes() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.categoryProducts.collect { response ->
+                    when (response) {
+                        is ResponseState.Error -> {}
+                        is ResponseState.Loading -> {}
+                        is ResponseState.Success -> {
+                            categoryAdapter.submitList(response.data)
+                        }
+                    }
+                }
+            }
+        }
     }
-
 }

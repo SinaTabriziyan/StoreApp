@@ -10,12 +10,13 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import javax.inject.Inject
 
 class ProductsRepositoryImpl(
     private val productsRemoteDataSource: ProductsRemoteDataSource,
-    @IODispatcher private val dispatcher: CoroutineDispatcher,
+    private val dispatcher: CoroutineDispatcher,
 ) : ProductsRepository {
     override fun getTopRatedProducts(page: Int, orderBy: String): Flow<ResponseState<List<ProductsItem>>> =
-        flow { emit(productsRemoteDataSource.getTopRatedProducts(page, orderBy)) }.flowOn(dispatcher).asResult()
+        flow { emit(productsRemoteDataSource.getTopRatedProducts(page, orderBy)) }.asResult().flowOn(dispatcher)
 
 }

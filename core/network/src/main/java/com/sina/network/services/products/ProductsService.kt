@@ -19,6 +19,5 @@ interface ProductsService {
     @GET("products")
     suspend fun getTopRatedProductsService(
         @Query("page") page: Int = 1,
-        @Query("orderby") orderBy: String = "rating",
     ): List<ProductsDTOItem>
 }

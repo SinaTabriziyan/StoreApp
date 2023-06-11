@@ -43,6 +43,7 @@ dependencies {
     implementation(Deps.constraintLayout)
     implementation(project(mapOf("path" to ":domain:domain-main")))
     implementation(project(mapOf("path" to ":core:common")))
+    implementation(project(mapOf("path" to ":data:data-category")))
 
 
     testImplementation(TestImpl.junit)

@@ -40,15 +40,19 @@ android {
 }
 
 dependencies {
+    implementation(project(mapOf("path" to ":domain:domain-main")))
+    implementation(project(mapOf("path" to ":core:common")))
+    implementation(project(mapOf("path" to ":core:model")))
 
-    implementation("androidx.core:core-ktx:1.8.0")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.9.0")
-    implementation("androidx.legacy:legacy-support-v4:1.0.0")
+    implementation(Deps.core)
+    implementation(Deps.appcompat)
+    implementation(Deps.material)
+    implementation(Deps.constraintLayout)
 
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    testImplementation(TestImpl.junit)
+    androidTestImplementation(TestImpl.testJUnit)
+    androidTestImplementation(TestImpl.espresso)
+    
 
     implementation(LifeCycle.lifeCycleViewModel)
     implementation(LifeCycle.lifeCycleViewLivedata)
@@ -57,6 +61,5 @@ dependencies {
     implementation(Navigation.navigationUi)
 
     implementation(DI.hilt)
-    kapt(DI.hiltAndroidCompiler)
     kapt(DI.hiltCompiler)
 }

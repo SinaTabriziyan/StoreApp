@@ -41,13 +41,14 @@ android {
 
 dependencies {
     implementation(project(mapOf("path" to ":domain:domain-main")))
+    implementation(project(mapOf("path" to ":core:model")))
+    implementation(project(mapOf("path" to ":core:common")))
 
     implementation(Deps.core)
     implementation(Deps.appcompat)
     implementation(Deps.material)
     implementation(Deps.constraintLayout)
-    implementation(project(mapOf("path" to ":core:model")))
-    implementation(project(mapOf("path" to ":core:common")))
+
 
     testImplementation(TestImpl.junit)
     androidTestImplementation(TestImpl.testJUnit)

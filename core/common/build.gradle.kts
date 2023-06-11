@@ -51,4 +51,7 @@ dependencies {
     implementation(RestApi.gsonConverter)
     implementation(RestApi.okHttpLoggingInterceptor)
     implementation(RestApi.scalarConverter)
+
+    implementation(ImageLoaders.glide)
+    implementation(ImageLoaders.coil)
 }

@@ -4,8 +4,8 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sina.common.responsestate.ResponseState
-import com.sina.domain_main.usecase.interactor.InteractState
-import com.sina.domain_main.usecase.interactor.ProductsUseCase
+import com.sina.domain_main.interactor.InteractState
+import com.sina.domain_main.usecase.ProductsUseCase
 import com.sina.model.ui.products_item.ProductsItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

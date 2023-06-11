@@ -1,4 +1,4 @@
-package com.sina.domain_main.usecase.interactor
+package com.sina.domain_main.interactor
 
 
 sealed class InteractState<out T> {

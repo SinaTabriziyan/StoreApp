@@ -15,7 +15,7 @@ class ProductsRepositoryImpl(
     private val productsRemoteDataSource: ProductsRemoteDataSource,
     @IODispatcher private val dispatcher: CoroutineDispatcher,
 ) : ProductsRepository {
-    override fun getTopRatedProducts(page: Int): Flow<ResponseState<List<ProductsItem>>> =
-        flow { emit(productsRemoteDataSource.getTopRatedProducts(page)) }.flowOn(dispatcher).asResult()
+    override fun getTopRatedProducts(page: Int, orderBy: String): Flow<ResponseState<List<ProductsItem>>> =
+        flow { emit(productsRemoteDataSource.getTopRatedProducts(page, orderBy)) }.flowOn(dispatcher).asResult()
 
 }

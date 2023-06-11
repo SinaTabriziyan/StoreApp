@@ -19,8 +19,21 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(private val productsUseCase: ProductsUseCase) : ViewModel() {
     private val TAG = "HomeViewModel"
 
-    val productsParams = ProductsUseCase.Params(1)
-    val latestOfProducts = productsUseCase(productsParams).stateIn(
+    val topRatedProductsParams = ProductsUseCase.Params(1, "rating")
+    val latestProductsParams = ProductsUseCase.Params(1, "date")
+    val mostProductsParams = ProductsUseCase.Params(1, "popularity")
+
+    val topRatedProducts = productsUseCase(topRatedProductsParams).stateIn(
+        viewModelScope,
+        SharingStarted.WhileSubscribed(5_000),
+        InteractState.Loading
+    )
+    val latestProducts = productsUseCase(topRatedProductsParams).stateIn(
+        viewModelScope,
+        SharingStarted.WhileSubscribed(5_000),
+        InteractState.Loading
+    )
+    val mostProducts = productsUseCase(topRatedProductsParams).stateIn(
         viewModelScope,
         SharingStarted.WhileSubscribed(5_000),
         InteractState.Loading
@@ -29,7 +42,9 @@ class HomeViewModel @Inject constructor(private val productsUseCase: ProductsUse
     val allMainProducts: StateFlow<ResponseState<List<ProductsItem>>> = _allMainProducts
 
     init {
-        getProducts(productsParams)
+        getProducts(topRatedProductsParams)
+//        getProducts(productsParams)
+//        getProducts(productsParams)
     }
 
     private fun getProducts(productsParams: ProductsUseCase.Params) {
@@ -37,10 +52,11 @@ class HomeViewModel @Inject constructor(private val productsUseCase: ProductsUse
             productsUseCase(productsParams).collect { response ->
                 when (response) {
                     is InteractState.Error -> {
-                        Log.e(TAG, "viewModel: getProducts: ${response.errorMessage}", )}
+                        Log.e(TAG, "viewModel: getProducts: ${response.errorMessage}")
+                    }
                     is InteractState.Loading -> {}
                     is InteractState.Success -> {
-                        Log.e(TAG, "viewModel: getProducts: ${response.data}", )
+                        Log.e(TAG, "viewModel: getProducts: ${response.data}")
                         _allMainProducts.value = response.data
                     }
                 }

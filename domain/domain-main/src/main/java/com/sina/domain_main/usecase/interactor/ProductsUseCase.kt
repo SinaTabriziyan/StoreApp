@@ -12,10 +12,11 @@ class ProductsUseCase(
 
     data class Params(
         val page: Int,
+        val orderBy:String
     )
 
     override fun doWork(params: Params): Flow<ResponseState<List<ProductsItem>>> {
-        return with(params) { productsRepository.getTopRatedProducts(page) }
+        return with(params) { productsRepository.getTopRatedProducts(page,orderBy) }
     }
 
 

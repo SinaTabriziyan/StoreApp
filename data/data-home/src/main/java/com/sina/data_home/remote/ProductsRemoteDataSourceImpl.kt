@@ -8,12 +8,6 @@ import javax.inject.Inject
 class ProductsRemoteDataSourceImpl(
     private val productsService: ProductsService,
 ) : ProductsRemoteDataSource {
-    override suspend fun getVisitedProducts() =
-        productsService.getTopRatedProductsService().map { mapProductsDtoItemToProductsItem(it) }
-
-    override suspend fun getLatestProducts(): List<ProductsItem> =
-        productsService.getLatestProducts().map { mapProductsDtoItemToProductsItem(it) }
-
-    override suspend fun getTopRatedProducts(page: Int): List<ProductsItem> =
-        productsService.getTopRatedProductsService(page).map { mapProductsDtoItemToProductsItem(it) }
+    override suspend fun getTopRatedProducts(page: Int, orderBy: String): List<ProductsItem> =
+        productsService.getTopRatedProductsService(page, orderBy).map { mapProductsDtoItemToProductsItem(it) }
 }

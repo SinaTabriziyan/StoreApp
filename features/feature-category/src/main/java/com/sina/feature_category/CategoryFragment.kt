@@ -2,6 +2,7 @@ package com.sina.feature_category
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,8 +13,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sina.common.responsestate.ResponseState
+import com.sina.domain_main.interactor.InteractState
 import com.sina.feature_category.databinding.FragmentCategoryBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -33,7 +36,7 @@ class CategoryFragment : Fragment(R.layout.fragment_category) {
     }
 
     private fun implRecycler() {
-        categoryAdapter=CategoryAdapter {
+        categoryAdapter = CategoryAdapter {
 
         }
         binding.rvCategoryItems.apply {
@@ -45,13 +48,17 @@ class CategoryFragment : Fragment(R.layout.fragment_category) {
     private fun observes() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.categoryProducts.collect { response ->
-                    when (response) {
-                        is ResponseState.Error -> {}
-                        is ResponseState.Loading -> {}
-                        is ResponseState.Success -> {
-                            categoryAdapter.submitList(response.data)
-                        }
+//                viewModel.categoryProducts.collectLatest {
+//                    categoryAdapter.submitList(it)
+//                }
+
+                viewModel.categoriseProductsList.collectLatest {
+                    when (it) {
+                        is InteractState.Error -> {
+                            Log.e(TAG, "observes: ${it.errorMessage}", )}
+                        is InteractState.Loading -> {
+                            Log.e(TAG, "observes: loading", )}
+                        is InteractState.Success -> {categoryAdapter.submitList(it.data)}
                     }
                 }
             }

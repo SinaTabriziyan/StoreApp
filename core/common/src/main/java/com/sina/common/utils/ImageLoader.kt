@@ -4,7 +4,7 @@ import android.widget.ImageView
 import coil.load
 import com.bumptech.glide.Glide
 
-fun ImageView.load(imageSrc: String) {
+fun ImageView.loadGlide(imageSrc: String?) {
     Glide.with(this).load(imageSrc).into(this)
 }
 

@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.sina.common.utils.load
+import com.sina.common.utils.loadGlide
 import com.sina.feature_category.databinding.ItemCategoryBinding
 import com.sina.model.ui.category_item.CategoryItem
 
@@ -25,7 +25,7 @@ class CategoryAdapter(
 
         fun bind(categoryDTOItem: CategoryItem) {
             binding.tvCategoryName.text = categoryDTOItem.name
-            categoryDTOItem.image?.src?.let { binding.imvCategory.load(it) }
+            categoryDTOItem.image?.src?.let { binding.imvCategory.loadGlide(it) }
         }
     }
 

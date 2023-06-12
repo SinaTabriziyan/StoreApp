@@ -19,13 +19,13 @@ import javax.inject.Inject
 class CategoryViewModel @Inject constructor(private val categoryUseCase: CategoryUseCase) : ViewModel() {
     private val TAG = "CategoryViewModel"
 
-    val categoriseProductsParams = CategoryUseCase.Params(1, "")
+    private val categoriseProductsParams = CategoryUseCase.Params(1, "")
     val categoriseProductsList = categoryUseCase(categoriseProductsParams).stateIn(
         viewModelScope, SharingStarted.WhileSubscribed(5_000),
         InteractState.Loading
     )
-    private val _categoryProducts = MutableStateFlow<ResponseState<List<CategoryItem>>>(ResponseState.Loading)
-    val categoryProducts: StateFlow<ResponseState<List<CategoryItem>>> = _categoryProducts
+    private val _categoryProducts = MutableStateFlow<List<CategoryItem>>(emptyList())
+    val categoryProducts: StateFlow<List<CategoryItem>> = _categoryProducts
 
     init {
         getCategoriseProductsList(categoriseProductsParams)
@@ -33,15 +33,21 @@ class CategoryViewModel @Inject constructor(private val categoryUseCase: Categor
 
     private fun getCategoriseProductsList(categoriseProductsParams: CategoryUseCase.Params) {
         viewModelScope.launch {
-            categoryUseCase(categoriseProductsParams).collect { state ->
-                when (state) {
-                    is InteractState.Error -> {}
-                    is InteractState.Loading -> {}
-                    is InteractState.Success -> {
-                        _categoryProducts.value = state.data
-                    }
+//            categoryUseCase(categoriseProductsParams).collect { state ->
+//                when (state) {
+//                    is InteractState.Error -> {}
+//                    is InteractState.Loading -> {state}
+//                    is InteractState.Success -> {
+//                        _categoryProducts.value = state.data
+//                    }
+//                }
+//            }
+            categoriseProductsList.collect {
+                when (it) {
+                    is InteractState.Error ->{}
+                    is InteractState.Loading ->{}
+                    is InteractState.Success -> _categoryProducts.value = it.data
                 }
-
             }
         }
     }

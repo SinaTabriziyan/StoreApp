@@ -9,19 +9,19 @@ interface ProductsService {
 
     @GET("products")
     suspend fun getLatestProducts(
-        @Query("page") page: Int = 1,
-        @Query("orderby") orderBy: String = "date",
+        @Query("page") page: Int,
+        @Query("orderby") orderBy: String,
     ): List<ProductsDTOItem>
 
     @GET("products")
     suspend fun getMostVisitedProducts(
-        @Query("page") page: Int = 1,
-        @Query("orderby") orderBy: String = "popularity",
+        @Query("page") page: Int,
+        @Query("orderby") orderBy: String,
     ): List<ProductsDTOItem>
 
     @GET("products")
     suspend fun getTopRatedProductsService(
-        @Query("page") page: Int = 1,
+        @Query("page") page: Int=1,
         @Query("orderby") orderBy: String,
     ): List<ProductsDTOItem>
 

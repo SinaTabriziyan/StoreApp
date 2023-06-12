@@ -1,5 +1,6 @@
 package com.sina.feature_category
 
+import android.content.Intent
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.util.Log
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.sina.common.responsestate.ResponseState
 import com.sina.domain_main.interactor.InteractState
 import com.sina.feature_category.databinding.FragmentCategoryBinding
+import com.sina.feature_products.ProductsActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -37,7 +39,9 @@ class CategoryFragment : Fragment(R.layout.fragment_category) {
 
     private fun implRecycler() {
         categoryAdapter = CategoryAdapter {
-
+            val intent = Intent(requireActivity(), ProductsActivity::class.java)
+            intent.putExtra("categoryId", it)
+            startActivity(intent)
         }
         binding.rvCategoryItems.apply {
             layoutManager = LinearLayoutManager(binding.root.context)
@@ -55,10 +59,16 @@ class CategoryFragment : Fragment(R.layout.fragment_category) {
                 viewModel.categoriseProductsList.collectLatest {
                     when (it) {
                         is InteractState.Error -> {
-                            Log.e(TAG, "observes: ${it.errorMessage}", )}
+                            Log.e(TAG, "observes: ${it.errorMessage}")
+                        }
+
                         is InteractState.Loading -> {
-                            Log.e(TAG, "observes: loading", )}
-                        is InteractState.Success -> {categoryAdapter.submitList(it.data)}
+                            Log.e(TAG, "observes: loading")
+                        }
+
+                        is InteractState.Success -> {
+                            categoryAdapter.submitList(it.data)
+                        }
                     }
                 }
             }

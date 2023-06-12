@@ -5,6 +5,7 @@ import com.sina.domain_main.repository.ItemRepository
 import com.sina.domain_main.repository.ProductsRepository
 import com.sina.domain_main.usecase.CategoryUseCase
 import com.sina.domain_main.usecase.ItemUseCase
+import com.sina.domain_main.usecase.ProductsByCategoryUseCase
 import com.sina.domain_main.usecase.ProductsUseCase
 import dagger.Module
 import dagger.Provides
@@ -23,4 +24,8 @@ object DomainModule {
 
     @Provides
     fun provideItem(itemRepository: ItemRepository): ItemUseCase = ItemUseCase(itemRepository)
+
+    @Provides
+    fun provideProductsByCategoryUseCase(itemRepository: ProductsRepository): ProductsByCategoryUseCase =
+        ProductsByCategoryUseCase(itemRepository)
 }

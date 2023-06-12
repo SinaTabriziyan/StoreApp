@@ -1,14 +1,12 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
-    id("androidx.navigation.safeargs.kotlin")
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
-    id("kotlin-parcelize")
 }
 
 android {
-    namespace = "com.sina.feature_category"
+    namespace = "com.sina.feature_products"
     compileSdk = 33
 
     defaultConfig {
@@ -25,7 +23,6 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
-
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
@@ -41,26 +38,26 @@ android {
 
 dependencies {
     implementation(project(mapOf("path" to ":domain:domain-main")))
-    implementation(project(mapOf("path" to ":core:common")))
     implementation(project(mapOf("path" to ":core:model")))
+    implementation(project(mapOf("path" to ":core:common")))
 
     implementation(Deps.core)
     implementation(Deps.appcompat)
     implementation(Deps.material)
     implementation(Deps.constraintLayout)
-    implementation(project(mapOf("path" to ":features:feature-products")))
+    implementation(project(mapOf("path" to ":features:feature-item")))
 
     testImplementation(TestImpl.junit)
     androidTestImplementation(TestImpl.testJUnit)
     androidTestImplementation(TestImpl.espresso)
-    
 
-    implementation(LifeCycle.lifeCycleViewModel)
-    implementation(LifeCycle.lifeCycleViewLivedata)
-
-    implementation(Navigation.navigationFragment)
-    implementation(Navigation.navigationUi)
 
     implementation(DI.hilt)
     kapt(DI.hiltCompiler)
+    kapt(DI.hiltAndroidCompiler)
+
+    implementation(LifeCycle.lifeCycleViewModel)
+    implementation(LifeCycle.lifeCycleViewLivedata)
+    implementation(Navigation.navigationFragment)
+    implementation(Navigation.navigationUi)
 }

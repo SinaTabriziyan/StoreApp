@@ -17,4 +17,8 @@ class ProductsRepositoryImpl(
     override fun getTopRatedProducts(page: Int, orderBy: String): Flow<ResponseState<List<ProductsItem>>> =
         flow { emit(productsRemoteDataSource.getTopRatedProducts(page, orderBy)) }.asResult().flowOn(dispatcher)
 
+    override fun getProductsByCategory(page: Int, category: String): Flow<ResponseState<List<ProductsItem>>> {
+        return flow { emit(productsRemoteDataSource.getProductsByCategory(page, category)) }.asResult().flowOn(dispatcher)
+    }
+
 }

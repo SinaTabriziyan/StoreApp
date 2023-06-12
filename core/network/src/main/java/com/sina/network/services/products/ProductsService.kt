@@ -7,7 +7,11 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface ProductsService {
-
+    @GET("products/")
+    suspend fun getProducts(
+        @Query("page") page: Int,
+        @Query("category") category: String,
+    ): List<ProductsDTOItem>
     @GET("products")
     suspend fun getLatestProducts(
         @Query("page") page: Int,

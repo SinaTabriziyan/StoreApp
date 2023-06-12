@@ -26,7 +26,8 @@ class ItemFragment : Fragment(R.layout.fragment_item) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentItemBinding.bind(view)
-
+        val args = arguments
+        Log.e(TAG, "onViewCreated:333 ${args?.getInt("productId")}")
         observers()
     }
 
@@ -39,8 +40,7 @@ class ItemFragment : Fragment(R.layout.fragment_item) {
                         is InteractState.Error -> {}
                         is InteractState.Loading -> {}
                         is InteractState.Success -> {
-                            binding.message.text = it.data.toString()
-                            Log.e(TAG, "observers: ${it.data}")
+                            binding.message.text = it.data[0].description
                         }
                     }
                 }

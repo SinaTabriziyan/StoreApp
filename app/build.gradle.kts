@@ -47,6 +47,7 @@ dependencies {
     implementation(project(mapOf("path" to ":domain:domain-main")))
     implementation(project(mapOf("path" to ":features:feature-home")))
     implementation(project(mapOf("path" to ":features:feature-category")))
+    implementation(project(mapOf("path" to ":data:data-item")))
 
 
     implementation(project(":core:common"))

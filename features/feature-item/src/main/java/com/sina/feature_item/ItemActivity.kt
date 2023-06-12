@@ -1,6 +1,7 @@
 package com.sina.feature_item
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
@@ -11,11 +12,11 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 
 class ItemActivity : AppCompatActivity() {
-
+    private val TAG = "ItemActivity"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_item)
-        val stringExtra = intent.getStringExtra("productId")
+        val stringExtra = intent.getIntExtra("productId", 0)
         val resultBundle = Bundle()
         stringExtra?.toInt()?.let { resultBundle.putInt("productId", it) }
 

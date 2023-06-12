@@ -5,12 +5,10 @@ import com.sina.common.responsestate.asResult
 import com.sina.data_home.remote.ProductsRemoteDataSource
 import com.sina.domain_main.repository.ProductsRepository
 import com.sina.model.ui.products_item.ProductsItem
-import com.sina.network.annotation.IODispatcher
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
-import javax.inject.Inject
 
 class ProductsRepositoryImpl(
     private val productsRemoteDataSource: ProductsRemoteDataSource,

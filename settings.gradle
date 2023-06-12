@@ -15,8 +15,8 @@ dependencyResolutionManagement {
 rootProject.name = "store"
 include ':app'
 include ':core:common'
-include ':data:data-product'
-include ':features:feature-product'
+include ':data:data-item'
+include ':features:feature-item'
 include ':features:feature-search'
 include ':data:data-search'
 include ':data:data-category'

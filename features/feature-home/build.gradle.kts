@@ -48,6 +48,7 @@ dependencies {
     implementation(Deps.appcompat)
     implementation(Deps.material)
     implementation(Deps.constraintLayout)
+    implementation(project(mapOf("path" to ":features:feature-item")))
 
 
     testImplementation(TestImpl.junit)

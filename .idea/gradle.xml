@@ -20,15 +20,15 @@
             <option value="$PROJECT_DIR$/data" />
             <option value="$PROJECT_DIR$/data/data-category" />
             <option value="$PROJECT_DIR$/data/data-home" />
-            <option value="$PROJECT_DIR$/data/data-product" />
+            <option value="$PROJECT_DIR$/data/data-item" />
             <option value="$PROJECT_DIR$/data/data-search" />
             <option value="$PROJECT_DIR$/domain" />
             <option value="$PROJECT_DIR$/domain/domain-main" />
             <option value="$PROJECT_DIR$/features" />
             <option value="$PROJECT_DIR$/features/feature-category" />
             <option value="$PROJECT_DIR$/features/feature-home" />
+            <option value="$PROJECT_DIR$/features/feature-item" />
             <option value="$PROJECT_DIR$/features/feature-main" />
-            <option value="$PROJECT_DIR$/features/feature-product" />
             <option value="$PROJECT_DIR$/features/feature-search" />
           </set>
         </option>

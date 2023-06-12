@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.sina.feature_home.databinding.ItemProductsMainBinding
 import com.sina.model.ui.products_item.ProductsItem
 
-class MainHomeAdapter(private val onClick: (ProductsItem) -> Unit, private val onReachedEndOfList: (Boolean) -> Unit) :
+class MainHomeAdapter(private val onClick: (Int) -> Unit, private val onReachedEndOfList: (Boolean) -> Unit) :
     ListAdapter<HomeViewModel.MainProducts, MainHomeAdapter.ViewHolder>(object : DiffUtil.ItemCallback<HomeViewModel.MainProducts>() {
         override fun areItemsTheSame(oldItem: HomeViewModel.MainProducts, newItem: HomeViewModel.MainProducts): Boolean = oldItem.title == newItem.title
         override fun areContentsTheSame(oldItem: HomeViewModel.MainProducts, newItem: HomeViewModel.MainProducts): Boolean = oldItem == newItem

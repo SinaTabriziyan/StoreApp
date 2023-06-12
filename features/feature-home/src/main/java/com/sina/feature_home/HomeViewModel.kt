@@ -19,10 +19,10 @@ class HomeViewModel @Inject constructor(productsUseCase: ProductsUseCase) : View
     private val TAG = "HomeViewModel"
     private val listItem: Array<MainProducts> = Array(3) { MainProducts.createData("", emptyList()) }
     private val _allMainProducts = MutableStateFlow<List<MainProducts>>(emptyList())
-    val allMainProducts: StateFlow<List<MainProducts>> = _allMainProducts
     private val topRatedProductsParams = ProductsUseCase.Params(1, "rating")
     private val latestProductsParams = ProductsUseCase.Params(1, "date")
     private val mostProductsParams = ProductsUseCase.Params(1, "popularity")
+    val allMainProducts: StateFlow<List<MainProducts>> = _allMainProducts
 
     private val topRatedProducts: StateFlow<InteractState<List<ProductsItem>>> =
         productsUseCase(topRatedProductsParams).stateIn(

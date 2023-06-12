@@ -9,7 +9,7 @@ import com.sina.common.utils.loadGlide
 import com.sina.feature_home.databinding.ItemProductsBinding
 import com.sina.model.ui.products_item.ProductsItem
 
-class HomeAdapter(private val onClick: (ProductsItem) -> Unit, private val onReachedEndOfList: (Boolean) -> Unit) :
+class HomeAdapter(private val onClick: (Int) -> Unit, private val onReachedEndOfList: (Boolean) -> Unit) :
     ListAdapter<ProductsItem, HomeAdapter.ViewHolder>(object : DiffUtil.ItemCallback<ProductsItem>() {
         override fun areItemsTheSame(oldItem: ProductsItem, newItem: ProductsItem): Boolean = oldItem.id == newItem.id
         override fun areContentsTheSame(oldItem: ProductsItem, newItem: ProductsItem): Boolean = oldItem == newItem
@@ -17,7 +17,7 @@ class HomeAdapter(private val onClick: (ProductsItem) -> Unit, private val onRea
     inner class ViewHolder(private val binding: ItemProductsBinding) : RecyclerView.ViewHolder(binding.root) {
         init {
             binding.root.setOnClickListener {
-                onClick.invoke(getItem(adapterPosition))
+                getItem(adapterPosition).id?.let { it1 -> onClick.invoke(it1) }
             }
         }
 

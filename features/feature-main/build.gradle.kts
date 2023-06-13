@@ -55,7 +55,6 @@ dependencies {
     androidTestImplementation(TestImpl.testJUnit)
     androidTestImplementation(TestImpl.espresso)
 
-
     implementation(LifeCycle.lifeCycleViewModel)
     implementation(LifeCycle.lifeCycleViewLivedata)
 

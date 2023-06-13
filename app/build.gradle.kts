@@ -59,6 +59,7 @@ dependencies {
     implementation(Deps.appcompat)
     implementation(Deps.material)
     implementation(Deps.constraintLayout)
+    implementation(project(mapOf("path" to ":core:model")))
 
     testImplementation(TestImpl.junit)
     androidTestImplementation(TestImpl.testJUnit)
@@ -78,8 +79,6 @@ dependencies {
     implementation(RestApi.gsonConverter)
     implementation(RestApi.okHttpLoggingInterceptor)
     implementation(RestApi.scalarConverter)
-
-
 
     implementation(ORM.room)
     kapt(ORM.roomCompiler)

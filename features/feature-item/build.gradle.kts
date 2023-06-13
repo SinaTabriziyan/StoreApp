@@ -39,24 +39,20 @@ android {
 }
 
 dependencies {
+    implementation(project(mapOf("path" to ":domain:domain-main")))
+    implementation(project(mapOf("path" to ":core:model")))
+    implementation(project(mapOf("path" to ":core:ui-components")))
 
     implementation(Deps.core)
     implementation(Deps.appcompat)
     implementation(Deps.material)
     implementation(Deps.constraintLayout)
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.1")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
-    implementation("com.google.android.material:material:1.4.0")
-    implementation(project(mapOf("path" to ":domain:domain-main")))
-    implementation(project(mapOf("path" to ":core:model")))
-    implementation(project(mapOf("path" to ":core:ui-components")))
-
+    
     testImplementation(TestImpl.junit)
     androidTestImplementation(TestImpl.testJUnit)
     androidTestImplementation(TestImpl.espresso)
     implementation(LifeCycle.lifeCycleViewModel)
+
     implementation(LifeCycle.lifeCycleViewLivedata)
 
     implementation(Navigation.navigationFragment)

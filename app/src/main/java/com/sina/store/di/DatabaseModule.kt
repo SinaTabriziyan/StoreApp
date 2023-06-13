@@ -1,5 +1,6 @@
 package com.sina.store.di
 
+import android.app.Application
 import com.sina.local.params.LocalParams.DATABASE_NAME
 import com.sina.local.data.annotation.DatabaseName
 import dagger.Module
@@ -15,7 +16,7 @@ object DatabaseModule {
     @Singleton
     @DatabaseName
     fun provideDatabaseName(): String = DATABASE_NAME
-//
+
 //    @Provides
 //    @Singleton
 //    fun provideDatabase(

@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.sina.common.utils.loadGlide
+import com.sina.ui_components.loadGlide
 import com.sina.model.ui.category_item.CategoryItem
 import com.sina.ui_components.databinding.ItemCategoryBinding
 

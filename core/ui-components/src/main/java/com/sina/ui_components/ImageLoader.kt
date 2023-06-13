@@ -1,4 +1,4 @@
-package com.sina.common.utils
+package com.sina.ui_components
 
 import android.widget.ImageView
 import coil.load

@@ -44,15 +44,15 @@ dependencies {
     implementation(project(mapOf("path" to ":core:model")))
     implementation(project(mapOf("path" to ":core:common")))
     implementation(project(mapOf("path" to ":core:ui-components")))
+    implementation(project(mapOf("path" to ":features:feature-item")))
+    implementation(project(mapOf("path" to ":features:feature-search")))
 
     implementation(Deps.core)
     implementation(Deps.appcompat)
     implementation(Deps.material)
     implementation(Deps.constraintLayout)
-    implementation(project(mapOf("path" to ":features:feature-item")))
-    implementation(project(mapOf("path" to ":features:feature-search")))
-    implementation("androidx.legacy:legacy-support-v4:1.0.0")
 
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
 
     testImplementation(TestImpl.junit)
     androidTestImplementation(TestImpl.testJUnit)
@@ -67,5 +67,6 @@ dependencies {
     kapt(DI.hiltCompiler)
 
     implementation(Sliders.carouselrecyclerview)
+
 
 }

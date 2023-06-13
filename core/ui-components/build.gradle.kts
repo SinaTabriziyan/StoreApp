@@ -44,4 +44,7 @@ dependencies {
     testImplementation(TestImpl.junit)
     androidTestImplementation(TestImpl.testJUnit)
     androidTestImplementation(TestImpl.espresso)
+
+    implementation(ImageLoaders.glide)
+    implementation(ImageLoaders.coil)
 }

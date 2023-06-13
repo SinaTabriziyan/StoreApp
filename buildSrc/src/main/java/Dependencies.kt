@@ -20,6 +20,7 @@ object Versions {
     const val gsonConverter = "2.9.0"
     const val okHttpLoggingInterceptor = "4.10.0"
     const val scalarConverter = "2.1.0"
+    const val jsoup = "1.13.1"
 
     const val hilt = "2.46.1"
     const val hiltCompiler = "2.46.1"
@@ -35,8 +36,13 @@ object Versions {
     const val coil = "2.2.2"
 
     const val lottie = "3.4.2"
+
     const val swipeRefreshLayout = "1.1.0"
+
     const val carouselrecyclerview = "1.2.6"
+
+    const val shimmer = "0.5.0"
+    const val shimmerRecyclerview = "0.4.1"
 
 }
 
@@ -79,6 +85,7 @@ object RestApi {
     const val gsonConverter = "com.squareup.retrofit2:converter-gson:${Versions.gsonConverter}"
     const val scalarConverter = "com.squareup.retrofit2:converter-scalars:${Versions.gsonConverter}"
     const val okHttpLoggingInterceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.okHttpLoggingInterceptor}"
+    const val jsoup = "org.jsoup:jsoup:${Versions.jsoup}"
 }
 
 object Navigation {
@@ -97,6 +104,8 @@ object Preferences {
 
 object Animations {
     const val lottie = "com.airbnb.android:lottie:${Versions.lottie}"
+    const val shimmer = "com.facebook.shimmer:shimmer:${Versions.shimmer}"
+    const val shimmerRecyclerview = "com.todkars:shimmer-recyclerview:${Versions.shimmerRecyclerview}"
 }
 
 object ProgressBar {

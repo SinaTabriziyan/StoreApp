@@ -1,6 +1,8 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
+    id("kotlin-parcelize")
 }
 
 android {
@@ -41,5 +43,9 @@ dependencies {
     androidTestImplementation(TestImpl.testJUnit)
     androidTestImplementation(TestImpl.espresso)
     implementation(RestApi.gsonConverter)
+
+    implementation(ORM.room)
+    kapt(ORM.roomCompiler)
+    implementation(ORM.roomKtx)
 
 }

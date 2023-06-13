@@ -1,6 +1,7 @@
 package com.sina.feature_home
 
 import android.content.Intent
+import android.graphics.drawable.ClipDrawable.VERTICAL
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.sina.domain_main.interactor.InteractState
 import com.sina.feature_home.databinding.FragmentHomeBinding
 import com.sina.feature_item.ItemActivity
 import com.sina.feature_search.SearchActivity
@@ -25,14 +27,27 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private val viewModel: HomeViewModel by viewModels()
     private lateinit var mainHomeAdapter: MainHomeAdapter
+    private lateinit var homeSliderAdapter: HomeSliderAdapter
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentHomeBinding.bind(view)
         implRecyclerView()
+        implHomeSlider()
         observers()
         implUiEvenet()
+    }
+
+    private fun implHomeSlider() {
+        homeSliderAdapter = HomeSliderAdapter()
+        // TODO: impl event handle
+        binding.rvSliderHome.apply {
+            adapter = homeSliderAdapter
+            set3DItem(true)
+            setInfinite(true)
+//            setFlat(true)
+        }
     }
 
     private fun implUiEvenet() {
@@ -52,8 +67,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }, onReachedEndOfList = {
 
         })
-        binding.rvMainProducts.adapter = mainHomeAdapter
-        binding.rvMainProducts.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvMainProducts.apply {
+            adapter = mainHomeAdapter
+            layoutManager=LinearLayoutManager(binding.root.context)
+        }
     }
 
     private fun observers() {
@@ -64,5 +81,19 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 }
             }
         }
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.sliderProducts.collectLatest {
+                    when (it) {
+                        is InteractState.Error -> {}
+                        is InteractState.Loading -> {}
+                        is InteractState.Success -> {
+                            homeSliderAdapter.submitList(it.data[0].images)
+                        }
+                    }
+                }
+            }
+        }
     }
+
 }

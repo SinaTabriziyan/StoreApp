@@ -36,14 +36,17 @@ object Versions {
 
     const val lottie = "3.4.2"
     const val swipeRefreshLayout = "1.1.0"
+    const val carouselrecyclerview = "1.2.6"
 
 }
+
 object Deps {
     const val core = "androidx.core:core-ktx:${Versions.core}"
     const val appcompat = "androidx.appcompat:appcompat:${Versions.appcompat}"
     const val material = "com.google.android.material:material:${Versions.material}"
     const val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constrainLayout}"
 }
+
 object TestImpl {
     const val junit = "junit:junit:${Versions.jUnit}"
     const val testJUnit = "androidx.test.ext:junit:${Versions.testJUnit}"
@@ -98,4 +101,8 @@ object Animations {
 
 object ProgressBar {
     const val circularBar = "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipeRefreshLayout}"
+}
+
+object Sliders {
+    const val carouselrecyclerview = "com.github.sparrow007:carouselrecyclerview:${Versions.carouselrecyclerview}"
 }

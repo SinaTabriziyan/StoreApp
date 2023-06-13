@@ -3,6 +3,7 @@ package com.sina.feature_home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sina.domain_main.interactor.InteractState
+import com.sina.domain_main.usecase.ProductsByCategoryUseCase
 import com.sina.domain_main.usecase.ProductsUseCase
 import com.sina.model.ui.products_item.ProductsItem
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,34 +16,38 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(productsUseCase: ProductsUseCase) : ViewModel() {
+class HomeViewModel @Inject constructor(
+    productsUseCase: ProductsUseCase,
+    productsByCategoryUseCase: ProductsByCategoryUseCase,
+) :
+    ViewModel() {
     private val TAG = "HomeViewModel"
     private val listItem: Array<MainProducts> = Array(3) { MainProducts.createData("", emptyList()) }
     private val _allMainProducts = MutableStateFlow<List<MainProducts>>(emptyList())
     private val topRatedProductsParams = ProductsUseCase.Params(1, "rating")
     private val latestProductsParams = ProductsUseCase.Params(1, "date")
     private val mostProductsParams = ProductsUseCase.Params(1, "popularity")
+    private val sliderProductsParams = ProductsByCategoryUseCase.Params(1, "119")
+
     val allMainProducts: StateFlow<List<MainProducts>> = _allMainProducts
 
     private val topRatedProducts: StateFlow<InteractState<List<ProductsItem>>> =
         productsUseCase(topRatedProductsParams).stateIn(
-            viewModelScope,
-            SharingStarted.WhileSubscribed(5_000),
-            InteractState.Loading
+            viewModelScope, SharingStarted.WhileSubscribed(5_000), InteractState.Loading
         )
     private val latestProducts: StateFlow<InteractState<List<ProductsItem>>> =
         productsUseCase(latestProductsParams).stateIn(
-            viewModelScope,
-            SharingStarted.WhileSubscribed(5_000),
-            InteractState.Loading
+            viewModelScope, SharingStarted.WhileSubscribed(5_000), InteractState.Loading
         )
     private val mostProducts: StateFlow<InteractState<List<ProductsItem>>> =
         productsUseCase(mostProductsParams).stateIn(
-            viewModelScope,
-            SharingStarted.WhileSubscribed(5_000),
-            InteractState.Loading
+            viewModelScope, SharingStarted.WhileSubscribed(5_000), InteractState.Loading
         )
 
+     val sliderProducts =
+        productsByCategoryUseCase.invoke(sliderProductsParams).stateIn(
+            viewModelScope, SharingStarted.WhileSubscribed(5_000), InteractState.Loading
+        )
 
     fun StateFlow<InteractState<List<ProductsItem>>>.open(title: String, index: Int) {
         viewModelScope.launch {

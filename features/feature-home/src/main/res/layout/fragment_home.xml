@@ -28,6 +28,16 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent=".8" />
 
+    <com.jackandphantom.carouselrecyclerview.CarouselRecyclerview
+        tools:listitem="@layout/item_slider_home"
+        android:id="@+id/rvSliderHome"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline2" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvMainProducts"

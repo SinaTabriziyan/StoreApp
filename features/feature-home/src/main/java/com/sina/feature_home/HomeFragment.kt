@@ -12,6 +12,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sina.feature_home.databinding.FragmentHomeBinding
 import com.sina.feature_item.ItemActivity
+import com.sina.feature_search.SearchActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -31,6 +32,16 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         _binding = FragmentHomeBinding.bind(view)
         implRecyclerView()
         observers()
+        implUiEvenet()
+    }
+
+    private fun implUiEvenet() {
+        with(binding) {
+            btnSearchHome.setOnClickListener {
+                // TODO: use default navigation later
+                startActivity(Intent(requireActivity(), SearchActivity::class.java))
+            }
+        }
     }
 
     private fun implRecyclerView() {

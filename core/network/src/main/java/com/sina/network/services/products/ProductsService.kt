@@ -37,4 +37,13 @@ interface ProductsService {
     suspend fun getItem(
         @Query("include") id: Int,
     ): List<ProductDTOItem>
+
+
+    @GET("products")
+    suspend fun getProductsBySearch(
+        @Query("search") querySearch: String,
+        @Query("page") page: Int,
+//        @Query("orderby") orderBy: String,
+//        @Query("order") order: String
+    ): List<ProductDTOItem>
 }

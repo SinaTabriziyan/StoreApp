@@ -49,6 +49,7 @@ dependencies {
     implementation(Deps.material)
     implementation(Deps.constraintLayout)
     implementation(project(mapOf("path" to ":features:feature-item")))
+    implementation(project(mapOf("path" to ":features:feature-search")))
 
 
     testImplementation(TestImpl.junit)

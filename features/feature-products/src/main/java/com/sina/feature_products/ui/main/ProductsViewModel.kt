@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
@@ -57,7 +58,7 @@ class ProductsViewModel @Inject constructor(
 
     fun getProducts(categoryId: String) {
         viewModelScope.launch {
-            productsByCategoryUseCase(ProductsByCategoryUseCase.Params(page, categoryId)).collectLatest {
+            productsByCategoryUseCase(ProductsByCategoryUseCase.Params(page, categoryId)).collect {
                 when (it) {
                     is InteractState.Error -> {
                         Log.e("TAG", "getProducts: ", )}

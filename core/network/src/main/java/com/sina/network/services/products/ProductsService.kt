@@ -42,7 +42,7 @@ interface ProductsService {
     @GET("products")
     suspend fun getProductsBySearch(
         @Query("page") page: Int,
-        @Query("search") querySearch: String,
+        @Query("search") query: String,
 //        @Query("orderby") orderBy: String,
 //        @Query("order") order: String
     ): List<ProductsDTOItem>

@@ -21,6 +21,7 @@ import com.sina.ui_components.onQueryTextChanged
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import java.net.URLEncoder
 
 @AndroidEntryPoint
 class SearchFragment : Fragment(R.layout.fragment_search) {
@@ -74,7 +75,8 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
                 }
                 searchView.onQueryTextChanged {
                     val searchQuery = "%$it%"
-                    viewModel.getProductsBySearch(searchQuery)
+                    val encodeQuery = URLEncoder.encode(searchQuery, "UTF-8")
+                    viewModel.getProductsBySearch(encodeQuery)
                 }
             }
 

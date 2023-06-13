@@ -56,7 +56,7 @@ class ProductsViewModel @Inject constructor(
             InteractState.Loading
         )
 
-    fun getProducts(categoryId: String) {
+    private fun getProducts(categoryId: String) {
         viewModelScope.launch {
             productsByCategoryUseCase(ProductsByCategoryUseCase.Params(page, categoryId)).collect {
                 when (it) {

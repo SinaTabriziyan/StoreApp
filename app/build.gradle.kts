@@ -48,6 +48,7 @@ dependencies {
     implementation(project(mapOf("path" to ":features:feature-home")))
     implementation(project(mapOf("path" to ":features:feature-category")))
     implementation(project(mapOf("path" to ":data:data-item")))
+    implementation(project(mapOf("path" to ":data:data-search")))
 
 
     implementation(project(":core:common"))

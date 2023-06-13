@@ -3,10 +3,12 @@ package com.sina.domain_main.di
 import com.sina.domain_main.repository.CategoryRepository
 import com.sina.domain_main.repository.ItemRepository
 import com.sina.domain_main.repository.ProductsRepository
+import com.sina.domain_main.repository.SearchProductsRepository
 import com.sina.domain_main.usecase.CategoryUseCase
 import com.sina.domain_main.usecase.ItemUseCase
 import com.sina.domain_main.usecase.ProductsByCategoryUseCase
 import com.sina.domain_main.usecase.ProductsUseCase
+import com.sina.domain_main.usecase.SearchProductsUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -28,4 +30,9 @@ object DomainModule {
     @Provides
     fun provideProductsByCategoryUseCase(itemRepository: ProductsRepository): ProductsByCategoryUseCase =
         ProductsByCategoryUseCase(itemRepository)
+
+
+    @Provides
+    fun provideProductsBySearchUseCase(searchProductsRepository: SearchProductsRepository): SearchProductsUseCase =
+        SearchProductsUseCase(searchProductsRepository)
 }

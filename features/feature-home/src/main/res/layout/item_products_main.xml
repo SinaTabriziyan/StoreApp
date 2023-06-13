@@ -32,6 +32,6 @@
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:itemCount="10"
-        tools:listitem="@layout/item_products" />
+        tools:listitem="@layout/item_searched_products" />
 
 </LinearLayout>

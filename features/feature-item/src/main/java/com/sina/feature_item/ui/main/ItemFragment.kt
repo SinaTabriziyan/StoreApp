@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.text.Spanned
 import android.util.Log
 import android.view.View
+import android.widget.HorizontalScrollView
 import androidx.core.text.HtmlCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -41,7 +42,6 @@ class ItemFragment : Fragment(R.layout.fragment_item) {
     private fun implRecyclerView() {
         with(binding) {
             rvItemImages.adapter = itemAdapter
-            rvItemImages.layoutManager = LinearLayoutManager(root.context)
         }
     }
 

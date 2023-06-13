@@ -6,8 +6,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.sina.common.utils.loadGlide
-import com.sina.feature_search.databinding.ItemSearchedProductsBinding
 import com.sina.model.ui.products_item.ProductsItem
+import com.sina.ui_components.databinding.ItemSearchedProductsBinding
 
 class SearchProductsAdapter (private val onClick: (Int) -> Unit) :
     ListAdapter<ProductsItem, SearchProductsAdapter.ViewHolder>(object : DiffUtil.ItemCallback<ProductsItem>() {

@@ -48,6 +48,7 @@ dependencies {
     implementation(Deps.appcompat)
     implementation(Deps.material)
     implementation(Deps.constraintLayout)
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
 
     testImplementation(TestImpl.junit)
     androidTestImplementation(TestImpl.testJUnit)

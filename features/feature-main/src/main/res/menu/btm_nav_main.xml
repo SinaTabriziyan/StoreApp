@@ -3,15 +3,18 @@
     <item
         android:id="@+id/homeFragment"
         android:enabled="true"
-        android:title="home" />
+        android:icon="@drawable/ic_store"
+        android:title="@string/txt_home" />
 
     <item
         android:id="@+id/categoryFragment"
         android:enabled="true"
-        android:title="category" />
+        android:icon="@drawable/ic_category"
+        android:title="@string/txt_category" />
 
     <item
-        android:id="@+id/settingFragment"
+        android:id="@+id/cartFragment"
         android:enabled="true"
-        android:title="setting" />
+        android:icon="@drawable/ic_cart"
+        android:title="@string/txt_cart" />
 </menu>

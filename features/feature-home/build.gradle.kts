@@ -43,6 +43,7 @@ dependencies {
     implementation(project(mapOf("path" to ":domain:domain-main")))
     implementation(project(mapOf("path" to ":core:model")))
     implementation(project(mapOf("path" to ":core:common")))
+    implementation(project(mapOf("path" to ":core:ui-components")))
 
     implementation(Deps.core)
     implementation(Deps.appcompat)
@@ -50,6 +51,7 @@ dependencies {
     implementation(Deps.constraintLayout)
     implementation(project(mapOf("path" to ":features:feature-item")))
     implementation(project(mapOf("path" to ":features:feature-search")))
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
 
 
     testImplementation(TestImpl.junit)

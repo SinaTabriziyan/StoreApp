@@ -6,8 +6,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.sina.common.utils.loadGlide
-import com.sina.feature_category.databinding.ItemCategoryBinding
 import com.sina.model.ui.category_item.CategoryItem
+import com.sina.ui_components.databinding.ItemCategoryBinding
 
 class CategoryAdapter(
     private val onClick: (Int) -> Unit,

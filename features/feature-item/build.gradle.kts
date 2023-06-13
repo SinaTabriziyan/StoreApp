@@ -51,6 +51,7 @@ dependencies {
     implementation("com.google.android.material:material:1.4.0")
     implementation(project(mapOf("path" to ":domain:domain-main")))
     implementation(project(mapOf("path" to ":core:model")))
+    implementation(project(mapOf("path" to ":core:ui-components")))
 
     testImplementation(TestImpl.junit)
     androidTestImplementation(TestImpl.testJUnit)

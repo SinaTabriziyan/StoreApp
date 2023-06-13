@@ -40,7 +40,6 @@ class ItemFragment : Fragment(R.layout.fragment_item) {
                         is InteractState.Error -> {}
                         is InteractState.Loading -> {}
                         is InteractState.Success -> {
-                            binding.message.text = it.data[0].description
                         }
                     }
                 }

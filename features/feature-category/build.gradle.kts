@@ -44,6 +44,7 @@ dependencies {
     implementation(project(mapOf("path" to ":core:common")))
     implementation(project(mapOf("path" to ":core:model")))
     implementation(project(mapOf("path" to ":features:feature-products")))
+    implementation(project(mapOf("path" to ":core:ui-components")))
 
     implementation(Deps.core)
     implementation(Deps.appcompat)

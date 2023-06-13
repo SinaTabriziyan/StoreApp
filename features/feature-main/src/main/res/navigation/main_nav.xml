@@ -12,4 +12,8 @@
         android:id="@+id/categoryFragment"
         android:name="com.sina.feature_category.CategoryFragment"
         android:label="CategoryFragment" />
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.sina.feature_cart.CartFragment"
+        android:label="CartFragment" />
 </navigation>

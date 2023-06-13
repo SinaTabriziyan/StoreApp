@@ -5,8 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.sina.feature_home.databinding.ItemProductsMainBinding
-import com.sina.model.ui.products_item.ProductsItem
+import com.sina.ui_components.databinding.ItemProductsMainBinding
 
 class MainHomeAdapter(private val onClick: (Int) -> Unit, private val onReachedEndOfList: (Boolean) -> Unit) :
     ListAdapter<HomeViewModel.MainProducts, MainHomeAdapter.ViewHolder>(object : DiffUtil.ItemCallback<HomeViewModel.MainProducts>() {

@@ -6,8 +6,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.sina.common.utils.loadGlide
-import com.sina.feature_home.databinding.ItemSliderHomeBinding
 import com.sina.model.data.products_dto.Image
+import com.sina.ui_components.databinding.ItemSliderHomeBinding
 
 class HomeSliderAdapter : ListAdapter<Image, HomeSliderAdapter.ViewHolder>(DiffCallback()) {
 

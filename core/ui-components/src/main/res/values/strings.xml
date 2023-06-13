@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="txt_home">خانه</string>
+    <string name="txt_category">دسته بندی</string>
+    <string name="txt_cart">سبد</string>
+    <string name="tv_cart_product_name">نام محصول</string>
+    <string name="tv_cart_product_color">رنگ</string>
+    <string name="tv_cart_product_price">قیمت</string>
+</resources>

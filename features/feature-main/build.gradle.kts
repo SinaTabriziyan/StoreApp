@@ -43,6 +43,8 @@ dependencies {
     implementation(project(mapOf("path" to ":core:common")))
     implementation(project(mapOf("path" to ":features:feature-home")))
     implementation(project(mapOf("path" to ":features:feature-category")))
+    implementation(project(mapOf("path" to ":features:feature-cart")))
+    implementation(project(mapOf("path" to ":core:ui-components")))
 
     implementation(Deps.core)
     implementation(Deps.appcompat)

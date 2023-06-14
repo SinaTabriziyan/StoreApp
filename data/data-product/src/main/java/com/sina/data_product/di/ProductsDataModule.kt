@@ -1,8 +1,8 @@
-package com.sina.data_home.di
+package com.sina.data_product.di
 
-import com.sina.data_home.remote.ProductsRemoteDataSource
-import com.sina.data_home.remote.ProductsRemoteDataSourceImpl
-import com.sina.data_home.repository.ProductsRepositoryImpl
+import com.sina.data_product.remote.ProductsRemoteDataSource
+import com.sina.data_product.remote.ProductsRemoteDataSourceImpl
+import com.sina.data_product.repository.ProductsRepositoryImpl
 import com.sina.domain_main.repository.ProductsRepository
 import com.sina.network.annotation.IODispatcher
 import com.sina.network.services.products.StoreServices

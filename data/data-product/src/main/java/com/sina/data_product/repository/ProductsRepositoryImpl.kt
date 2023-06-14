@@ -1,8 +1,8 @@
-package com.sina.data_home.repository
+package com.sina.data_product.repository
 
 import com.sina.common.responsestate.ResponseState
 import com.sina.common.responsestate.asResult
-import com.sina.data_home.remote.ProductsRemoteDataSource
+import com.sina.data_product.remote.ProductsRemoteDataSource
 import com.sina.domain_main.repository.ProductsRepository
 import com.sina.model.ui.products_item.ProductsItem
 import kotlinx.coroutines.CoroutineDispatcher

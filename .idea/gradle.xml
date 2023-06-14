@@ -22,8 +22,8 @@
             <option value="$PROJECT_DIR$/data/data-cart" />
             <option value="$PROJECT_DIR$/data/data-category" />
             <option value="$PROJECT_DIR$/data/data-customer" />
-            <option value="$PROJECT_DIR$/data/data-home" />
             <option value="$PROJECT_DIR$/data/data-item" />
+            <option value="$PROJECT_DIR$/data/data-product" />
             <option value="$PROJECT_DIR$/data/data-search" />
             <option value="$PROJECT_DIR$/domain" />
             <option value="$PROJECT_DIR$/domain/domain-main" />

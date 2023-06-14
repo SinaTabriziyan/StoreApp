@@ -1,4 +1,4 @@
-package com.sina.data_home.remote
+package com.sina.data_product.remote
 
 import com.sina.model.ui.products_item.ProductsItem
 

@@ -1,4 +1,4 @@
-package com.sina.data_home
+package com.sina.data_product
 
 import org.junit.Test
 

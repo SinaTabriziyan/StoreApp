@@ -1,5 +1,9 @@
 package com.sina.network.di
 
+import com.google.gson.ExclusionStrategy
+import com.google.gson.FieldAttributes
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import com.sina.network.params.ServerParams.BASE_URL
 import com.sina.network.params.ServerParams.CONSUMER_KEY
 import com.sina.network.params.ServerParams.CONSUMER_KEY_VALUE
@@ -8,6 +12,7 @@ import com.sina.network.params.ServerParams.CONSUMER_SECRET_VALUE
 import com.sina.network.annotation.BaseUrl
 import com.sina.network.annotation.ConsumerKey
 import com.sina.network.annotation.ConsumerSecret
+import com.sina.network.annotation.ExcludeInSerialization
 import com.sina.network.di.tools.provideApi
 import com.sina.network.services.products.StoreServices
 import dagger.Module
@@ -41,7 +46,6 @@ object NetworkModule {
     @BaseUrl
     fun provideBaseUrl(): String = BASE_URL
 
-
     @Provides
     @Singleton
     fun provideInterceptor(@ConsumerKey consumerKey: String, @ConsumerSecret consumerSecret: String): Interceptor =
@@ -67,7 +71,6 @@ object NetworkModule {
         return httpLoggingInterceptor
     }
 
-
     @Provides
     @Singleton
     fun provideOkHttpClient(
@@ -80,16 +83,37 @@ object NetworkModule {
         .build()
 
 
+    @Singleton
+    @Provides
+    fun provideGson(): Gson = GsonBuilder()
+        .addSerializationExclusionStrategy(object : ExclusionStrategy {
+            override fun shouldSkipField(f: FieldAttributes?): Boolean {
+                return f?.getAnnotation(ExcludeInSerialization::class.java) != null
+            }
+
+            override fun shouldSkipClass(clazz: Class<*>?): Boolean {
+                return false
+            }
+        })
+        .create()
+
+    @Singleton
+    @Provides
+    fun jsonConvertorFactory(gson: Gson): GsonConverterFactory =
+        GsonConverterFactory.create(gson)
+
+
     @Provides
     @Singleton
     fun provideRetrofit(
         client: OkHttpClient,
         @BaseUrl baseUrl: String,
+        gsonConverterFactory: GsonConverterFactory,
     ): Retrofit =
         Retrofit.Builder()
             .baseUrl(baseUrl)
             .client(client)
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(gsonConverterFactory)
             .build()
 
     @Provides

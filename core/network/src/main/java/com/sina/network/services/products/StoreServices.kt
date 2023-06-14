@@ -10,41 +10,31 @@ import retrofit2.http.POST
 import retrofit2.http.Query
 
 interface StoreServices {
+
+    @GET("products")
+    suspend fun getProductsList(
+        @Query(PARAMS.PAGE) page: Int = 1,
+        @Query("orderby") orderBy: String,
+    ): List<ProductsDTOItem>
+
+    @GET("products")
+    suspend fun getProductDetails(
+        @Query("include") id: Int,
+    ): List<ProductDTOItem>
+
+
     @GET("products/")
-    suspend fun getProducts(
-        @Query("page") page: Int,
+    suspend fun getProductsByCategory(
+        @Query(PARAMS.PAGE) page: Int,
         @Query("category") category: String,
-    ): List<ProductsDTOItem>
-    @GET("products")
-    suspend fun getLatestProducts(
-        @Query("page") page: Int,
-        @Query("orderby") orderBy: String,
-    ): List<ProductsDTOItem>
-
-    @GET("products")
-    suspend fun getMostVisitedProducts(
-        @Query("page") page: Int,
-        @Query("orderby") orderBy: String,
-    ): List<ProductsDTOItem>
-
-    @GET("products")
-    suspend fun getTopRatedProductsService(
-        @Query("page") page: Int = 1,
-        @Query("orderby") orderBy: String,
     ): List<ProductsDTOItem>
 
     @GET("products/categories")
     suspend fun getCategories(): List<CategoryDTOItem>
 
     @GET("products")
-    suspend fun getItem(
-        @Query("include") id: Int,
-    ): List<ProductDTOItem>
-
-
-    @GET("products")
     suspend fun getProductsBySearch(
-        @Query("page") page: Int,
+        @Query(PARAMS.PAGE) page: Int,
         @Query("search") query: String,
 //        @Query("orderby") orderBy: String,
 //        @Query("order") order: String

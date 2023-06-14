@@ -19,8 +19,7 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     productsUseCase: ProductsUseCase,
     productsByCategoryUseCase: ProductsByCategoryUseCase,
-) :
-    ViewModel() {
+) : ViewModel() {
     private val TAG = "HomeViewModel"
     private val listItem: Array<MainProducts> = Array(3) { MainProducts.createData("", emptyList()) }
     private val _allMainProducts = MutableStateFlow<List<MainProducts>>(emptyList())
@@ -44,7 +43,7 @@ class HomeViewModel @Inject constructor(
             viewModelScope, SharingStarted.WhileSubscribed(5_000), InteractState.Loading
         )
 
-     val sliderProducts =
+    val sliderProducts =
         productsByCategoryUseCase.invoke(sliderProductsParams).stateIn(
             viewModelScope, SharingStarted.WhileSubscribed(5_000), InteractState.Loading
         )

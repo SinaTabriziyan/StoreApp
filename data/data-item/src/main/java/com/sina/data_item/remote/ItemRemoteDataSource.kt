@@ -4,5 +4,5 @@ import com.sina.common.responsestate.ResponseState
 import com.sina.model.ui.product_item.ProductItem
 
 interface ItemRemoteDataSource {
-    suspend fun getItem(productId: Int): List<ProductItem>
+    suspend fun getProductDetails(productId: Int): List<ProductItem>
 }

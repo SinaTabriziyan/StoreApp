@@ -6,9 +6,9 @@ import com.sina.network.services.products.StoreServices
 
 class ProductsRemoteDataSourceImpl(private val storeServices: StoreServices) : ProductsRemoteDataSource {
     override suspend fun getTopRatedProducts(page: Int, orderBy: String): List<ProductsItem> =
-        storeServices.getTopRatedProductsService(page, orderBy).map { mapProductsDtoItemToProductsItem(it) }
+        storeServices.getProductsList(page, orderBy).map { mapProductsDtoItemToProductsItem(it) }
 
     override suspend fun getProductsByCategory(page: Int, orderBy: String): List<ProductsItem> {
-        return storeServices.getProducts(page,orderBy).map { mapProductsDtoItemToProductsItem(it) }
+        return storeServices.getProductsByCategory(page,orderBy).map { mapProductsDtoItemToProductsItem(it) }
     }
 }

@@ -98,6 +98,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                         is InteractState.Loading -> {}
                         is InteractState.Success -> {
                             homeSliderAdapter.submitList(it.data[0].images)
+                            Log.e(TAG, "observers: ${it.data[0].images}", )
                         }
                     }
                 }

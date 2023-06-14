@@ -29,6 +29,7 @@
             <option value="$PROJECT_DIR$/features" />
             <option value="$PROJECT_DIR$/features/feature-cart" />
             <option value="$PROJECT_DIR$/features/feature-category" />
+            <option value="$PROJECT_DIR$/features/feature-customer" />
             <option value="$PROJECT_DIR$/features/feature-home" />
             <option value="$PROJECT_DIR$/features/feature-item" />
             <option value="$PROJECT_DIR$/features/feature-main" />

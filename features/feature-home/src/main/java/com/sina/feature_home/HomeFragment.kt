@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -39,7 +40,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         implRecyclerView()
         implHomeSlider()
         observers()
-        implUiEvenet()
+        uiEvenet()
     }
 
     private fun observeUiEvents() {
@@ -60,7 +61,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
     }
 
-    private fun implUiEvenet() {
+    private fun uiEvenet() {
         with(binding) {
             btnSearchHome.setOnClickListener {
                 // TODO: use default navigation later
@@ -93,18 +94,34 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.sliderProducts.collectLatest {
-                    when (it) {
-                        is InteractState.Error -> {}
-                        is InteractState.Loading -> {}
-                        is InteractState.Success -> {
-                            homeSliderAdapter.submitList(it.data[0].images)
-                            Log.e(TAG, "observers: ${it.data[0].images}")
-                        }
-                    }
+                viewModel.sliderImages.collectLatest { homeSliderAdapter.submitList(it) }
+            }
+        }
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED){
+                viewModel.uiState.collectLatest {
+                    animationStatus(it)
                 }
             }
         }
+//        viewLifecycleOwner.lifecycleScope.launch {
+//            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+//                viewModel.sliderProducts.collectLatest {
+//                    when (it) {
+//                        is InteractState.Error -> {}
+//                        is InteractState.Loading -> {}
+//                        is InteractState.Success -> {
+//                            homeSliderAdapter.submitList(it.data[0].images)
+//                            Log.e(TAG, "observers: ${it.data[0].images}")
+//                        }
+//                    }
+//                }
+//            }
+//        }
+    }
+
+    private fun animationStatus(state: Boolean) {
+        binding.lottie.isVisible = state
     }
 
 }

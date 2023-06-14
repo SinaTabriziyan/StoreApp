@@ -44,6 +44,8 @@ object Versions {
     const val shimmer = "0.5.0"
     const val shimmerRecyclerview = "0.4.1"
 
+    const val timber = "5.0.1"
+
 }
 
 object Deps {
@@ -114,4 +116,7 @@ object ProgressBar {
 
 object Sliders {
     const val carouselrecyclerview = "com.github.sparrow007:carouselrecyclerview:${Versions.carouselrecyclerview}"
+}
+object Log {
+    const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
 }

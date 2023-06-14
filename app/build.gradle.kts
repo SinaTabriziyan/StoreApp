@@ -90,4 +90,7 @@ dependencies {
     implementation(ImageLoaders.coil)
     implementation(ProgressBar.circularBar)
     implementation(Animations.lottie)
+
+    implementation(Log.timber)
+
 }

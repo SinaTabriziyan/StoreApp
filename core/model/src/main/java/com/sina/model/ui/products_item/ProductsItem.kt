@@ -4,7 +4,7 @@ package com.sina.model.ui.products_item
 data class ProductsItem(
     val id: Int?,
     val averageRating: String?,
-    val images: List<Image?>?,
+    val images: List<Image>?,
     val name: String?,
     val price: String?,
     val regularPrice : String?,

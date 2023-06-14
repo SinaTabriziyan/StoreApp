@@ -66,6 +66,7 @@ dependencies {
     implementation(Navigation.navigationUi)
     implementation(DI.hilt)
     kapt(DI.hiltCompiler)
+    implementation(Animations.lottie)
 
     implementation(Sliders.carouselrecyclerview)
 

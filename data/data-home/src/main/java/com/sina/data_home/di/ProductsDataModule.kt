@@ -5,7 +5,7 @@ import com.sina.data_home.remote.ProductsRemoteDataSourceImpl
 import com.sina.data_home.repository.ProductsRepositoryImpl
 import com.sina.domain_main.repository.ProductsRepository
 import com.sina.network.annotation.IODispatcher
-import com.sina.network.services.products.ProductsService
+import com.sina.network.services.products.StoreServices
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,7 +17,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 object ProductsDataModule {
 
     @Provides
-    fun provideProductsDataSource(productsService: ProductsService): ProductsRemoteDataSource = ProductsRemoteDataSourceImpl(productsService)
+    fun provideProductsDataSource(storeServices: StoreServices): ProductsRemoteDataSource = ProductsRemoteDataSourceImpl(storeServices)
 
     @Provides
     fun provideProductsRepository(

@@ -12,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sina.domain_main.interactor.InteractState
+import com.sina.feature_customer.CustomerActivity
 import com.sina.feature_home.databinding.FragmentHomeBinding
 import com.sina.feature_item.ItemActivity
 import com.sina.feature_search.SearchActivity
@@ -33,10 +34,18 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentHomeBinding.bind(view)
+        observeUiEvents()
         implRecyclerView()
         implHomeSlider()
         observers()
         implUiEvenet()
+    }
+
+    private fun observeUiEvents() {
+        binding.imgCustomerAvatar.setOnClickListener {
+            val intent = Intent(requireActivity(), CustomerActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun implHomeSlider() {
@@ -69,7 +78,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         })
         binding.rvMainProducts.apply {
             adapter = mainHomeAdapter
-            layoutManager=LinearLayoutManager(binding.root.context)
+            layoutManager = LinearLayoutManager(binding.root.context)
         }
     }
 

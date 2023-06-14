@@ -53,6 +53,7 @@ dependencies {
     implementation(Deps.constraintLayout)
 
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
+    implementation(project(mapOf("path" to ":features:feature-customer")))
 
     testImplementation(TestImpl.junit)
     androidTestImplementation(TestImpl.testJUnit)

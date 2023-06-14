@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/customer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.main.CustomerFragment">
+
+    <ImageView
+        android:id="@+id/imgCustomerAvatar"
+        android:layout_width="170dp"
+        android:layout_height="170dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/etCustomerName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:inputType="text"
+        android:hint="Name"
+        app:layout_constraintEnd_toEndOf="@+id/imgCustomerAvatar"
+        app:layout_constraintStart_toStartOf="@+id/imgCustomerAvatar"
+        app:layout_constraintTop_toBottomOf="@+id/imgCustomerAvatar" />
+
+    <EditText
+        android:id="@+id/etCustomerLastName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:inputType="text"
+        android:hint="Family"
+        app:layout_constraintEnd_toEndOf="@+id/etCustomerName"
+        app:layout_constraintStart_toStartOf="@+id/etCustomerName"
+        app:layout_constraintTop_toBottomOf="@+id/etCustomerName" />
+
+    <EditText
+        android:id="@+id/etCustomerEmail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:inputType="text"
+        android:hint="Email"
+        app:layout_constraintEnd_toEndOf="@+id/etCustomerLastName"
+        app:layout_constraintStart_toStartOf="@+id/etCustomerLastName"
+        app:layout_constraintTop_toBottomOf="@+id/etCustomerLastName" />
+
+    <Button
+        android:id="@+id/btnCreateCustomer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SignUp"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

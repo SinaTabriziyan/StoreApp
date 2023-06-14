@@ -67,10 +67,10 @@
                 tools:listitem="@layout/item_products_main" />
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/materialCardView"
-                android:layout_margin="22dp"
+                android:id="@+id/imgCustomerAvatar"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:layout_margin="22dp"
                 app:cardCornerRadius="100dp"
                 app:layout_constraintBottom_toTopOf="@+id/guideline2"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -82,7 +82,6 @@
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
                     tools:srcCompat="@tools:sample/backgrounds/scenic" />
             </com.google.android.material.card.MaterialCardView>
 

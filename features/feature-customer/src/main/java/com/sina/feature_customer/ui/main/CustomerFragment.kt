@@ -26,13 +26,15 @@ class CustomerFragment : Fragment(R.layout.fragment_customer) {
 
 
         with(binding) {
-            viewModel.createUser(
-                userName = etCustomerName.text.toString(),
-                firstName = etCustomerEmail.text.toString(),
-                lastName = etCustomerEmail.text.toString(),
-                email = etCustomerEmail.text.toString(),
-                avatar = etCustomerEmail.text.toString()
-            )
+            btnCreateCustomer.setOnClickListener {
+                viewModel.createUser(
+                    userName = etCustomerName.text.toString(),
+                    firstName = etCustomerEmail.text.toString(),
+                    lastName = etCustomerEmail.text.toString(),
+                    email = etCustomerEmail.text.toString(),
+                    avatar = etCustomerEmail.text.toString()
+                )
+            }
         }
     }
 

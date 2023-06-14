@@ -1,4 +1,4 @@
-package com.sina.feature_home
+package com.sina.feature_home.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

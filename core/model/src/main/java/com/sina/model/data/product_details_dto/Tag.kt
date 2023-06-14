@@ -1,4 +1,4 @@
-package com.sina.model.data.product_dto
+package com.sina.model.data.product_details_dto
 
 
 import com.google.gson.annotations.SerializedName

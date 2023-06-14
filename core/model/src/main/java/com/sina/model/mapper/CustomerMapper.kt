@@ -3,22 +3,10 @@ package com.sina.model.mapper
 import com.sina.model.data.customer_dto.CustomerDTO
 import com.sina.model.ui.customer_item.Customer
 
-fun CustomerDTO.asCustomer() = Customer(
-    id = id,
-    email = email,
-    username = username,
-    firstName = firstName,
-    lastName = lastName,
-    avatarUrl = avatar_url,
-    role = role,
-)
+fun mapCustomerDtoToCustomer(dto: CustomerDTO): Customer = with(dto) {
+    Customer(id, email, username, firstName, lastName, avatar_url, role)
+}
 
-fun Customer.asCustomerNetwork() = CustomerDTO(
-    id = id,
-    email = email,
-    username = username,
-    firstName = firstName,
-    lastName = lastName,
-    avatar_url = avatarUrl,
-    role = role
-)
+fun mapCustomerToCustomerDto(customer: Customer): CustomerDTO = with(customer) {
+    CustomerDTO(id, email, username, firstName, lastName, avatarUrl, role)
+}

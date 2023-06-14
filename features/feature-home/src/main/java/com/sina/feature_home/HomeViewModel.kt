@@ -48,7 +48,7 @@ class HomeViewModel @Inject constructor(
             viewModelScope, SharingStarted.WhileSubscribed(5_000), InteractState.Loading
         )
 
-    fun StateFlow<InteractState<List<ProductsItem>>>.open(title: String, index: Int) {
+    private fun StateFlow<InteractState<List<ProductsItem>>>.open(title: String, index: Int) {
         viewModelScope.launch {
             this@open.collectLatest { it ->
                 when (it) {

@@ -5,9 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.sina.model.data.product_dto.Image
 import com.sina.model.ui.product_details_item.ProductDetails
-import com.sina.model.ui.products_item.ProductsItem
 import com.sina.ui_components.databinding.ItemImageProductBinding
 import com.sina.ui_components.loadGlide
 

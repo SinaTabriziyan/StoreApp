@@ -1,10 +1,11 @@
-package com.sina.feature_home
+package com.sina.feature_home.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.sina.feature_home.HomeViewModel
 import com.sina.ui_components.databinding.ItemProductsMainBinding
 
 class MainHomeAdapter(private val onClick: (Int) -> Unit, private val onReachedEndOfList: (Boolean) -> Unit) :

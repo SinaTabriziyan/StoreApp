@@ -1,7 +1,6 @@
 package com.sina.feature_home
 
 import android.content.Intent
-import android.graphics.drawable.ClipDrawable.VERTICAL
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -13,6 +12,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sina.domain_main.interactor.InteractState
 import com.sina.feature_customer.CustomerActivity
+import com.sina.feature_home.adapter.MainHomeAdapter
 import com.sina.feature_home.databinding.FragmentHomeBinding
 import com.sina.feature_item.ItemActivity
 import com.sina.feature_search.SearchActivity
@@ -98,7 +98,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                         is InteractState.Loading -> {}
                         is InteractState.Success -> {
                             homeSliderAdapter.submitList(it.data[0].images)
-                            Log.e(TAG, "observers: ${it.data[0].images}", )
+                            Log.e(TAG, "observers: ${it.data[0].images}")
                         }
                     }
                 }

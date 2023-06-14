@@ -5,7 +5,7 @@ import com.sina.data_search.remote.SearchProductsRemoteDataSourceImpl
 import com.sina.data_search.repository.SearchProductsRepositoryImpl
 import com.sina.domain_main.repository.SearchProductsRepository
 import com.sina.network.annotation.IODispatcher
-import com.sina.network.services.products.ProductsService
+import com.sina.network.services.products.StoreServices
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,8 +17,8 @@ import kotlinx.coroutines.CoroutineDispatcher
 object SearchProductsDataModule {
 
     @Provides
-    fun provideSearchProductsRemoteDataSource(productsService: ProductsService): SearchProductsRemoteDataSource =
-        SearchProductsRemoteDataSourceImpl(productsService)
+    fun provideSearchProductsRemoteDataSource(storeServices: StoreServices): SearchProductsRemoteDataSource =
+        SearchProductsRemoteDataSourceImpl(storeServices)
 
     @Provides
     fun provideSearchProductsRepository(

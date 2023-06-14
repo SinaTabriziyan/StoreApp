@@ -6,15 +6,17 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.sina.model.data.product_dto.Image
+import com.sina.model.ui.product_details_item.ProductDetails
+import com.sina.model.ui.products_item.ProductsItem
 import com.sina.ui_components.databinding.ItemImageProductBinding
 import com.sina.ui_components.loadGlide
 
-class ImageItemAdapter : ListAdapter<Image, ImageItemAdapter.ViewHolder>(object : DiffUtil.ItemCallback<Image?>() {
-    override fun areItemsTheSame(oldItem: Image, newItem: Image): Boolean = oldItem.id == newItem.id
-    override fun areContentsTheSame(oldItem: Image, newItem: Image): Boolean = oldItem == newItem
+class ImageItemAdapter : ListAdapter<ProductDetails.Image, ImageItemAdapter.ViewHolder>(object : DiffUtil.ItemCallback<ProductDetails.Image?>() {
+    override fun areItemsTheSame(oldItem: ProductDetails.Image, newItem: ProductDetails.Image): Boolean = oldItem.id == newItem.id
+    override fun areContentsTheSame(oldItem: ProductDetails.Image, newItem: ProductDetails.Image): Boolean = oldItem == newItem
 }) {
     inner class ViewHolder(private val binding: ItemImageProductBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: Image) {
+        fun bind(item: ProductDetails.Image) {
             with(binding) {
                 imgItemProduct.loadGlide(item.src)
             }

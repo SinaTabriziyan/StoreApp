@@ -6,7 +6,7 @@ import com.sina.data_item.local.ItemLocalDataSource
 import com.sina.data_item.remote.ItemRemoteDataSource
 import com.sina.domain_main.repository.ItemRepository
 import com.sina.model.entity.ProductEntity
-import com.sina.model.ui.product_item.ProductItem
+import com.sina.model.ui.product_details_item.ProductDetails
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -17,10 +17,10 @@ class ItemRepositoryImpl(
     private val itemLocalDataSource: ItemLocalDataSource,
     private val dispatcher: CoroutineDispatcher,
 ) : ItemRepository {
-    override fun getProductDetails(productId: Int): Flow<ResponseState<List<ProductItem>>> =
+    override fun getProductDetails(productId: Int): Flow<ResponseState<ProductDetails>> =
         flow { emit(itemRemoteDataSource.getProductDetails(productId)) }.asResult().flowOn(dispatcher)
 
-    override suspend fun addProduct(productEntity:ProductEntity){
+    override suspend fun addProduct(productEntity: ProductEntity) {
         itemLocalDataSource.addItem(productEntity)
     }
 

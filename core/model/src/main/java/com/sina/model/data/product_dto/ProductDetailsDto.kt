@@ -2,12 +2,8 @@ package com.sina.model.data.product_dto
 
 
 import com.google.gson.annotations.SerializedName
-import com.sina.model.data.product_dto.Category
-import com.sina.model.data.product_dto.Dimensions
-import com.sina.model.data.product_dto.Image
-import com.sina.model.data.product_dto.Links
 
-data class ProductDTOItem(
+data class ProductDetailsDto(
     @SerializedName("attributes")
     val attributes: List<Any>,
     @SerializedName("average_rating")
@@ -127,7 +123,7 @@ data class ProductDTOItem(
     @SerializedName("stock_status")
     val stockStatus: String,
     @SerializedName("tags")
-    val tags: List<Any>,
+    val tags: List<Tag>,
     @SerializedName("tax_class")
     val taxClass: String,
     @SerializedName("tax_status")

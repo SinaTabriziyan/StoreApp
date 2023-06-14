@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.sina.domain_main.interactor.InteractState
 import com.sina.domain_main.usecase.AddItemUseCase
 import com.sina.domain_main.usecase.ItemUseCase
-import com.sina.model.ui.product_item.ProductItem
+import com.sina.model.ui.product_details_item.ProductDetails
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -46,7 +46,7 @@ class ItemViewModel @Inject constructor(
         }
     }
 
-    val productItem: StateFlow<InteractState<List<ProductItem>>> =
+    val productDetails: StateFlow<InteractState<ProductDetails>> =
         itemUseCase(ItemUseCase.Params(itemId)).stateIn(
             viewModelScope,
             SharingStarted.WhileSubscribed(5_000),

@@ -12,7 +12,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.sina.domain_main.interactor.InteractState
 import com.sina.feature_details.R
 import com.sina.feature_details.databinding.FragmentItemBinding
-import com.sina.model.ui.product_item.ProductItem
+import com.sina.model.ui.product_details_item.ProductDetails
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -45,7 +45,7 @@ class ItemFragment : Fragment(R.layout.fragment_item) {
     private fun observers() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.productItem.collectLatest {
+                viewModel.productDetails.collectLatest {
                     when (it) {
                         is InteractState.Error -> {}
                         is InteractState.Loading -> {}
@@ -77,16 +77,13 @@ class ItemFragment : Fragment(R.layout.fragment_item) {
         }
     }
 
-    private fun implUi(data: List<ProductItem>) {
+    private fun implUi(data: ProductDetails) {
         with(binding) {
-            itemAdapter.submitList(data[0].images)
-            tvItemDescription.text = HtmlCompat.fromHtml(data[0].description.toString(), HtmlCompat.FROM_HTML_MODE_LEGACY)
-            tvItemPrice.text = data[0].price
-            tvItemTitle.text = data[0].name
-            btnAddToCart.setOnClickListener {
-                data[0].id?.let { id -> viewModel.addItemToCart(id) }
-
-            }
+            itemAdapter.submitList(data.images)
+            tvItemDescription.text = HtmlCompat.fromHtml(data.description.toString(), HtmlCompat.FROM_HTML_MODE_LEGACY)
+            tvItemPrice.text = data.price
+            tvItemTitle.text = data.name
+            btnAddToCart.setOnClickListener { viewModel.addItemToCart(data.id) }
         }
     }
 }

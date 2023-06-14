@@ -2,11 +2,12 @@ package com.sina.network.services.products
 
 import com.sina.model.data.category_dto.CategoryDTOItem
 import com.sina.model.data.customer_dto.CustomerDTO
-import com.sina.model.data.product_dto.ProductDTOItem
+import com.sina.model.data.product_dto.ProductDetailsDto
 import com.sina.model.data.products_dto.ProductsDTOItem
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface StoreServices {
@@ -17,10 +18,10 @@ interface StoreServices {
         @Query("orderby") orderBy: String,
     ): List<ProductsDTOItem>
 
-    @GET("products")
+    @GET("products/{id}")
     suspend fun getProductDetails(
-        @Query("include") id: Int,
-    ): List<ProductDTOItem>
+        @Path("id") id: Int,
+    ): ProductDetailsDto
 
 
     @GET("products/")
@@ -43,7 +44,7 @@ interface StoreServices {
 
     @POST(Route.CUSTOMERS)
     suspend fun createCustomer(
-        @Body customerNetwork: CustomerDTO
+        @Body customerNetwork: CustomerDTO,
     ): CustomerDTO
 
 

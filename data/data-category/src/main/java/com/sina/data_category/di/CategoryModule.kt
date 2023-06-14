@@ -4,9 +4,8 @@ import com.sina.data_category.remote.CategoryRemoteDataSource
 import com.sina.data_category.remote.CategoryRemoteDataSourceImpl
 import com.sina.data_category.repository.CategoryRepositoryImpl
 import com.sina.domain_main.repository.CategoryRepository
-import com.sina.domain_main.repository.ProductsRepository
 import com.sina.network.annotation.IODispatcher
-import com.sina.network.services.products.ProductsService
+import com.sina.network.services.products.StoreServices
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,8 +19,8 @@ object CategoryModule {
 
     @Provides
     @Singleton
-    fun provideProductDataSource(productsService: ProductsService): CategoryRemoteDataSource =
-        CategoryRemoteDataSourceImpl(productsService)
+    fun provideProductDataSource(storeServices: StoreServices): CategoryRemoteDataSource =
+        CategoryRemoteDataSourceImpl(storeServices)
 
     @Provides
     @Singleton

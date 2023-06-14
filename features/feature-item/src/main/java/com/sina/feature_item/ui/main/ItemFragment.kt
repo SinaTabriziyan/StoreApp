@@ -1,17 +1,14 @@
 package com.sina.feature_item.ui.main
 
 import android.os.Bundle
-import android.text.Spanned
 import android.util.Log
 import android.view.View
-import android.widget.HorizontalScrollView
 import androidx.core.text.HtmlCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.sina.domain_main.interactor.InteractState
 import com.sina.feature_details.R
 import com.sina.feature_details.databinding.FragmentItemBinding
@@ -60,6 +57,24 @@ class ItemFragment : Fragment(R.layout.fragment_item) {
                 }
             }
         }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.itemAdded.collectLatest {
+                    when (it) {
+                        true -> {
+                            binding.btnAddToCart.text = "برو به سبد خرید"
+
+                        }
+
+                        false -> {
+                            binding.btnAddToCart.text = "خرید"
+
+                        }
+                    }
+                }
+            }
+        }
     }
 
     private fun implUi(data: List<ProductItem>) {
@@ -69,6 +84,7 @@ class ItemFragment : Fragment(R.layout.fragment_item) {
             tvItemPrice.text = data[0].price
             tvItemTitle.text = data[0].name
             btnAddToCart.setOnClickListener {
+                data[0].id?.let { id -> viewModel.addItemToCart(id) }
 
             }
         }

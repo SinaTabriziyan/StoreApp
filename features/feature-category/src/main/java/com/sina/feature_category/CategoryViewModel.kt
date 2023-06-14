@@ -24,15 +24,15 @@ class CategoryViewModel @Inject constructor(private val categoryUseCase: Categor
         viewModelScope, SharingStarted.WhileSubscribed(5_000),
         InteractState.Loading
     )
-    private val _categoryProducts = MutableStateFlow<List<CategoryItem>>(emptyList())
-    val categoryProducts: StateFlow<List<CategoryItem>> = _categoryProducts
+//    private val _categoryProducts = MutableStateFlow<List<CategoryItem>>(emptyList())
+//    val categoryProducts: StateFlow<List<CategoryItem>> = _categoryProducts
 
-    init {
-        getCategoriseProductsList(categoriseProductsParams)
-    }
+//    init {
+//        getCategoriseProductsList(categoriseProductsParams)
+//    }
 
-    private fun getCategoriseProductsList(categoriseProductsParams: CategoryUseCase.Params) {
-        viewModelScope.launch {
+//    private fun getCategoriseProductsList(categoriseProductsParams: CategoryUseCase.Params) {
+//        viewModelScope.launch {
 //            categoryUseCase(categoriseProductsParams).collect { state ->
 //                when (state) {
 //                    is InteractState.Error -> {}
@@ -42,13 +42,13 @@ class CategoryViewModel @Inject constructor(private val categoryUseCase: Categor
 //                    }
 //                }
 //            }
-            categoriseProductsList.collect {
-                when (it) {
-                    is InteractState.Error ->{}
-                    is InteractState.Loading ->{}
-                    is InteractState.Success -> _categoryProducts.value = it.data
-                }
-            }
-        }
-    }
+//            categoriseProductsList.collect {
+//                when (it) {
+//                    is InteractState.Error ->{}
+//                    is InteractState.Loading ->{}
+//                    is InteractState.Success -> _categoryProducts.value = it.data
+//                }
+//            }
+//        }
+//    }
 }

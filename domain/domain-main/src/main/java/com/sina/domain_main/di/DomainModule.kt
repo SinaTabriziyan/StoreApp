@@ -4,6 +4,7 @@ import com.sina.domain_main.repository.CategoryRepository
 import com.sina.domain_main.repository.ItemRepository
 import com.sina.domain_main.repository.ProductsRepository
 import com.sina.domain_main.repository.SearchProductsRepository
+import com.sina.domain_main.usecase.AddItemUseCase
 import com.sina.domain_main.usecase.CategoryUseCase
 import com.sina.domain_main.usecase.ItemUseCase
 import com.sina.domain_main.usecase.ProductsByCategoryUseCase
@@ -28,6 +29,9 @@ object DomainModule {
     fun provideItem(itemRepository: ItemRepository): ItemUseCase = ItemUseCase(itemRepository)
 
     @Provides
+    fun provideAddProduct(itemRepository: ItemRepository): AddItemUseCase = AddItemUseCase(itemRepository)
+
+    @Provides
     fun provideProductsByCategoryUseCase(itemRepository: ProductsRepository): ProductsByCategoryUseCase =
         ProductsByCategoryUseCase(itemRepository)
 
@@ -35,4 +39,5 @@ object DomainModule {
     @Provides
     fun provideProductsBySearchUseCase(searchProductsRepository: SearchProductsRepository): SearchProductsUseCase =
         SearchProductsUseCase(searchProductsRepository)
+
 }

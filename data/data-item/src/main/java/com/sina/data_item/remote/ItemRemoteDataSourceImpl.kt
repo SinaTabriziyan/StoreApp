@@ -7,4 +7,5 @@ import com.sina.network.services.products.ProductsService
 class ItemRemoteDataSourceImpl(private val productsService: ProductsService) : ItemRemoteDataSource {
     override suspend fun getItem(productId: Int): List<ProductItem> =
         productsService.getItem(productId).map { mapProductDtoItemToProductItem(it) }
+
 }

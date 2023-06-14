@@ -50,7 +50,7 @@ class HomeViewModel @Inject constructor(
 
     private fun StateFlow<InteractState<List<ProductsItem>>>.open(title: String, index: Int) {
         viewModelScope.launch {
-            this@open.collectLatest { it ->
+            collectLatest {
                 when (it) {
                     is InteractState.Error -> {}
                     is InteractState.Loading -> {}
@@ -64,9 +64,9 @@ class HomeViewModel @Inject constructor(
     }
 
     init {
-        latestProducts.open("a", 0)
-        topRatedProducts.open("b", 1)
-        mostProducts.open("c", 2)
+        latestProducts.open("جدیدترین", 0)
+        topRatedProducts.open("پربازدیدترین", 1)
+        mostProducts.open("بهترین", 2)
     }
 
     data class MainProducts(

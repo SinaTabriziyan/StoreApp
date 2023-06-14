@@ -12,6 +12,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sina.domain_main.interactor.InteractState
 import com.sina.feature_customer.CustomerActivity
+import com.sina.feature_home.adapter.HomeSliderAdapter
 import com.sina.feature_home.adapter.MainHomeAdapter
 import com.sina.feature_home.databinding.FragmentHomeBinding
 import com.sina.feature_item.ItemActivity

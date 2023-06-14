@@ -49,6 +49,7 @@ dependencies {
     implementation(project(mapOf("path" to ":features:feature-category")))
     implementation(project(mapOf("path" to ":data:data-item")))
     implementation(project(mapOf("path" to ":data:data-search")))
+    implementation(project(mapOf("path" to ":core:model")))
 
 
     implementation(project(":core:common"))
@@ -59,7 +60,6 @@ dependencies {
     implementation(Deps.appcompat)
     implementation(Deps.material)
     implementation(Deps.constraintLayout)
-    implementation(project(mapOf("path" to ":core:model")))
 
     testImplementation(TestImpl.junit)
     androidTestImplementation(TestImpl.testJUnit)

@@ -6,4 +6,6 @@
     <string name="tv_cart_product_name">نام محصول</string>
     <string name="tv_cart_product_color">رنگ</string>
     <string name="tv_cart_product_price">قیمت</string>
+    <string name="input_email">ایمیل خود را وارد کنید</string>
+    <string name="intro">ورود</string>
 </resources>

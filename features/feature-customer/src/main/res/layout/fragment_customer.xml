@@ -5,58 +5,81 @@
     android:id="@+id/customer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="12dp"
     tools:context=".ui.main.CustomerFragment">
 
-    <ImageView
-        android:id="@+id/imgCustomerAvatar"
-        android:layout_width="170dp"
-        android:layout_height="170dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/etCustomerName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:inputType="text"
-        android:hint="Name"
-        app:layout_constraintEnd_toEndOf="@+id/imgCustomerAvatar"
-        app:layout_constraintStart_toStartOf="@+id/imgCustomerAvatar"
-        app:layout_constraintTop_toBottomOf="@+id/imgCustomerAvatar" />
-
-    <EditText
-        android:id="@+id/etCustomerLastName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:inputType="text"
-        android:hint="Family"
-        app:layout_constraintEnd_toEndOf="@+id/etCustomerName"
-        app:layout_constraintStart_toStartOf="@+id/etCustomerName"
-        app:layout_constraintTop_toBottomOf="@+id/etCustomerName" />
-
-    <EditText
-        android:id="@+id/etCustomerEmail"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:inputType="text"
-        android:hint="Email"
-        app:layout_constraintEnd_toEndOf="@+id/etCustomerLastName"
-        app:layout_constraintStart_toStartOf="@+id/etCustomerLastName"
-        app:layout_constraintTop_toBottomOf="@+id/etCustomerLastName" />
-
-    <Button
-        android:id="@+id/btnCreateCustomer"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SignUp"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".7" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".8" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".5" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/radial_gradient_pattern"
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/circleImage20" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/imgCustomerAvatar"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/store_anim" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/outlined_text_input_layout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:hint="@string/input_email"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/outlined_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/ic_email"
+            android:drawablePadding="8dp"
+            android:hint="@string/input_email" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnCreateCustomer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/intro"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/outlined_text_input_layout"
         tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

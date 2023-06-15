@@ -37,12 +37,13 @@ android {
 }
 
 dependencies {
+    implementation(project(mapOf("path" to ":domain:domain-main")))
+    implementation(project(mapOf("path" to ":core:ui-components")))
 
     implementation(Deps.core)
     implementation(Deps.appcompat)
     implementation(Deps.material)
     implementation(Deps.constraintLayout)
-    implementation(project(mapOf("path" to ":domain:domain-main")))
 
     testImplementation(TestImpl.junit)
     androidTestImplementation(TestImpl.testJUnit)
@@ -57,4 +58,6 @@ dependencies {
     implementation(DI.hilt)
     kapt(DI.hiltCompiler)
     kapt(DI.hiltAndroidCompiler)
+    implementation(Animations.lottie)
+
 }

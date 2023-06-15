@@ -20,6 +20,6 @@ class AppActivity : AppCompatActivity(R.layout.activity_app) {
         Handler(Looper.myLooper()!!).postDelayed({
             provider.getActivities(Activities.MainActivity).navigate(this)
             finish()
-        },1500)
+        },3500)
     }
 }

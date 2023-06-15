@@ -51,6 +51,7 @@ dependencies {
     implementation(project(mapOf("path" to ":data:data-search")))
     implementation(project(mapOf("path" to ":data:data-customer")))
     implementation(project(mapOf("path" to ":core:model")))
+    implementation(project(mapOf("path" to ":core:ui-components")))
 
 
     implementation(project(":core:common"))

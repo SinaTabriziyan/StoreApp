@@ -8,4 +8,7 @@
     <string name="tv_cart_product_price">قیمت</string>
     <string name="input_email">ایمیل خود را وارد کنید</string>
     <string name="intro">ورود</string>
+    <string name="see_all">مشاهده همه</string>
+    <string name="txt_product">محصول</string>
+    <string name="txt_prict">2,000,000</string>
 </resources>

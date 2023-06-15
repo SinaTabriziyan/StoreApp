@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id="@+id/homeFragment"
-        android:enabled="true"
-        android:icon="@drawable/ic_store"
-        android:title="@string/txt_home" />
 
     <item
         android:id="@+id/categoryFragment"
         android:enabled="true"
         android:icon="@drawable/ic_category"
         android:title="@string/txt_category" />
+    <item
+        android:id="@+id/homeFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_store"
+        android:title="@string/txt_home" />
 
     <item
         android:id="@+id/cartFragment"

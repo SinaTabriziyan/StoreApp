@@ -4,14 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/grey_light_10"
     tools:context=".ui.AppActivity">
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottieAnimation"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_marginTop="80dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
         app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/shopping_anim" />
+        app:lottie_loop="false"
+        app:lottie_rawRes="@raw/main_icon_anim" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="JuStore"
+        android:textColor="@color/black"
+        android:layout_marginTop="10dp"
+        android:textSize="50dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lottieAnimation" />
 </androidx.constraintlayout.widget.ConstraintLayout>

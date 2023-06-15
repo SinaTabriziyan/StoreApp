@@ -1,11 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style
-        name="MyCustomTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="MyCustomTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
     </style>
-    <style name="circleImage20">
+
+    <style name="circleImage10">
         <item name="cornerSize">10%</item>
     </style>
+
+    <style name="circleImage20">
+        <item name="cornerSize">20%</item>
+    </style>
+
+    <style name="circleImage50">
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="roundedImage" parent="Widget.MaterialComponents.CardView">
+        <item name="strokeWidth">2dp</item>
+    </style>
+
+    <style name="customIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/blue_light_20</item>
+        <item name="android:height">40dp</item>
+        <item name="android:width">40dp</item>
+        <item name="animationMode" >slide</item>
+    </style>
+
+
 </resources>

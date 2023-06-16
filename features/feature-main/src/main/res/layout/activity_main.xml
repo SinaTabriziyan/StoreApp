@@ -20,10 +20,10 @@
         app:navGraph="@navigation/main_nav" />
 
     <include
-        app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
         layout="@layout/layout_shadow_up"
         android:layout_width="match_parent"
-        android:layout_height="4dp" />
+        android:layout_height="4dp"
+        app:layout_constraintBottom_toTopOf="@id/bottom_navigation" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"

@@ -29,7 +29,7 @@ object Versions {
     const val roomCompiler = "2.5.1"
     const val roomKtx = "2.5.1"
 
-    const val datastorePreferences = "1.1.0-alpha03"
+    const val datastorePreferences = "1.0.0"
 
     const val glide = "4.15.1"
 

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/search_nav_graph"
+    app:startDestination="@id/searchFragment">
+
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.sina.feature_search.ui.main.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment_to_searchBtmSheet"
+            app:destination="@id/searchBtmSheet" />
+    </fragment>
+    <dialog
+        android:id="@+id/searchBtmSheet"
+        android:name="com.sina.feature_search.ui.main.btmsheet.SearchBtmSheet"
+        android:label="SearchBtmSheet" />
+</navigation>

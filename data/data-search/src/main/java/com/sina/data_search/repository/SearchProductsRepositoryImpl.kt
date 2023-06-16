@@ -13,11 +13,12 @@ import kotlinx.coroutines.flow.flowOn
 class SearchProductsRepositoryImpl(
     private val searchProductsRemoteDataSource: SearchProductsRemoteDataSource,
     private val dispatcher: CoroutineDispatcher,
-): SearchProductsRepository {
+) : SearchProductsRepository {
     override fun getProductsBySearch(
         page: Int,
         searchQuery: String,
+        orderBy: String
     ): Flow<ResponseState<List<ProductsItem>>> =
-        flow { emit(searchProductsRemoteDataSource.getProductsBySearch(page,searchQuery)) }.asResult().flowOn(dispatcher)
+        flow { emit(searchProductsRemoteDataSource.getProductsBySearch(page, searchQuery, orderBy)) }.asResult().flowOn(dispatcher)
 
 }

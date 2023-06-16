@@ -9,6 +9,7 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvProductTitle"
+        style="@style/textStyleTitle14"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/txt_category"
@@ -16,7 +17,8 @@
         app:layout_constraintStart_toEndOf="@+id/textView2"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
+        style="@style/textStyleTitle14"
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

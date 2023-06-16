@@ -5,7 +5,7 @@ import com.sina.data_customer.remote.CustomerRemoteDataSourceImpl
 import com.sina.data_customer.reposiotry.CustomerRepositoryImpl
 import com.sina.domain_main.repository.CustomerRepository
 import com.sina.network.annotation.IODispatcher
-import com.sina.network.services.products.StoreServices
+import com.sina.network.services.StoreServices
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

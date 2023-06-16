@@ -18,4 +18,9 @@
     <color name="blue_light_20">#415F9D</color>
     <color name="blue_dark_20">#233B6E</color>
 
+    <color name="bgCheckedChipColor">#206200EA</color>
+    <color name="bgChipColor">@color/grey_light_30</color>
+    <color name="textCheckedChipColor">@color/blue_light_20</color>
+    <color name="textChipColor">@color/bottom_nav_unselected</color>
+
 </resources>

@@ -14,11 +14,12 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sina.feature_search.R
 import com.sina.feature_search.databinding.FragmentSearchBinding
+import com.sina.feature_search.ui.main.adapter.SearchProductsAdapter
 import com.sina.ui_components.onQueryTextChanged
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -42,6 +43,9 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         implObservers()
         setPagination()
 
+        binding.fabFilterSearch.setOnClickListener {
+            findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToSearchBtmSheet())
+        }
     }
 
     private fun implObservers() {

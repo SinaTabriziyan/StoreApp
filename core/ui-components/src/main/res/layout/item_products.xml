@@ -35,7 +35,8 @@
         android:paddingTop="12dp"
         android:paddingEnd="12dp"
         android:text="@string/txt_product"
-        android:textSize="24sp"
+        style="@style/textStyleTitle18"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/tvProductPrice"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,6 +45,7 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvProductPrice"
+        style="@style/textStyleTitle16"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -51,13 +53,23 @@
         android:gravity="center_vertical"
         android:inputType="numberDecimal"
         android:paddingStart="12dp"
+        android:textStyle="bold"
         android:text="@string/txt_prict"
+        android:textColor="@color/black"
         android:textDirection="ltr"
-        android:textSize="24sp"
+        android:textSize="14sp"
+        android:drawablePadding="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="RtlSymmetry" />
+
+    <View
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/divider2"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="?android:attr/listDivider" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

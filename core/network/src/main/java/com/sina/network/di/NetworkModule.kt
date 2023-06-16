@@ -14,7 +14,7 @@ import com.sina.network.annotation.ConsumerKey
 import com.sina.network.annotation.ConsumerSecret
 import com.sina.network.annotation.ExcludeInSerialization
 import com.sina.network.di.tools.provideApi
-import com.sina.network.services.products.StoreServices
+import com.sina.network.services.StoreServices
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

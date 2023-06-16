@@ -40,10 +40,11 @@
         </androidx.cardview.widget.CardView>
     </androidx.cardview.widget.CardView>
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:textSize="18sp"
         android:id="@+id/tvCategoryName"
         android:layout_width="0dp"
+        style="@style/textStyleTitle18"
         android:layout_height="match_parent"
         android:layout_marginEnd="12dp"
         android:gravity="center_vertical"

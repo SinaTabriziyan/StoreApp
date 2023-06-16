@@ -40,6 +40,8 @@ dependencies {
     implementation(Deps.material)
     implementation(Deps.constraintLayout)
     implementation(project(mapOf("path" to ":core:model")))
+    implementation(project(mapOf("path" to ":core:common")))
+    implementation(Preferences.datastorePreferences)
 
     testImplementation(TestImpl.junit)
     androidTestImplementation(TestImpl.testJUnit)

@@ -2,7 +2,7 @@ package com.sina.data_product.remote
 
 import com.sina.model.mapper.mapProductsDtoItemToProductsItem
 import com.sina.model.ui.products_item.ProductsItem
-import com.sina.network.services.products.StoreServices
+import com.sina.network.services.StoreServices
 
 class ProductsRemoteDataSourceImpl(private val storeServices: StoreServices) : ProductsRemoteDataSource {
     override suspend fun getTopRatedProducts(page: Int, orderBy: String): List<ProductsItem> =

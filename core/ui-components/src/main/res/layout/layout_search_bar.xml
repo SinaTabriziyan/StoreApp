@@ -1,90 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="60dp"
-    android:layout_margin="8dp">
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent=".8" />
+    android:layout_height="60dp">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent=".2" />
+        app:layout_constraintGuide_percent=".8" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".15" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/shapeableImageView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:strokeColor="@color/grey_light_30"
-        app:strokeWidth="1dp"
-        android:background="#FFF6A2"
+        android:background="@color/grey_light_30"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:shapeAppearanceOverlay="@style/circleImage20" />
+        app:shapeAppearanceOverlay="@style/circleImage20"
+        app:strokeColor="@color/grey_light_10"
+        app:strokeWidth="1dp" />
 
-    <View
-        android:id="@+id/view"
-        android:layout_width="2dp"
-        android:layout_height="match_parent"
-        android:background="@color/grey_light_10"
-        app:layout_constraintEnd_toStartOf="@+id/guideline1" />
 
     <View
         android:id="@+id/view2"
         android:layout_width="2dp"
         android:layout_height="match_parent"
-        android:background="@color/grey_light_30"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2" />
+        android:background="@color/white"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3" />
 
-    <com.google.android.material.imageview.ShapeableImageView
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/btnSearchHome"
+        style="@style/textStyleTitle14"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginEnd="12dp"
         android:layout_weight="1"
-        android:padding="10dp"
-        android:src="@drawable/ic_search"
-
+        android:drawableEnd="@drawable/ic_search"
+        android:drawablePadding="10dp"
+        android:gravity="center_vertical"
+        android:padding="2dp"
+        android:text="جستجو"
+        android:textDirection="rtl"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline1"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:layout_width="0dp"
+        android:id="@+id/imgCustomerAvatar"
+        android:layout_width="50dp"
         android:layout_height="0dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="14dp"
         android:layout_marginTop="2dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="14dp"
         android:layout_marginBottom="2dp"
-        android:padding="4dp"
+        android:padding="6dp"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/view2"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:shapeAppearanceOverlay="@style/circleImage50"
-        app:srcCompat="@drawable/icon"
+        app:srcCompat="@drawable/ic_person"
         app:strokeColor="@color/white"
-        app:strokeWidth="5dp" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:gravity="center"
-        android:text="JuStore"
-        android:textSize="22dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/guideline1"
-        app:layout_constraintStart_toStartOf="@id/guideline2"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:strokeWidth="2dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

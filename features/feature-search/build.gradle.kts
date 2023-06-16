@@ -42,6 +42,7 @@ dependencies {
     implementation(project(mapOf("path" to ":core:ui-components")))
     implementation(project(mapOf("path" to ":core:common")))
     implementation(project(mapOf("path" to ":core:model")))
+    implementation(project(mapOf("path" to ":core:local")))
     implementation(project(mapOf("path" to ":domain:domain-main")))
 
     implementation(Deps.core)

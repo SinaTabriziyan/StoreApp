@@ -44,7 +44,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     }
 
     private fun observeUiEvents() {
-        binding.imgCustomerAvatar.setOnClickListener {
+        binding.searchLayer.imgCustomerAvatar.setOnClickListener {
             val intent = Intent(requireActivity(), CustomerActivity::class.java)
             startActivity(intent)
         }
@@ -63,7 +63,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     private fun uiEvenet() {
         with(binding) {
-            btnSearchHome.setOnClickListener {
+            searchLayer.btnSearchHome.setOnClickListener {
                 // TODO: use default navigation later
                 startActivity(Intent(requireActivity(), SearchActivity::class.java))
             }

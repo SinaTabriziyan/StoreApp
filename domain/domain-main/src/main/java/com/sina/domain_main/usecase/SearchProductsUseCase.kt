@@ -8,8 +8,8 @@ import kotlinx.coroutines.flow.Flow
 
 class SearchProductsUseCase(private val searchProductsRepository: SearchProductsRepository) :
     UseCaseFlow<SearchProductsUseCase.Params, List<ProductsItem>>() {
-    data class Params(val page: Int, val searchQuery: String)
+    data class Params(val page: Int, val searchQuery: String, val orderBy: String)
 
     override fun execute(params: Params): Flow<List<ProductsItem>> =
-        with(params) { searchProductsRepository.getProductsBySearch(page, searchQuery) }.open()
+        with(params) { searchProductsRepository.getProductsBySearch(page, searchQuery, orderBy) }.open()
 }

@@ -1,4 +1,4 @@
-package com.sina.feature_search.ui.main
+package com.sina.feature_search.ui.main.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.sina.model.ui.products_item.ProductsItem
-import com.sina.ui_components.databinding.ItemProductsBinding
 import com.sina.ui_components.databinding.ItemSearchProductsBinding
 import com.sina.ui_components.loadGlide
 

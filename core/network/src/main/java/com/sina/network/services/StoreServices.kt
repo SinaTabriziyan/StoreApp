@@ -1,4 +1,4 @@
-package com.sina.network.services.products
+package com.sina.network.services
 
 import com.sina.model.data.category_dto.CategoryDTOItem
 import com.sina.model.data.customer_dto.CustomerDTO
@@ -37,7 +37,7 @@ interface StoreServices {
     suspend fun getProductsBySearch(
         @Query(PARAMS.PAGE) page: Int,
         @Query("search") query: String,
-//        @Query("orderby") orderBy: String,
+        @Query("orderby") orderBy: String,
 //        @Query("order") order: String
     ): List<ProductsDTOItem>
 

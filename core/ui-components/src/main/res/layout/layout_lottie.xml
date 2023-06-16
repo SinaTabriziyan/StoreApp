@@ -10,5 +10,5 @@
         android:layout_height="match_parent"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        app:lottie_rawRes="@raw/cart_anim" />
+        app:lottie_rawRes="@raw/response_anim" />
 </FrameLayout>

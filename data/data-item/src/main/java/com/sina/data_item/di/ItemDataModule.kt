@@ -8,7 +8,7 @@ import com.sina.data_item.repository.ItemRepositoryImpl
 import com.sina.domain_main.repository.ItemRepository
 import com.sina.local.data.db.ProductDao
 import com.sina.network.annotation.IODispatcher
-import com.sina.network.services.products.StoreServices
+import com.sina.network.services.StoreServices
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

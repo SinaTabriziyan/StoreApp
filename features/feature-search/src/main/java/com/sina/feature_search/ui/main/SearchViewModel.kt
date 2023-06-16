@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sina.common.constants.Constants.Companion.DEFAULT_SEARCH_TYPE
-import com.sina.common.constants.Constants.Companion.QUERY_TYPE
 import com.sina.domain_main.interactor.InteractState
 import com.sina.domain_main.usecase.SearchProductsUseCase
 import com.sina.local.data.datastore.AppDataStore
@@ -14,7 +13,6 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -77,8 +75,13 @@ class SearchViewModel @Inject constructor(
 
     }
 
-    fun saveSearchType(searchTypeChip: String, searchTypeIdChip: Int) = viewModelScope.launch {
-        dataStore.saveMealAndDietType(searchTypeChip, searchTypeIdChip)
+    fun saveSearchType(
+        searchTypeChip: String,
+        searchTypeIdChip: Int,
+        searchOrderTypeChip: String,
+        searchOrderTypeIdChip: Int
+    ) = viewModelScope.launch {
+        dataStore.saveMealAndDietType(searchTypeChip, searchTypeIdChip, searchOrderTypeChip, searchOrderTypeIdChip)
         getSearchFilters()
         getProductsBySearch(searchQuery)
     }

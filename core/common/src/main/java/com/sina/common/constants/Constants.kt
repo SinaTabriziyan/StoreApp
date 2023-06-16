@@ -6,7 +6,9 @@ class Constants {
         const val QUERY_TYPE = "orderby"
 
         const val DEFAULT_SEARCH_TYPE = "date"
+        const val DEFAULT_SEARCH_ORDER_TYPE = "asc"
         const val DEFAULT_SEARCH_TYPE_POSITION = 0
+        const val DEFAULT_SEARCH_ORDER_TYPE_POSITION = 0
 
         const val PREFERENCES_SEARCH_TYPE = "searchType"
         const val PREFERENCES_SEARCH_TYPE_ID = "searchTypeId"

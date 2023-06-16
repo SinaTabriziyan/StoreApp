@@ -5,6 +5,8 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.chip.Chip
+import com.sina.common.constants.Constants.Companion.DEFAULT_SEARCH_ORDER_TYPE
+import com.sina.common.constants.Constants.Companion.DEFAULT_SEARCH_ORDER_TYPE_POSITION
 import com.sina.common.constants.Constants.Companion.DEFAULT_SEARCH_TYPE
 import com.sina.common.constants.Constants.Companion.DEFAULT_SEARCH_TYPE_POSITION
 import com.sina.feature_search.R
@@ -17,6 +19,9 @@ import java.util.Locale
 class SearchBtmSheet : BottomSheetDialogFragment(R.layout.search_btm_sheet) {
     private var searchTypeChip = DEFAULT_SEARCH_TYPE
     private var searchTypeIdChip = DEFAULT_SEARCH_TYPE_POSITION
+
+    private var searchOrderTypeChip = DEFAULT_SEARCH_ORDER_TYPE
+    private var searchOrderTypeIdChip = DEFAULT_SEARCH_ORDER_TYPE_POSITION
 
     private var _binding: SearchBtmSheetBinding? = null
     private val binding get() = _binding!!
@@ -33,8 +38,20 @@ class SearchBtmSheet : BottomSheetDialogFragment(R.layout.search_btm_sheet) {
                 searchTypeIdChip = checkedId
             }
 
+            orderTypeChipGroup.setOnCheckedChangeListener { group, checkedId ->
+                val chip = group.findViewById<Chip>(checkedId)
+                val selectedMealType = chip.text.toString().lowercase(Locale.ROOT)
+                searchOrderTypeChip = selectedMealType
+                searchOrderTypeIdChip = checkedId
+            }
+
             btnApply.setOnClickListener {
-                searchViewModel.saveSearchType(searchTypeChip, searchTypeIdChip)
+                searchViewModel.saveSearchType(
+                    searchTypeChip,
+                    searchTypeIdChip,
+                    searchOrderTypeChip,
+                    searchOrderTypeIdChip
+                )
             }
         }
     }

@@ -38,10 +38,16 @@ class AppDataStore @Inject constructor(@ApplicationContext private val context: 
     suspend fun saveMealAndDietType(
         searchType: String,
         searchTypeId: Int,
+        searchOrderTypeChip: String,
+        searchOrderTypeIdChip: Int,
     ) {
         context.dataStore.edit { preferences ->
             preferences[PreferencesKey.selectedSearchType] = searchType
             preferences[PreferencesKey.selectedSearchTypeID] = searchTypeId
+            // TODO:  
+//            preferences[PreferencesKey.selectedSearchType] = searchType
+//            preferences[PreferencesKey.selectedSearchTypeID] = searchTypeId
+
         }
     }
 

@@ -12,4 +12,11 @@
     <string name="txt_product">محصول</string>
     <string name="txt_prict">2,000,000</string>
     <string name="filter_details">جزیئات</string>
+    <string name="date">date</string>
+    <string name="price">Price</string>
+    <string name="title">title</string>
+    <string name="popularity">popularity</string>
+    <string name="rating">rating</string>
+    <string name="asc">asc</string>
+    <string name="desc">desc</string>
 </resources>

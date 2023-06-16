@@ -40,7 +40,8 @@ interface StoreServices {
         @Query("orderby") orderBy: String,
 //        @Query("order") order: String
     ): List<ProductsDTOItem>
-
+// orderBy:,title,price,popularity,rating,date
+// order:asc ,desc
 
     @POST(Route.CUSTOMERS)
     suspend fun createCustomer(

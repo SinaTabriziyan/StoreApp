@@ -47,4 +47,6 @@ dependencies {
 
     implementation(ImageLoaders.glide)
     implementation(ImageLoaders.coil)
+    implementation(Animations.lottie)
+
 }

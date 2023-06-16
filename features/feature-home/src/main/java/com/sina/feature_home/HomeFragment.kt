@@ -2,7 +2,6 @@ package com.sina.feature_home
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -11,13 +10,13 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.sina.domain_main.interactor.InteractState
 import com.sina.feature_customer.CustomerActivity
 import com.sina.feature_home.adapter.HomeSliderAdapter
 import com.sina.feature_home.adapter.MainHomeAdapter
 import com.sina.feature_home.databinding.FragmentHomeBinding
 import com.sina.feature_item.ItemActivity
 import com.sina.feature_search.SearchActivity
+import com.sina.ui_components.BaseViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -98,7 +97,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             }
         }
         viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED){
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collectLatest {
                     animationStatus(it)
                 }
@@ -120,8 +119,11 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 //        }
     }
 
-    private fun animationStatus(state: Boolean) {
-        binding.lottie.isVisible = state
+    private fun animationStatus(state: BaseViewModel.UiState) {
+        binding.lottieLayer.lottie.isVisible = when (state) {
+            BaseViewModel.UiState.Success -> false
+            BaseViewModel.UiState.Loading -> true
+        }
     }
 
 }

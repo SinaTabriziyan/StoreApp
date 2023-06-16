@@ -1,11 +1,11 @@
 package com.sina.feature_home
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sina.domain_main.interactor.InteractState
 import com.sina.domain_main.usecase.ProductsByCategoryUseCase
 import com.sina.domain_main.usecase.ProductsUseCase
 import com.sina.model.ui.products_item.ProductsItem
+import com.sina.ui_components.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -19,7 +19,7 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     productsUseCase: ProductsUseCase,
     productsByCategoryUseCase: ProductsByCategoryUseCase,
-) : ViewModel() {
+) : BaseViewModel() {
     private val TAG = "HomeViewModel"
     private val listItem: Array<MainProducts> = Array(3) { MainProducts.createData("", emptyList()) }
     private val topRatedProductsParams = ProductsUseCase.Params(1, "rating")
@@ -32,9 +32,9 @@ class HomeViewModel @Inject constructor(
 
     private val _sliderImages = MutableStateFlow<List<ProductsItem.Image>>(emptyList())
     val sliderImages: StateFlow<List<ProductsItem.Image>> = _sliderImages
-
-    private val _uiState = MutableStateFlow(false)
-    val uiState: StateFlow<Boolean> = _uiState
+//
+//    private val _uiState = MutableStateFlow(false)
+//    val uiState: StateFlow<Boolean> = _uiState
 
     private val topRatedProducts: StateFlow<InteractState<List<ProductsItem>>> =
         productsUseCase(topRatedProductsParams).stateIn(
@@ -59,9 +59,9 @@ class HomeViewModel @Inject constructor(
             collectLatest {
                 when (it) {
                     is InteractState.Error -> {}
-                    is InteractState.Loading -> _uiState.value = true
+                    is InteractState.Loading -> _uiState.value = UiState.Loading
                     is InteractState.Success -> {
-                        _uiState.value = false
+                        _uiState.value = UiState.Success
                         val images = it.data[0].images
                         if (images != null) _sliderImages.value = images
                     }
@@ -76,13 +76,13 @@ class HomeViewModel @Inject constructor(
                 when (it) {
                     is InteractState.Error -> {}
                     is InteractState.Loading -> {
-                        _uiState.value = true
+                        _uiState.value = UiState.Loading
                     }
 
                     is InteractState.Success -> {
                         listItem[index] = MainProducts.createData(title, it.data)
                         _allMainProducts.value = listItem.toList()
-                        _uiState.value = false
+                        _uiState.value = UiState.Success
                     }
                 }
             }

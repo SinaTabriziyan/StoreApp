@@ -44,7 +44,7 @@ class AppDataStore @Inject constructor(@ApplicationContext private val context: 
         context.dataStore.edit { preferences ->
             preferences[PreferencesKey.selectedSearchType] = searchType
             preferences[PreferencesKey.selectedSearchTypeID] = searchTypeId
-            // TODO:  
+            // TODO:
 //            preferences[PreferencesKey.selectedSearchType] = searchType
 //            preferences[PreferencesKey.selectedSearchTypeID] = searchTypeId
 

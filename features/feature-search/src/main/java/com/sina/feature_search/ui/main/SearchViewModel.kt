@@ -8,6 +8,7 @@ import com.sina.domain_main.interactor.InteractState
 import com.sina.domain_main.usecase.SearchProductsUseCase
 import com.sina.local.data.datastore.AppDataStore
 import com.sina.model.ui.products_item.ProductsItem
+import com.sina.ui_components.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -15,6 +16,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -22,7 +24,7 @@ class SearchViewModel @Inject constructor(
     private val searchProductsUseCase: SearchProductsUseCase,
     private val dataStore: AppDataStore
 ) :
-    ViewModel() {
+    BaseViewModel() {
 
     var searchType = DEFAULT_SEARCH_TYPE
     var networkStatus = false
@@ -64,9 +66,10 @@ class SearchViewModel @Inject constructor(
             Log.e("TAG", "getProductsBySearch: $page")
             searchProductsUseCase.invoke(SearchProductsUseCase.Params(page, searchQuery, searchType)).collectLatest {
                 when (it) {
-                    is InteractState.Error -> {}
-                    is InteractState.Loading -> {}
+                    is InteractState.Error -> Timber.d(it.errorMessage)
+                    is InteractState.Loading -> uiState.value = UiState.Loading
                     is InteractState.Success -> {
+                        uiState.value = UiState.Success
                         _productsBySearch.value += it.data
                     }
                 }

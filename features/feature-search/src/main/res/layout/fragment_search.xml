@@ -21,7 +21,10 @@
             android:layout_height="?attr/actionBarSize" />
 
     </com.google.android.material.appbar.AppBarLayout>
-    
+
+    <include
+        android:id="@+id/lottie"
+        layout="@layout/layout_lottie" />
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -48,7 +51,8 @@
         android:id="@+id/fabFilterSearch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="22dp"
+        android:src="@drawable/ic_filter"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

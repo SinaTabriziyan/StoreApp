@@ -5,7 +5,7 @@
     android:id="@+id/product"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="4dp"
+    android:layout_margin="12dp"
     tools:context=".ui.main.ItemFragment">
 
     <androidx.constraintlayout.widget.Guideline
@@ -24,7 +24,6 @@
         android:layout_width="0dp"
         android:layout_height="43dp"
         android:gravity="center_vertical"
-        android:text="نام محصول"
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -57,8 +56,7 @@
         <TextView
             android:id="@+id/tvItemDescription"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="توضیحات" />
+            android:layout_height="wrap_content"/>
 
     </LinearLayout>
 
@@ -66,7 +64,6 @@
         android:id="@+id/tvItemPrice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="2.000.000"
         app:layout_constraintBottom_toTopOf="@+id/btnAddToCart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -75,7 +72,6 @@
         android:id="@+id/btnAddToCart"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="خرید"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

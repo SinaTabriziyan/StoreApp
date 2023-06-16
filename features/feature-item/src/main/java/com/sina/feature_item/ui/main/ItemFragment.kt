@@ -38,6 +38,10 @@ class ItemFragment : BaseFragment<FragmentItemBinding>(FragmentItemBinding::infl
         }
     }
 
+    private fun showViews(status: Boolean) {
+        binding.btnAddToCart.isVisible = status
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val args = arguments
@@ -72,6 +76,10 @@ class ItemFragment : BaseFragment<FragmentItemBinding>(FragmentItemBinding::infl
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collectLatest {
+                    when (it) {
+                        BaseViewModel.UiState.Success -> showViews(true)
+                        BaseViewModel.UiState.Loading -> showViews(false)
+                    }
                     animationStatus(it)
                 }
             }

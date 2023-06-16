@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.sina.model.ui.products_item.ProductsItem
 import com.sina.ui_components.databinding.ItemProductsBinding
+import com.sina.ui_components.databinding.ItemSearchProductsBinding
 import com.sina.ui_components.loadGlide
 
 class SearchProductsAdapter (private val onClick: (Int) -> Unit) :
@@ -14,7 +15,7 @@ class SearchProductsAdapter (private val onClick: (Int) -> Unit) :
         override fun areItemsTheSame(oldItem: ProductsItem, newItem: ProductsItem): Boolean = oldItem.id == newItem.id
         override fun areContentsTheSame(oldItem: ProductsItem, newItem: ProductsItem): Boolean = oldItem == newItem
     }) {
-    inner class ViewHolder(private val binding: ItemProductsBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(private val binding: ItemSearchProductsBinding) : RecyclerView.ViewHolder(binding.root) {
         init {
             binding.root.setOnClickListener {
                 getItem(adapterPosition).id?.let { id -> onClick(id) }
@@ -32,7 +33,7 @@ class SearchProductsAdapter (private val onClick: (Int) -> Unit) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
-        ViewHolder(ItemProductsBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        ViewHolder(ItemSearchProductsBinding.inflate(LayoutInflater.from(parent.context), parent, false))
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(getItem(position))
 }

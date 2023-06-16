@@ -69,6 +69,8 @@ dependencies {
     implementation(Animations.lottie)
 
     implementation(Sliders.carouselrecyclerview)
+    implementation(Log.timber)
+    implementation(Animations.lottie)
 
 
 }

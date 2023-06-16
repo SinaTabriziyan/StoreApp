@@ -7,6 +7,7 @@ import com.sina.domain_main.usecase.ProductsUseCase
 import com.sina.model.ui.products_item.ProductsItem
 import com.sina.ui_components.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -49,7 +50,7 @@ class HomeViewModel @Inject constructor(
             viewModelScope, SharingStarted.WhileSubscribed(5_000), InteractState.Loading
         )
 
-    val sliderProducts =
+    val sliderProducts: StateFlow<InteractState<List<ProductsItem>>> =
         productsByCategoryUseCase.invoke(sliderProductsParams).stateIn(
             viewModelScope, SharingStarted.WhileSubscribed(5_000), InteractState.Loading
         )
@@ -59,9 +60,9 @@ class HomeViewModel @Inject constructor(
             collectLatest {
                 when (it) {
                     is InteractState.Error -> {}
-                    is InteractState.Loading -> _uiState.value = UiState.Loading
+                    is InteractState.Loading -> uiState.value = UiState.Loading
                     is InteractState.Success -> {
-                        _uiState.value = UiState.Success
+                        uiState.value = UiState.Success
                         val images = it.data[0].images
                         if (images != null) _sliderImages.value = images
                     }
@@ -70,19 +71,21 @@ class HomeViewModel @Inject constructor(
         }
     }
 
+
+
     private fun StateFlow<InteractState<List<ProductsItem>>>.expand(title: String, index: Int) {
         viewModelScope.launch {
             collectLatest {
                 when (it) {
                     is InteractState.Error -> {}
                     is InteractState.Loading -> {
-                        _uiState.value = UiState.Loading
+                        uiState.value = UiState.Loading
                     }
 
                     is InteractState.Success -> {
                         listItem[index] = MainProducts.createData(title, it.data)
                         _allMainProducts.value = listItem.toList()
-                        _uiState.value = UiState.Success
+                        uiState.value = UiState.Success
                     }
                 }
             }

@@ -17,22 +17,28 @@ import com.sina.common.responsestate.ResponseState
 import com.sina.domain_main.interactor.InteractState
 import com.sina.feature_category.databinding.FragmentCategoryBinding
 import com.sina.feature_products.ProductsActivity
+import com.sina.ui_components.BaseFragment
+import com.sina.ui_components.BaseViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class CategoryFragment : Fragment(R.layout.fragment_category) {
+class CategoryFragment : BaseFragment<FragmentCategoryBinding>(FragmentCategoryBinding::inflate) {
     private val TAG = "CategoryFragment"
-    private var _binding: FragmentCategoryBinding? = null
-    private val binding get() = _binding!!
+    override fun setupViews() {
+
+    }
+
+    override fun animationStatus(state: BaseViewModel.UiState) {
+
+    }
 
     private val viewModel: CategoryViewModel by viewModels()
     private lateinit var categoryAdapter: CategoryAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentCategoryBinding.bind(view)
         implRecycler()
         observes()
     }
@@ -55,6 +61,7 @@ class CategoryFragment : Fragment(R.layout.fragment_category) {
 //                viewModel.categoryProducts.collectLatest {
 //                    categoryAdapter.submitList(it)
 //                }
+                val categoriseProductsList = viewModel.categoriseProductsList
 
                 viewModel.categoriseProductsList.collectLatest {
                     when (it) {

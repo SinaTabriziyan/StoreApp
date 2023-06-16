@@ -60,4 +60,7 @@ dependencies {
     implementation(LifeCycle.lifeCycleViewLivedata)
     implementation(Navigation.navigationFragment)
     implementation(Navigation.navigationUi)
+    implementation(Log.timber)
+    implementation(Animations.lottie)
+
 }

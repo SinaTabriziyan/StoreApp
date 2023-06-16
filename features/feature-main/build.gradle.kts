@@ -62,6 +62,7 @@ dependencies {
     implementation(Navigation.navigationUi)
     implementation(DI.hilt)
     kapt(DI.hiltCompiler)
+    implementation(Log.timber)
+    implementation(Animations.lottie)
 
-    implementation("com.github.ibrahimsn98:SmoothBottomBar:1.7.9")
 }

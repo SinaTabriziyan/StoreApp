@@ -45,6 +45,8 @@ dependencies {
 
     implementation(LifeCycle.lifeCycleViewModel)
     implementation(LifeCycle.lifeCycleViewLivedata)
+    implementation(Log.timber)
+    implementation(Animations.lottie)
 
 
 }

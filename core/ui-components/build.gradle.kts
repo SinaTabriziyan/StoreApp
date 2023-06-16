@@ -40,6 +40,7 @@ dependencies {
     implementation(Deps.appcompat)
     implementation(Deps.material)
     implementation(Deps.constraintLayout)
+    implementation(project(mapOf("path" to ":domain:domain-main")))
 
     testImplementation(TestImpl.junit)
     androidTestImplementation(TestImpl.testJUnit)

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.core.text.HtmlCompat
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -13,22 +14,32 @@ import com.sina.domain_main.interactor.InteractState
 import com.sina.feature_details.R
 import com.sina.feature_details.databinding.FragmentItemBinding
 import com.sina.model.ui.product_details_item.ProductDetails
+import com.sina.ui_components.BaseFragment
+import com.sina.ui_components.BaseViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 @AndroidEntryPoint
-class ItemFragment : Fragment(R.layout.fragment_item) {
+class ItemFragment : BaseFragment<FragmentItemBinding>(FragmentItemBinding::inflate) {
     private val TAG = "ProductFragment"
-    private var _binding: FragmentItemBinding? = null
-    private val binding get() = _binding!!
 
     private val viewModel: ItemViewModel by viewModels()
     private lateinit var itemAdapter: ImageItemAdapter
+    override fun setupViews() {
+
+    }
+
+    override fun animationStatus(state: BaseViewModel.UiState) {
+        binding.lottie.lottie.isVisible = when (state) {
+            BaseViewModel.UiState.Success -> false
+            BaseViewModel.UiState.Loading -> true
+        }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentItemBinding.bind(view)
         val args = arguments
         Log.e(TAG, "onViewCreated:333 ${args?.getInt("productId")}")
         itemAdapter = ImageItemAdapter()
@@ -47,9 +58,10 @@ class ItemFragment : Fragment(R.layout.fragment_item) {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.productDetails.collectLatest {
                     when (it) {
-                        is InteractState.Error -> {}
-                        is InteractState.Loading -> {}
+                        is InteractState.Error -> Timber.d(it.errorMessage)
+                        is InteractState.Loading -> viewModel.uiState.value = BaseViewModel.UiState.Loading
                         is InteractState.Success -> {
+                            viewModel.uiState.value = BaseViewModel.UiState.Success
                             implUi(it.data)
                             Log.e(TAG, "observers: ${it.data}")
                         }
@@ -57,7 +69,13 @@ class ItemFragment : Fragment(R.layout.fragment_item) {
                 }
             }
         }
-
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.uiState.collectLatest {
+                    animationStatus(it)
+                }
+            }
+        }
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.itemAdded.collectLatest {

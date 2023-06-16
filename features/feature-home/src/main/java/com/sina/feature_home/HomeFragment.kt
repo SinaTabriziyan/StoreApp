@@ -16,25 +16,26 @@ import com.sina.feature_home.adapter.MainHomeAdapter
 import com.sina.feature_home.databinding.FragmentHomeBinding
 import com.sina.feature_item.ItemActivity
 import com.sina.feature_search.SearchActivity
+import com.sina.ui_components.BaseFragment
 import com.sina.ui_components.BaseViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class HomeFragment : Fragment(R.layout.fragment_home) {
+class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
     private val TAG = "HomeFragment"
-    private var _binding: FragmentHomeBinding? = null
-    private val binding get() = _binding!!
 
     private val viewModel: HomeViewModel by viewModels()
     private lateinit var mainHomeAdapter: MainHomeAdapter
     private lateinit var homeSliderAdapter: HomeSliderAdapter
+    override fun setupViews() {
+
+    }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentHomeBinding.bind(view)
         observeUiEvents()
         implRecyclerView()
         implHomeSlider()
@@ -119,7 +120,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 //        }
     }
 
-    private fun animationStatus(state: BaseViewModel.UiState) {
+    override fun animationStatus(state: BaseViewModel.UiState) {
         binding.lottieLayer.lottie.isVisible = when (state) {
             BaseViewModel.UiState.Success -> false
             BaseViewModel.UiState.Loading -> true

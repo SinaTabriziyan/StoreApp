@@ -59,5 +59,7 @@ dependencies {
     kapt(DI.hiltCompiler)
     kapt(DI.hiltAndroidCompiler)
     implementation(Animations.lottie)
+    implementation(Log.timber)
+    implementation(Animations.lottie)
 
 }

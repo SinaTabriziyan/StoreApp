@@ -59,4 +59,7 @@ dependencies {
     implementation(Navigation.navigationUi)
     implementation(DI.hilt)
     kapt(DI.hiltCompiler)
+    implementation(Log.timber)
+    implementation(Animations.lottie)
+
 }

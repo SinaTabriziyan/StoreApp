@@ -1,5 +1,6 @@
 package com.sina.feature_item.ui.main
 
+import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -7,13 +8,16 @@ import com.sina.domain_main.interactor.InteractState
 import com.sina.domain_main.usecase.AddItemUseCase
 import com.sina.domain_main.usecase.ItemUseCase
 import com.sina.model.ui.product_details_item.ProductDetails
+import com.sina.ui_components.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 import kotlin.properties.Delegates
 
@@ -22,7 +26,7 @@ class ItemViewModel @Inject constructor(
     itemUseCase: ItemUseCase,
     private val addItemUseCase: AddItemUseCase,
     savedStateHandle: SavedStateHandle,
-) : ViewModel() {
+) : BaseViewModel() {
     private var itemId by Delegates.notNull<Int>()
 
     init {
@@ -34,6 +38,9 @@ class ItemViewModel @Inject constructor(
 
     private val _itemAdded = MutableStateFlow<Boolean>(false)
     val itemAdded: StateFlow<Boolean> = _itemAdded.asStateFlow()
+
+    private val _item = MutableStateFlow<InteractState<ProductDetails>>(InteractState.Loading)
+    val item: StateFlow<InteractState<ProductDetails>> = _item.asStateFlow()
     private fun getItemProduct(id: Int) {
         itemId = id
     }
@@ -52,4 +59,24 @@ class ItemViewModel @Inject constructor(
             SharingStarted.WhileSubscribed(5_000),
             InteractState.Loading
         )
+
+//    init {
+//        getProductDetails()
+//    }
+//
+//    private fun getProductDetails() {
+//        viewModelScope.launch {
+//            productDetails.collectLatest {
+//                when (it) {
+//                    is InteractState.Error -> Timber.d(it.errorMessage)
+//                    is InteractState.Loading -> _uiState.value = UiState.Loading
+//                    is InteractState.Success -> {
+//                        _uiState.value = UiState.Success
+//                        _item.value = it
+//                    }
+//                }
+//            }
+//        }
+//    }
+
 }

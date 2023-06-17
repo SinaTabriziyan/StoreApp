@@ -87,13 +87,10 @@ object NetworkModule {
     @Provides
     fun provideGson(): Gson = GsonBuilder()
         .addSerializationExclusionStrategy(object : ExclusionStrategy {
-            override fun shouldSkipField(f: FieldAttributes?): Boolean {
-                return f?.getAnnotation(ExcludeInSerialization::class.java) != null
-            }
+            override fun shouldSkipField(f: FieldAttributes?): Boolean =
+                f?.getAnnotation(ExcludeInSerialization::class.java) != null
 
-            override fun shouldSkipClass(clazz: Class<*>?): Boolean {
-                return false
-            }
+            override fun shouldSkipClass(clazz: Class<*>?): Boolean = false
         })
         .create()
 

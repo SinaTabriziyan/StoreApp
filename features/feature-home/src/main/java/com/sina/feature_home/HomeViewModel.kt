@@ -14,6 +14,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -59,7 +60,7 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             collectLatest {
                 when (it) {
-                    is InteractState.Error -> {}
+                    is InteractState.Error -> Timber.d(it.errorMessage)
                     is InteractState.Loading -> uiState.value = UiState.Loading
                     is InteractState.Success -> {
                         uiState.value = UiState.Success
@@ -77,7 +78,7 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             collectLatest {
                 when (it) {
-                    is InteractState.Error -> {}
+                    is InteractState.Error -> Timber.d(it.errorMessage)
                     is InteractState.Loading -> {
                         uiState.value = UiState.Loading
                     }

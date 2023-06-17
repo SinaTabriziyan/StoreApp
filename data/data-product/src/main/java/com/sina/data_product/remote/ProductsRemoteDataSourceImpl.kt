@@ -8,7 +8,6 @@ class ProductsRemoteDataSourceImpl(private val storeServices: StoreServices) : P
     override suspend fun getTopRatedProducts(page: Int, orderBy: String): List<ProductsItem> =
         storeServices.getProductsList(page, orderBy).map { mapProductsDtoItemToProductsItem(it) }
 
-    override suspend fun getProductsByCategory(page: Int, orderBy: String): List<ProductsItem> {
-        return storeServices.getProductsByCategory(page,orderBy).map { mapProductsDtoItemToProductsItem(it) }
-    }
+    override suspend fun getProductsByCategory(page: Int, orderBy: String): List<ProductsItem> =
+        storeServices.getProductsByCategory(page,orderBy).map { mapProductsDtoItemToProductsItem(it) }
 }

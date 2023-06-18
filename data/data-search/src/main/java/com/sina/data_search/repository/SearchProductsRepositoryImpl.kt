@@ -17,8 +17,8 @@ class SearchProductsRepositoryImpl(
     override fun getProductsBySearch(
         page: Int,
         searchQuery: String,
-        orderBy: String
+        filters:Map<String,String>
     ): Flow<ResponseState<List<ProductsItem>>> =
-        flow { emit(searchProductsRemoteDataSource.getProductsBySearch(page, searchQuery, orderBy)) }.asResult().flowOn(dispatcher)
+        flow { emit(searchProductsRemoteDataSource.getProductsBySearch(page, searchQuery, filters)) }.asResult().flowOn(dispatcher)
 
 }

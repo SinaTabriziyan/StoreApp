@@ -11,11 +11,20 @@
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" >
         <action
-            android:id="@+id/action_searchFragment_to_searchBtmSheet"
-            app:destination="@id/searchBtmSheet" />
+            android:id="@+id/action_searchFragment_to_seachOrdersFragment"
+            app:destination="@id/seachOrdersFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_searchFiltersFragment"
+            app:destination="@id/searchFiltersFragment" />
     </fragment>
-    <dialog
-        android:id="@+id/searchBtmSheet"
-        android:name="com.sina.feature_search.ui.main.btmsheet.SearchBtmSheet"
-        android:label="SearchBtmSheet" />
+    <fragment
+        android:id="@+id/seachOrdersFragment"
+        android:name="com.sina.feature_search.ui.order.SearchOrderByFragment"
+        android:label="fragment_seach_orders"
+        tools:layout="@layout/fragment_search_order_by" />
+    <fragment
+        android:id="@+id/searchFiltersFragment"
+        android:name="com.sina.feature_search.ui.filter.SearchFiltersFragment"
+        android:label="fragment_search_filters"
+        tools:layout="@layout/fragment_search_filters" />
 </navigation>

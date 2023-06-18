@@ -44,10 +44,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     }
 
     private fun observeUiEvents() {
-        binding.searchLayer.imgCustomerAvatar.setOnClickListener {
-            val intent = Intent(requireActivity(), CustomerActivity::class.java)
-            startActivity(intent)
-        }
+//        binding.searchLayer.imgCustomerAvatar.setOnClickListener {
+//            val intent = Intent(requireActivity(), CustomerActivity::class.java)
+//            startActivity(intent)
+//        }
     }
 
     private fun implHomeSlider() {

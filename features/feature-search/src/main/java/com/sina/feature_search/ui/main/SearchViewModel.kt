@@ -1,9 +1,15 @@
 package com.sina.feature_search.ui.main
 
 import android.util.Log
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
-import com.sina.common.constants.Constants.Companion.DEFAULT_SEARCH_TYPE
+import com.sina.common.constants.Constants.Companion.DEFAULT_SEARCH_ORDER_BY_TYPE
+import com.sina.common.constants.Constants.Companion.DEFAULT_SEARCH_ORDER_BY_TYPE_ID
+import com.sina.common.constants.Constants.Companion.DEFAULT_SEARCH_ORDER_TYPE
+import com.sina.common.constants.Constants.Companion.DEFAULT_SEARCH_ORDER_TYPE_ID
+import com.sina.common.constants.Constants.Companion.ORDER
+import com.sina.common.constants.Constants.Companion.ORDER_BY
+import com.sina.common.constants.Constants.Companion.SEARCH
 import com.sina.domain_main.interactor.InteractState
 import com.sina.domain_main.usecase.SearchProductsUseCase
 import com.sina.local.data.datastore.AppDataStore
@@ -22,11 +28,16 @@ import javax.inject.Inject
 @HiltViewModel
 class SearchViewModel @Inject constructor(
     private val searchProductsUseCase: SearchProductsUseCase,
-    private val dataStore: AppDataStore
+    private val dataStore: AppDataStore,
+    private val savedStateHandle: SavedStateHandle
 ) :
     BaseViewModel() {
 
-    var searchType = DEFAULT_SEARCH_TYPE
+    var searchOrderType = DEFAULT_SEARCH_ORDER_TYPE
+    var searchOrderTypeId = DEFAULT_SEARCH_ORDER_TYPE_ID
+    var searchOrderByType = DEFAULT_SEARCH_ORDER_BY_TYPE
+    var searchOrderByTypeId = DEFAULT_SEARCH_ORDER_BY_TYPE_ID
+
     var networkStatus = false
     var backOnline = false
 
@@ -36,27 +47,26 @@ class SearchViewModel @Inject constructor(
     private var page = 1
     private var searchQuery: String = ""
 
+
     val readSearchType = dataStore.readSearchType
     fun nextPage() {
         page++
         getProductsBySearch(searchQuery)
     }
 
-//    fun applyQueries() = hashMapOf<String, String>().apply {
-//        viewModelScope.launch {
-//            readSearchType.collect { values ->
-//                searchType = values.selectedSearchType
-//            }
-//        }
-//        put(QUERY_TYPE, searchType)
-//    }
-
-    fun getSearchFilters() {
+    fun applyQueriesQueries() = hashMapOf<String, String>().apply {
         viewModelScope.launch {
             readSearchType.collect { values ->
-                searchType = values.selectedSearchType
+                searchOrderType = values.selectedSearchOrderType
+                searchOrderTypeId = values.selectedSearchOrderTypeId
+                searchOrderByType = values.selectedSearchOrderByType
+                searchOrderByTypeId = values.selectedSearchOrderByTypeId
             }
         }
+        Timber.e("Filters:-->searchQuery:$searchQuery,searchOrderByType:$searchOrderByType,searchOrderType:$searchOrderType")
+        put(SEARCH, searchQuery)
+        put(ORDER_BY, searchOrderByType)
+        put(ORDER, searchOrderType)
     }
 
     fun getProductsBySearch(searchQuery: String) {
@@ -64,7 +74,7 @@ class SearchViewModel @Inject constructor(
         job?.cancel()
         job = viewModelScope.launch {
             Log.e("TAG", "getProductsBySearch: $page")
-            searchProductsUseCase.invoke(SearchProductsUseCase.Params(page, searchQuery, searchType)).collectLatest {
+            searchProductsUseCase.invoke(SearchProductsUseCase.Params(page, searchQuery, applyQueriesQueries())).collectLatest {
                 when (it) {
                     is InteractState.Error -> Timber.d(it.errorMessage)
                     is InteractState.Loading -> uiState.value = UiState.Loading
@@ -78,14 +88,7 @@ class SearchViewModel @Inject constructor(
 
     }
 
-    fun saveSearchType(
-        searchTypeChip: String,
-        searchTypeIdChip: Int,
-        searchOrderTypeChip: String,
-        searchOrderTypeIdChip: Int
-    ) = viewModelScope.launch {
-        dataStore.saveMealAndDietType(searchTypeChip, searchTypeIdChip, searchOrderTypeChip, searchOrderTypeIdChip)
-        getSearchFilters()
-        getProductsBySearch(searchQuery)
+    fun saveSearchOrderType(searchOrderTypeChip: String, searchOrderTypeIdChip: Int) = viewModelScope.launch {
+        dataStore.saveSearchOrderType(searchOrderTypeChip, searchOrderTypeIdChip)
     }
 }

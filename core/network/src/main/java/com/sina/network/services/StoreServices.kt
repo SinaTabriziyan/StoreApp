@@ -9,6 +9,7 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
+import retrofit2.http.QueryMap
 
 interface StoreServices {
 
@@ -33,11 +34,20 @@ interface StoreServices {
     @GET("products/categories")
     suspend fun getCategories(): List<CategoryDTOItem>
 
+    //    @GET("products")
+//    suspend fun getProductsBySearch(
+//        @Query(PARAMS.PAGE) page: Int,
+//        @Query("search") query: String,
+//        @Query("orderby") orderBy: String,
+////        @Query("order") order: String
+//    ): List<ProductsDTOItem>
+// orderBy:,title,price,popularity,rating,date
+// order:asc ,desc
     @GET("products")
     suspend fun getProductsBySearch(
         @Query(PARAMS.PAGE) page: Int,
         @Query("search") query: String,
-        @Query("orderby") orderBy: String,
+        @QueryMap filters: Map<String, String>
 //        @Query("order") order: String
     ): List<ProductsDTOItem>
 // orderBy:,title,price,popularity,rating,date

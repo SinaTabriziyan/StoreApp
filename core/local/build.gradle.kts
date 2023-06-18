@@ -53,4 +53,7 @@ dependencies {
     implementation(ORM.room)
     kapt(ORM.roomCompiler)
     implementation(ORM.roomKtx)
+
+    implementation(Log.timber)
+
 }

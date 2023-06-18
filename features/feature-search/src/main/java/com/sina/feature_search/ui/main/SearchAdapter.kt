@@ -1,4 +1,4 @@
-package com.sina.feature_search.ui.main.adapter
+package com.sina.feature_search.ui.main
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,8 +9,8 @@ import com.sina.model.ui.products_item.ProductsItem
 import com.sina.ui_components.databinding.ItemSearchProductsBinding
 import com.sina.ui_components.loadGlide
 
-class SearchProductsAdapter (private val onClick: (Int) -> Unit) :
-    ListAdapter<ProductsItem, SearchProductsAdapter.ViewHolder>(object : DiffUtil.ItemCallback<ProductsItem>() {
+class SearchAdapter (private val onClick: (Int) -> Unit) :
+    ListAdapter<ProductsItem, SearchAdapter.ViewHolder>(object : DiffUtil.ItemCallback<ProductsItem>() {
         override fun areItemsTheSame(oldItem: ProductsItem, newItem: ProductsItem): Boolean = oldItem.id == newItem.id
         override fun areContentsTheSame(oldItem: ProductsItem, newItem: ProductsItem): Boolean = oldItem == newItem
     }) {

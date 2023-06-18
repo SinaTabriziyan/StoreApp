@@ -7,6 +7,10 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.ProductsFragment">
 
+    <include
+        android:id="@+id/lottie"
+        layout="@layout/layout_lottie" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvProducts"
         android:layout_width="0dp"

@@ -7,7 +7,7 @@
     tools:context=".CategoryFragment">
 
     <include
-        android:id="@+id/lottie_layer"
+        android:id="@+id/lottie"
         layout="@layout/layout_lottie"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

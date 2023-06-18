@@ -6,7 +6,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sina.domain_main.interactor.InteractState
 import com.sina.domain_main.usecase.ProductsByCategoryUseCase
+import com.sina.local.data.datastore.AppDataStore
 import com.sina.model.ui.products_item.ProductsItem
+import com.sina.ui_components.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -23,7 +25,8 @@ import kotlin.properties.Delegates
 class ProductsViewModel @Inject constructor(
     private val productsByCategoryUseCase: ProductsByCategoryUseCase,
     private val savedStateHandle: SavedStateHandle,
-) : ViewModel() {
+    dataStore: AppDataStore
+) : BaseViewModel(dataStore) {
     private val productsItems = arrayListOf<ProductsItem>()
     private var categoryId by Delegates.notNull<String>()
     private var page = 1
@@ -61,9 +64,13 @@ class ProductsViewModel @Inject constructor(
             productsByCategoryUseCase(ProductsByCategoryUseCase.Params(page, categoryId)).collect {
                 when (it) {
                     is InteractState.Error -> {
-                        Log.e("TAG", "getProducts: ", )}
+                        Log.e("TAG", "getProducts: ")
+                    }
+
                     is InteractState.Loading -> {
-                        Log.e("TAG", "getProducts: ", )}
+                        Log.e("TAG", "getProducts: ")
+                    }
+
                     is InteractState.Success -> {
                         addProductsItems(it.data)
                         _products.value = productsItems
@@ -74,7 +81,7 @@ class ProductsViewModel @Inject constructor(
     }
 
     private fun addProductsItems(data: List<ProductsItem>) {
-        Log.e("TAG", "addProductsItems: ${productsItems.size}", )
+        Log.e("TAG", "addProductsItems: ${productsItems.size}")
         productsItems.addAll(data)
     }
 }

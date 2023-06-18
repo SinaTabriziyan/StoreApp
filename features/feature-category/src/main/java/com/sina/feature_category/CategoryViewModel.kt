@@ -23,56 +23,16 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
-class CategoryViewModel @Inject constructor(private val categoryUseCase: CategoryUseCase,    dataStore: AppDataStore
+class CategoryViewModel @Inject constructor(
+    private val categoryUseCase: CategoryUseCase, dataStore: AppDataStore
 ) :
     BaseViewModel(dataStore) {
     private val TAG = "CategoryViewModel"
 
     private val categoriseProductsParams = CategoryUseCase.Params(1, "")
+
     val categoriseProductsList: StateFlow<InteractState<List<CategoryItem>>> = categoryUseCase(categoriseProductsParams).stateIn(
         viewModelScope, SharingStarted.WhileSubscribed(5_000),
         InteractState.Loading
     )
-
-    fun StateFlow<InteractState<List<CategoryItem>>>.expand() {
-        viewModelScope.launch {
-            collectLatest {
-                when (it) {
-                    is InteractState.Error -> Timber.d(it.errorMessage)
-                    is InteractState.Loading -> uiState.value = UiState.Loading
-                    is InteractState.Success -> {
-                        uiState.value = UiState.Success
-                    }
-                }
-            }
-        }
-    }
-
-//    private val _categoryProducts = MutableStateFlow<List<CategoryItem>>(emptyList())
-//    val categoryProducts: StateFlow<List<CategoryItem>> = _categoryProducts
-
-//    init {
-//        getCategoriseProductsList(categoriseProductsParams)
-//    }
-
-//    private fun getCategoriseProductsList(categoriseProductsParams: CategoryUseCase.Params) {
-//        viewModelScope.launch {
-//            categoryUseCase(categoriseProductsParams).collect { state ->
-//                when (state) {
-//                    is InteractState.Error -> {}
-//                    is InteractState.Loading -> {state}
-//                    is InteractState.Success -> {
-//                        _categoryProducts.value = state.data
-//                    }
-//                }
-//            }
-//            categoriseProductsList.collect {
-//                when (it) {
-//                    is InteractState.Error ->{}
-//                    is InteractState.Loading ->{}
-//                    is InteractState.Success -> _categoryProducts.value = it.data
-//                }
-//            }
-//        }
-//    }
 }

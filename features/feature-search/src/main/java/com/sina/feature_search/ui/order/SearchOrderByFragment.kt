@@ -25,7 +25,6 @@ class SearchOrderByFragment : BaseFragment<FragmentSearchOrderByBinding>(Fragmen
         searchOrderByAdapter = SearchOrderByAdapter { orderBy ->
             viewModel.saveSearchOrderBy(orderBy)
             findNavController().navigateUp()
-            Timber.e("Filters $orderBy")
         }
         with(binding) {
             searchOrderByAdapter.submitList(viewModel.filterList)

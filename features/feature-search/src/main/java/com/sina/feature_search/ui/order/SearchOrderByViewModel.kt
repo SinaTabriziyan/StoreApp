@@ -7,14 +7,16 @@ import com.sina.feature_search.ui.adapters.model.SearchOrderItem
 import com.sina.local.data.datastore.AppDataStore
 import com.sina.ui_components.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
 class SearchOrderByViewModel @Inject constructor(
     private val dataStore: AppDataStore
 ) : BaseViewModel() {
-    fun saveSearchOrderBy(orderTitle: SearchOrderItem) = viewModelScope.launch {
+    fun saveSearchOrderBy(orderTitle: SearchOrderItem) = viewModelScope.launch(Dispatchers.IO) {
         dataStore.saveSearchOrderByType(orderTitle.orderTitle, orderTitle.id)
     }
 

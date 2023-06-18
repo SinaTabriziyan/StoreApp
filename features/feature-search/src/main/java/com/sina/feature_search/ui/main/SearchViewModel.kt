@@ -59,6 +59,7 @@ class SearchViewModel @Inject constructor(
             readSearchType.collect { values ->
                 searchOrderType = values.selectedSearchOrderType
                 searchOrderTypeId = values.selectedSearchOrderTypeId
+                Timber.e("$searchOrderByType ,$searchOrderByTypeId ")
                 searchOrderByType = values.selectedSearchOrderByType
                 searchOrderByTypeId = values.selectedSearchOrderByTypeId
             }
@@ -85,7 +86,6 @@ class SearchViewModel @Inject constructor(
                 }
             }
         }
-
     }
 
     fun saveSearchOrderType(searchOrderTypeChip: String, searchOrderTypeIdChip: Int) = viewModelScope.launch {

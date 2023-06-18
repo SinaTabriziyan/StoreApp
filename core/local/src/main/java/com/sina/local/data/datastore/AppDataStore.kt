@@ -56,28 +56,13 @@ class AppDataStore @Inject constructor(@ApplicationContext private val context: 
     }
 
     suspend fun saveSearchOrderByType(searchOrderByType: String, searchOrderByTypeId: Int) {
+        Timber.e("Filters before $searchOrderByType")
         context.dataStore.edit { mutablePreferences ->
             mutablePreferences[PreferencesKey.selectedSearchOrderByType] = searchOrderByType
             mutablePreferences[PreferencesKey.selectedSearchOrderByTypeId] = searchOrderByTypeId
+            Timber.e("Filters: after dataStore$searchOrderByType,$searchOrderByTypeId")
         }
     }
-
-
-//    suspend fun saveMealAndDietType(
-////        searchType: String,
-////        searchTypeId: Int,
-//        searchOrderTypeChip: String,
-//        searchOrderTypeIdChip: Int,
-//    ) {
-//        context.dataStore.edit { preferences ->
-//            preferences[PreferencesKey.selectedSearchType] = searchType
-//            preferences[PreferencesKey.selectedSearchTypeID] = searchTypeId
-//            // TODO:
-////            preferences[PreferencesKey.selectedSearchType] = searchType
-////            preferences[PreferencesKey.selectedSearchTypeID] = searchTypeId
-//
-//        }
-//    }
 
     suspend fun saveBackOnline(backOnline: Boolean) = context.dataStore.edit { preferences ->
         preferences[PreferencesKey.backOnline] = backOnline
@@ -101,10 +86,9 @@ class AppDataStore @Inject constructor(@ApplicationContext private val context: 
         }.map { preferences ->
             val selectedSearchOrderType = preferences[PreferencesKey.selectedSearchOrderType] ?: DEFAULT_SEARCH_ORDER_TYPE
             val selectedSearchOrderTypeId = preferences[PreferencesKey.selectedSearchOrderTypeId] ?: DEFAULT_SEARCH_ORDER_TYPE_ID
-            Timber.e("Filters OrderType", "$selectedSearchOrderType: ", )
             val selectedSearchOrderByType = preferences[PreferencesKey.selectedSearchOrderByType] ?: DEFAULT_SEARCH_ORDER_BY_TYPE
             val selectedSearchOrderByTypeId = preferences[PreferencesKey.selectedSearchOrderByTypeId] ?: DEFAULT_SEARCH_ORDER_BY_TYPE_ID
-            Timber.e("Filters OrderType", "$selectedSearchOrderByType: ", )
+            Timber.e("Filters OrderByType:: $selectedSearchOrderByType")
 
             SearchType(
                 selectedSearchOrderType,

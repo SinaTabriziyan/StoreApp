@@ -70,7 +70,6 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
                     searchOrderTypeChip = selectedMealType
                     searchOrderTypeIdChip = checkedId
                     viewModel.saveSearchOrderType(searchOrderTypeChip, searchOrderTypeIdChip)
-                    Timber.e("Filters $searchOrderTypeChip ,$searchOrderTypeIdChip")
                 }
             }
 

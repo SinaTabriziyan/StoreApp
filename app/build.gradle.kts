@@ -41,15 +41,15 @@ android {
 }
 
 dependencies {
-    implementation(project(mapOf("path" to ":features:feature-category")))
-    implementation(project(mapOf("path" to ":features:feature-main")))
-    implementation(project(mapOf("path" to ":data:data-product")))
+    implementation(project(mapOf("path" to ":features:category")))
+    implementation(project(mapOf("path" to ":features:main")))
+    implementation(project(mapOf("path" to ":data:product")))
     implementation(project(mapOf("path" to ":domain:domain-main")))
-    implementation(project(mapOf("path" to ":features:feature-home")))
-    implementation(project(mapOf("path" to ":features:feature-category")))
-    implementation(project(mapOf("path" to ":data:data-item")))
-    implementation(project(mapOf("path" to ":data:data-search")))
-    implementation(project(mapOf("path" to ":data:data-customer")))
+    implementation(project(mapOf("path" to ":features:home")))
+    implementation(project(mapOf("path" to ":features:category")))
+    implementation(project(mapOf("path" to ":data:item")))
+    implementation(project(mapOf("path" to ":data:search")))
+    implementation(project(mapOf("path" to ":data:customer")))
     implementation(project(mapOf("path" to ":core:model")))
     implementation(project(mapOf("path" to ":core:ui-components")))
 

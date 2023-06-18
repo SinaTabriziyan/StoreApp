@@ -8,7 +8,7 @@ plugins {
 }
 
 android {
-    namespace = "com.sina.feature_category"
+    namespace = "com.sina.feature_main"
     compileSdk = 33
 
     defaultConfig {
@@ -40,29 +40,26 @@ android {
 }
 
 dependencies {
-    implementation(project(mapOf("path" to ":domain:domain-main")))
     implementation(project(mapOf("path" to ":core:common")))
-    implementation(project(mapOf("path" to ":core:model")))
-    implementation(project(mapOf("path" to ":features:feature-products")))
+    implementation(project(mapOf("path" to ":features:home")))
+    implementation(project(mapOf("path" to ":features:category")))
+    implementation(project(mapOf("path" to ":features:cart")))
     implementation(project(mapOf("path" to ":core:ui-components")))
 
     implementation(Deps.core)
     implementation(Deps.appcompat)
     implementation(Deps.material)
     implementation(Deps.constraintLayout)
-    implementation(project(mapOf("path" to ":core:local")))
 
     testImplementation(TestImpl.junit)
     androidTestImplementation(TestImpl.testJUnit)
     androidTestImplementation(TestImpl.espresso)
-    
 
     implementation(LifeCycle.lifeCycleViewModel)
     implementation(LifeCycle.lifeCycleViewLivedata)
 
     implementation(Navigation.navigationFragment)
     implementation(Navigation.navigationUi)
-
     implementation(DI.hilt)
     kapt(DI.hiltCompiler)
     implementation(Log.timber)

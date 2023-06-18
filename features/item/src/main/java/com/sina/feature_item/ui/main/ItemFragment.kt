@@ -16,6 +16,7 @@ import com.sina.feature_details.databinding.FragmentItemBinding
 import com.sina.model.ui.product_details_item.ProductDetails
 import com.sina.ui_components.BaseFragment
 import com.sina.ui_components.BaseViewModel
+import com.sina.ui_components.BaseViewModel.UiState.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -28,22 +29,35 @@ class ItemFragment : BaseFragment<FragmentItemBinding>(FragmentItemBinding::infl
     private val viewModel: ItemViewModel by viewModels()
     private lateinit var itemAdapter: ImageItemAdapter
     override fun setupViews() {
-
+        with(binding) {
+            rvItemImages.adapter = itemAdapter
+        }
     }
 
     override fun playAnimate() {
-        TODO("Not yet implemented")
+        binding.lottie.lottie.playAnimation()
     }
 
     override fun cancelAnimate() {
-        TODO("Not yet implemented")
+        binding.lottie.lottie.cancelAnimation()
     }
 
     override fun animationStatus(state: BaseViewModel.UiState) {
         binding.lottie.lottie.isVisible = when (state) {
-            BaseViewModel.UiState.Success -> false
-            BaseViewModel.UiState.Loading -> true
-            BaseViewModel.UiState.Error -> false
+            Success -> {
+                cancelAnimate()
+                false
+            }
+
+            Loading -> {
+                playAnimate()
+                true
+            }
+
+            Error -> {
+                cancelAnimate()
+                false
+            }
         }
     }
 
@@ -54,29 +68,26 @@ class ItemFragment : BaseFragment<FragmentItemBinding>(FragmentItemBinding::infl
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val args = arguments
-        Log.e(TAG, "onViewCreated:333 ${args?.getInt("productId")}")
         itemAdapter = ImageItemAdapter()
-        implRecyclerView()
+        setupViews()
         observers()
     }
 
-    private fun implRecyclerView() {
-        with(binding) {
-            rvItemImages.adapter = itemAdapter
-        }
-    }
 
     private fun observers() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.productDetails.collectLatest {
                     when (it) {
-                        is InteractState.Error -> Timber.d(it.errorMessage)
-                        is InteractState.Loading -> viewModel.uiState.value = BaseViewModel.UiState.Loading
+                        is InteractState.Error -> {
+                            Timber.d(it.errorMessage)
+                            viewModel.uiState.value = Error
+                        }
+
+                        is InteractState.Loading -> viewModel.uiState.value = Loading
                         is InteractState.Success -> {
-                            viewModel.uiState.value = BaseViewModel.UiState.Success
+                            viewModel.uiState.value = Success
                             implUi(it.data)
-                            Log.e(TAG, "observers: ${it.data}")
                         }
                     }
                 }
@@ -86,9 +97,9 @@ class ItemFragment : BaseFragment<FragmentItemBinding>(FragmentItemBinding::infl
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collectLatest {
                     when (it) {
-                        BaseViewModel.UiState.Success -> showViews(true)
-                        BaseViewModel.UiState.Loading -> showViews(false)
-                        BaseViewModel.UiState.Error -> showViews(false)
+                        Success -> showViews(true)
+                        Loading -> showViews(false)
+                        Error -> showViews(false)
                     }
                     animationStatus(it)
                 }

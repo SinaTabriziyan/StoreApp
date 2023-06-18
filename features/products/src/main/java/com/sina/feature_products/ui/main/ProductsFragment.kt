@@ -54,7 +54,10 @@ class ProductsFragment : BaseFragment<FragmentProductsBinding>(FragmentProductsB
                 cancelAnimate();false
             }
 
-            Loading -> true
+            Loading -> {
+                playAnimate()
+                true
+            }
             Error -> {
                 cancelAnimate();false
             }

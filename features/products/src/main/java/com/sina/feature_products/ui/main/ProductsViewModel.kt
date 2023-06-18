@@ -64,14 +64,17 @@ class ProductsViewModel @Inject constructor(
             productsByCategoryUseCase(ProductsByCategoryUseCase.Params(page, categoryId)).collect {
                 when (it) {
                     is InteractState.Error -> {
+                        uiState.value = UiState.Error
                         Log.e("TAG", "getProducts: ")
                     }
 
                     is InteractState.Loading -> {
+                        uiState.value=UiState.Loading
                         Log.e("TAG", "getProducts: ")
                     }
 
                     is InteractState.Success -> {
+                        uiState.value=UiState.Success
                         addProductsItems(it.data)
                         _products.value = productsItems
                     }

@@ -19,23 +19,23 @@
             <option value="$PROJECT_DIR$/core/network" />
             <option value="$PROJECT_DIR$/core/ui-components" />
             <option value="$PROJECT_DIR$/data" />
-            <option value="$PROJECT_DIR$/data/data-cart" />
-            <option value="$PROJECT_DIR$/data/data-category" />
-            <option value="$PROJECT_DIR$/data/data-customer" />
-            <option value="$PROJECT_DIR$/data/data-item" />
-            <option value="$PROJECT_DIR$/data/data-product" />
-            <option value="$PROJECT_DIR$/data/data-search" />
+            <option value="$PROJECT_DIR$/data/cart" />
+            <option value="$PROJECT_DIR$/data/category" />
+            <option value="$PROJECT_DIR$/data/customer" />
+            <option value="$PROJECT_DIR$/data/item" />
+            <option value="$PROJECT_DIR$/data/product" />
+            <option value="$PROJECT_DIR$/data/search" />
             <option value="$PROJECT_DIR$/domain" />
             <option value="$PROJECT_DIR$/domain/domain-main" />
             <option value="$PROJECT_DIR$/features" />
-            <option value="$PROJECT_DIR$/features/feature-cart" />
-            <option value="$PROJECT_DIR$/features/feature-category" />
-            <option value="$PROJECT_DIR$/features/feature-customer" />
-            <option value="$PROJECT_DIR$/features/feature-home" />
-            <option value="$PROJECT_DIR$/features/feature-item" />
-            <option value="$PROJECT_DIR$/features/feature-main" />
-            <option value="$PROJECT_DIR$/features/feature-products" />
-            <option value="$PROJECT_DIR$/features/feature-search" />
+            <option value="$PROJECT_DIR$/features/cart" />
+            <option value="$PROJECT_DIR$/features/category" />
+            <option value="$PROJECT_DIR$/features/customer" />
+            <option value="$PROJECT_DIR$/features/home" />
+            <option value="$PROJECT_DIR$/features/item" />
+            <option value="$PROJECT_DIR$/features/main" />
+            <option value="$PROJECT_DIR$/features/products" />
+            <option value="$PROJECT_DIR$/features/search" />
           </set>
         </option>
       </GradleProjectSettings>

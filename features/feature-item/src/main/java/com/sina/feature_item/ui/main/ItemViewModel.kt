@@ -1,5 +1,6 @@
 package com.sina.feature_item.ui.main
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
@@ -59,6 +60,14 @@ class ItemViewModel @Inject constructor(
             SharingStarted.WhileSubscribed(5_000),
             InteractState.Loading
         )
+
+    override fun showNetworkStatue(context: Context) {
+        TODO("Not yet implemented")
+    }
+
+    override fun saveBackOnline(backOnline: Boolean) {
+        TODO("Not yet implemented")
+    }
 
 //    init {
 //        getProductDetails()

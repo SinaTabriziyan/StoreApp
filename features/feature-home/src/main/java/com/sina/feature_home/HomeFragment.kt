@@ -16,15 +16,20 @@ import com.sina.feature_home.adapter.MainHomeAdapter
 import com.sina.feature_home.databinding.FragmentHomeBinding
 import com.sina.feature_item.ItemActivity
 import com.sina.feature_search.SearchActivity
+import com.sina.network.networkListener.NetworkListener
 import com.sina.ui_components.BaseFragment
 import com.sina.ui_components.BaseViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
     private val TAG = "HomeFragment"
+
+    @Inject
+    lateinit var networkListener: NetworkListener
 
     private val viewModel: HomeViewModel by viewModels()
     private lateinit var mainHomeAdapter: MainHomeAdapter
@@ -75,9 +80,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             val intent = Intent(requireActivity(), ItemActivity::class.java)
             intent.putExtra("productId", it)
             startActivity(intent)
-        }, onReachedEndOfList = {
-
-        })
+        }, onReachedEndOfList = {})
         binding.rvMainProducts.apply {
             adapter = mainHomeAdapter
             layoutManager = LinearLayoutManager(binding.root.context)
@@ -104,26 +107,34 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                 }
             }
         }
-//        viewLifecycleOwner.lifecycleScope.launch {
-//            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-//                viewModel.sliderProducts.collectLatest {
-//                    when (it) {
-//                        is InteractState.Error -> {}
-//                        is InteractState.Loading -> {}
-//                        is InteractState.Success -> {
-//                            homeSliderAdapter.submitList(it.data[0].images)
-//                            Log.e(TAG, "observers: ${it.data[0].images}")
-//                        }
-//                    }
-//                }
-//            }
-//        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                networkListener.checkNetworkAvailability().collectLatest {
+                    viewModel.networkStatus = it
+                    viewModel.showNetworkStatue(binding.root.context)
+                }
+            }
+        }
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.readBackOnline.collectLatest {
+                    viewModel.backOnline = it
+                }
+            }
+        }
+
+
     }
 
     override fun animationStatus(state: BaseViewModel.UiState) {
         binding.lottieLayer.lottie.isVisible = when (state) {
             BaseViewModel.UiState.Success -> false
             BaseViewModel.UiState.Loading -> true
+            BaseViewModel.UiState.Error -> {
+                showToast("sth wrong")
+                false
+            }
         }
     }
 

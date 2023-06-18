@@ -1,5 +1,6 @@
 package com.sina.feature_category
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -41,6 +42,14 @@ class CategoryViewModel @Inject constructor(private val categoryUseCase: Categor
                 }
             }
         }
+    }
+
+    override fun showNetworkStatue(context: Context) {
+        TODO("Not yet implemented")
+    }
+
+    override fun saveBackOnline(backOnline: Boolean) {
+        TODO("Not yet implemented")
     }
 
 //    private val _categoryProducts = MutableStateFlow<List<CategoryItem>>(emptyList())

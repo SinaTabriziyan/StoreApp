@@ -79,7 +79,7 @@ object NetworkModule {
     ): OkHttpClient = OkHttpClient.Builder()
         .addInterceptor(httpLoggingInterceptor)
         .addInterceptor(interceptor)
-        .readTimeout(1, TimeUnit.MINUTES)
+        .readTimeout(5, TimeUnit.SECONDS)
         .build()
 
 

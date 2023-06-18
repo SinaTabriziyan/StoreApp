@@ -21,6 +21,7 @@ import com.sina.ui_components.BaseFragment
 import com.sina.ui_components.BaseViewModel
 import com.sina.ui_components.BaseViewModel.UiState.Loading
 import com.sina.ui_components.BaseViewModel.UiState.Success
+import com.sina.ui_components.BaseViewModel.UiState.Error
 import com.sina.ui_components.onQueryTextChanged
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -47,11 +48,8 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
 
         implRecyclerView()
         implObservers()
-        setPagination()
+//        setPagination()
         setupViews()
-//        binding.fabFilterSearch.setOnClickListener {
-//            findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToSearchBtmSheet())
-//        }
     }
 
     override fun setupViews() {
@@ -60,9 +58,12 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
                 tvSearchFilter.setOnClickListener { navController.navigate(SearchFragmentDirections.actionSearchFragmentToSearchFiltersFragment()) }
                 tvSearchOrder.setOnClickListener { navController.navigate(SearchFragmentDirections.actionSearchFragmentToSeachOrdersFragment()) }
                 searchView.onQueryTextChanged {
-                    val searchQuery = "%$it%"
-                    val encodeQuery = URLEncoder.encode(searchQuery, "UTF-8")
-                    viewModel.getProductsBySearch(encodeQuery)
+//                    val searchQuery = "%$it%"
+                    val encodeQuery = URLEncoder.encode(it, "UTF-8")
+                    Timber.d("Query: $it")
+                    Timber.d("Query: $encodeQuery")
+                    searchAdapter.submitList(emptyList())
+                    viewModel.getProductsBySearch(it)
                 }
                 orderTypeChipGroup.setOnCheckedChangeListener { group, checkedId ->
                     val chip = group.findViewById<Chip>(checkedId)
@@ -77,8 +78,6 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
                 adapter = searchAdapter
                 layoutManager = LinearLayoutManager(root.context)
             }
-
-
         }
     }
 
@@ -86,6 +85,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         binding.lottie.lottie.isVisible = when (state) {
             Success -> false
             Loading -> true
+            Error -> false
         }
     }
 
@@ -94,6 +94,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.productsBySearch.collectLatest {
+                    searchAdapter.submitList(emptyList())
                     searchAdapter.submitList(it.toMutableList())
                 }
             }
@@ -103,10 +104,14 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collectLatest {
                     when (it) {
-                        BaseViewModel.UiState.Success -> animationStatus(it)
-                        BaseViewModel.UiState.Loading -> animationStatus(it)
-                    }
+                        Success -> animationStatus(it)
+                        Loading -> animationStatus(it)
+                        Error -> {
+                            animationStatus(it)
+                            showToast(it.name)
 
+                        }
+                    }
                 }
             }
         }

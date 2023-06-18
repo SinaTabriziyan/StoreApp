@@ -1,5 +1,6 @@
 package com.sina.feature_search.ui.order
 
+import android.content.Context
 import androidx.lifecycle.viewModelScope
 import com.sina.common.constants.Constants
 import com.sina.feature_search.ui.adapters.model.SearchFilterItem
@@ -28,6 +29,14 @@ class SearchOrderByViewModel @Inject constructor(
         SearchOrderItem(2, "rating"),
         SearchOrderItem(3, "popularity"),
     )
+
+    override fun showNetworkStatue(context: Context) {
+        TODO("Not yet implemented")
+    }
+
+    override fun saveBackOnline(backOnline: Boolean) {
+        TODO("Not yet implemented")
+    }
 
 
 }

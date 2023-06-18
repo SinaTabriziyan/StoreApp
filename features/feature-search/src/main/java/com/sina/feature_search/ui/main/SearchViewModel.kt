@@ -1,5 +1,6 @@
 package com.sina.feature_search.ui.main
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
@@ -38,8 +39,6 @@ class SearchViewModel @Inject constructor(
     var searchOrderByType = DEFAULT_SEARCH_ORDER_BY_TYPE
     var searchOrderByTypeId = DEFAULT_SEARCH_ORDER_BY_TYPE_ID
 
-    var networkStatus = false
-    var backOnline = false
 
     private val _productsBySearch = MutableStateFlow<List<ProductsItem>>(mutableListOf())
     val productsBySearch: StateFlow<List<ProductsItem>> = _productsBySearch.asStateFlow()
@@ -65,7 +64,7 @@ class SearchViewModel @Inject constructor(
             }
         }
         Timber.e("Filters:-->searchQuery:$searchQuery,searchOrderByType:$searchOrderByType,searchOrderType:$searchOrderType")
-        put(SEARCH, searchQuery)
+//        put(SEARCH, searchQuery)
         put(ORDER_BY, searchOrderByType)
         put(ORDER, searchOrderType)
     }
@@ -77,7 +76,11 @@ class SearchViewModel @Inject constructor(
             Log.e("TAG", "getProductsBySearch: $page")
             searchProductsUseCase.invoke(SearchProductsUseCase.Params(page, searchQuery, applyQueriesQueries())).collectLatest {
                 when (it) {
-                    is InteractState.Error -> Timber.d(it.errorMessage)
+                    is InteractState.Error -> {
+                        Timber.d(it.errorMessage)
+                        uiState.value = UiState.Error
+                    }
+
                     is InteractState.Loading -> uiState.value = UiState.Loading
                     is InteractState.Success -> {
                         uiState.value = UiState.Success
@@ -91,4 +94,14 @@ class SearchViewModel @Inject constructor(
     fun saveSearchOrderType(searchOrderTypeChip: String, searchOrderTypeIdChip: Int) = viewModelScope.launch {
         dataStore.saveSearchOrderType(searchOrderTypeChip, searchOrderTypeIdChip)
     }
+
+    override fun showNetworkStatue(context: Context) {
+        TODO("Not yet implemented")
+    }
+
+    override fun saveBackOnline(backOnline: Boolean) {
+        TODO("Not yet implemented")
+    }
+
+
 }

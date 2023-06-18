@@ -35,6 +35,7 @@ class ItemFragment : BaseFragment<FragmentItemBinding>(FragmentItemBinding::infl
         binding.lottie.lottie.isVisible = when (state) {
             BaseViewModel.UiState.Success -> false
             BaseViewModel.UiState.Loading -> true
+            BaseViewModel.UiState.Error -> false
         }
     }
 
@@ -79,6 +80,7 @@ class ItemFragment : BaseFragment<FragmentItemBinding>(FragmentItemBinding::infl
                     when (it) {
                         BaseViewModel.UiState.Success -> showViews(true)
                         BaseViewModel.UiState.Loading -> showViews(false)
+                        BaseViewModel.UiState.Error -> showViews(false)
                     }
                     animationStatus(it)
                 }

@@ -39,6 +39,7 @@ dependencies {
     implementation(Deps.core)
     implementation(Deps.appcompat)
     implementation(project(mapOf("path" to ":domain:domain-main")))
+    implementation(project(mapOf("path" to ":core:common")))
 
     testImplementation(TestImpl.junit)
     androidTestImplementation(TestImpl.testJUnit)

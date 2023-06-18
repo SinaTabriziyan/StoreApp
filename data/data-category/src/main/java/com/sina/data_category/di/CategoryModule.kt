@@ -4,7 +4,7 @@ import com.sina.data_category.remote.CategoryRemoteDataSource
 import com.sina.data_category.remote.CategoryRemoteDataSourceImpl
 import com.sina.data_category.repository.CategoryRepositoryImpl
 import com.sina.domain_main.repository.CategoryRepository
-import com.sina.network.annotation.IODispatcher
+import com.sina.common.anotations.IODispatcher
 import com.sina.network.services.StoreServices
 import dagger.Module
 import dagger.Provides

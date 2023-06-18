@@ -51,6 +51,7 @@ dependencies {
     implementation(Deps.appcompat)
     implementation(Deps.material)
     implementation(Deps.constraintLayout)
+    implementation(Preferences.datastorePreferences)
 
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
     implementation(project(mapOf("path" to ":features:feature-customer")))

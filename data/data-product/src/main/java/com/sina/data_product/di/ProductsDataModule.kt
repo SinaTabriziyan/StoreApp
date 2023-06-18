@@ -4,7 +4,7 @@ import com.sina.data_product.remote.ProductsRemoteDataSource
 import com.sina.data_product.remote.ProductsRemoteDataSourceImpl
 import com.sina.data_product.repository.ProductsRepositoryImpl
 import com.sina.domain_main.repository.ProductsRepository
-import com.sina.network.annotation.IODispatcher
+import com.sina.common.anotations.IODispatcher
 import com.sina.network.services.StoreServices
 import dagger.Module
 import dagger.Provides

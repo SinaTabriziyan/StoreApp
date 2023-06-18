@@ -1,9 +1,9 @@
 package com.sina.network.di
 
-import com.sina.network.annotation.CpuDispatcher
-import com.sina.network.annotation.DefaultDispatcher
-import com.sina.network.annotation.IODispatcher
-import com.sina.network.annotation.MainDispatcher
+import com.sina.common.anotations.CpuDispatcher
+import com.sina.common.anotations.DefaultDispatcher
+import com.sina.common.anotations.IODispatcher
+import com.sina.common.anotations.MainDispatcher
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

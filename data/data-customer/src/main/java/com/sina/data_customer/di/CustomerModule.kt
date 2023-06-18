@@ -1,10 +1,10 @@
 package com.sina.data_customer.di
 
+import com.sina.common.anotations.IODispatcher
 import com.sina.data_customer.remote.CustomerRemoteDataSource
 import com.sina.data_customer.remote.CustomerRemoteDataSourceImpl
 import com.sina.data_customer.reposiotry.CustomerRepositoryImpl
 import com.sina.domain_main.repository.CustomerRepository
-import com.sina.network.annotation.IODispatcher
 import com.sina.network.services.StoreServices
 import dagger.Module
 import dagger.Provides
@@ -29,5 +29,4 @@ object CustomerModule {
         customerRemoteDataSource: CustomerRemoteDataSource,
         @IODispatcher ioDispatcher: CoroutineDispatcher,
     ): CustomerRepository = CustomerRepositoryImpl(customerRemoteDataSource)
-
 }

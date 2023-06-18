@@ -1,4 +1,4 @@
-package com.sina.network.annotation
+package com.sina.common.anotations
 
 import javax.inject.Qualifier
 

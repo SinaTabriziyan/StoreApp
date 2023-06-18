@@ -1,7 +1,6 @@
 package com.sina.local.data.datastore
 
 import android.content.Context
-import android.util.Log
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
@@ -31,7 +30,9 @@ import javax.inject.Inject
 
 
 @ActivityRetainedScoped
-class AppDataStore @Inject constructor(@ApplicationContext private val context: Context) {
+class AppDataStore @Inject constructor(
+    private val storeDataStore: DataStore<Preferences>
+) {
 
     private object PreferencesKey {
 //        val selectedSearchType = stringPreferencesKey(PREFERENCES_SEARCH_TYPE)
@@ -49,7 +50,7 @@ class AppDataStore @Inject constructor(@ApplicationContext private val context: 
     private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(PREFERENCES_NAME)
 
     suspend fun saveSearchOrderType(searchOrderTypeChip: String, searchOrderTypeIdChip: Int) {
-        context.dataStore.edit { mutablePreferences ->
+        storeDataStore.edit { mutablePreferences ->
             mutablePreferences[PreferencesKey.selectedSearchOrderType] = searchOrderTypeChip
             mutablePreferences[PreferencesKey.selectedSearchOrderTypeId] = searchOrderTypeIdChip
         }
@@ -57,18 +58,18 @@ class AppDataStore @Inject constructor(@ApplicationContext private val context: 
 
     suspend fun saveSearchOrderByType(searchOrderByType: String, searchOrderByTypeId: Int) {
         Timber.e("Filters before $searchOrderByType")
-        context.dataStore.edit { mutablePreferences ->
+        storeDataStore.edit { mutablePreferences ->
             mutablePreferences[PreferencesKey.selectedSearchOrderByType] = searchOrderByType
             mutablePreferences[PreferencesKey.selectedSearchOrderByTypeId] = searchOrderByTypeId
             Timber.e("Filters: after dataStore$searchOrderByType,$searchOrderByTypeId")
         }
     }
 
-    suspend fun saveBackOnline(backOnline: Boolean) = context.dataStore.edit { preferences ->
+    suspend fun saveBackOnline(backOnline: Boolean) = storeDataStore.edit { preferences ->
         preferences[PreferencesKey.backOnline] = backOnline
     }
 
-    val readBackOnline: Flow<Boolean> = context.dataStore.data.catch { exception ->
+    val readBackOnline: Flow<Boolean> = storeDataStore.data.catch { exception ->
         if (exception is IOException) {
             emit(emptyPreferences())
         } else throw exception
@@ -77,7 +78,7 @@ class AppDataStore @Inject constructor(@ApplicationContext private val context: 
             preferences[PreferencesKey.backOnline] ?: false;backOnline
     }
 
-    val readSearchType: Flow<SearchType> = context.dataStore.data
+    val readSearchType: Flow<SearchType> = storeDataStore.data
         .catch { exception ->
             if (exception is IOException) {
                 emit(emptyPreferences())

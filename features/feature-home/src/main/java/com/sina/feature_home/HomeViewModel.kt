@@ -26,9 +26,8 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     productsUseCase: ProductsUseCase,
     productsByCategoryUseCase: ProductsByCategoryUseCase,
-    private val dataStore: AppDataStore,
-
-    ) : BaseViewModel() {
+    dataStore:AppDataStore
+) : BaseViewModel(dataStore) {
     private val TAG = "HomeViewModel"
     private val listItem: Array<MainProducts> = Array(3) { MainProducts.createData("", emptyList()) }
     private val topRatedProductsParams = ProductsUseCase.Params(1, "rating")
@@ -134,22 +133,21 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    override fun showNetworkStatue(context: Context) {
-        if (!networkStatus) {
-            Toast.makeText(context, "دسترسی به اینترنت را چک کنید", Toast.LENGTH_SHORT).show()
-            saveBackOnline(true)
+//    override fun showNetworkStatue(context: Context) {
+//        if (!networkStatus) {
+//            Toast.makeText(context, "دسترسی به اینترنت را چک کنید", Toast.LENGTH_SHORT).show()
+//            saveBackOnline(true)
+//
+//        } else if (networkStatus) {
+//            if (backOnline)
+//                Toast.makeText(context, "اتصال به شبکه انجام شد", Toast.LENGTH_SHORT).show()
+//            saveBackOnline(false)
+//        }
+//    }
 
-        } else if (networkStatus) {
-            if (backOnline)
-                Toast.makeText(context, "اتصال به شبکه انجام شد", Toast.LENGTH_SHORT).show()
-            saveBackOnline(false)
-
-        }
-    }
-
-    override fun saveBackOnline(backOnline: Boolean) {
-        viewModelScope.launch(Dispatchers.IO) {
-            dataStore.saveBackOnline(backOnline)
-        }
-    }
+//    override fun saveBackOnline(backOnline: Boolean) {
+//        viewModelScope.launch(Dispatchers.IO) {
+//            dataStore.saveBackOnline(backOnline)
+//        }
+//    }
 }

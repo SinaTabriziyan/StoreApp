@@ -1,6 +1,8 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -41,6 +43,7 @@ dependencies {
     implementation(Deps.material)
     implementation(Deps.constraintLayout)
     implementation(project(mapOf("path" to ":domain:domain-main")))
+    implementation(project(mapOf("path" to ":core:local")))
 
     testImplementation(TestImpl.junit)
     androidTestImplementation(TestImpl.testJUnit)
@@ -49,5 +52,17 @@ dependencies {
     implementation(ImageLoaders.glide)
     implementation(ImageLoaders.coil)
     implementation(Animations.lottie)
+
+
+    implementation(LifeCycle.lifeCycleViewModel)
+    implementation(LifeCycle.lifeCycleViewLivedata)
+
+    implementation(Navigation.navigationFragment)
+    implementation(Navigation.navigationUi)
+    implementation(Preferences.datastorePreferences)
+
+    implementation(DI.hilt)
+    kapt(DI.hiltCompiler)
+    kapt(DI.hiltAndroidCompiler)
 
 }

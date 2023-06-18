@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -26,13 +27,7 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class CategoryFragment : BaseFragment<FragmentCategoryBinding>(FragmentCategoryBinding::inflate) {
     private val TAG = "CategoryFragment"
-    override fun setupViews() {
 
-    }
-
-    override fun animationStatus(state: BaseViewModel.UiState) {
-
-    }
 
     private val viewModel: CategoryViewModel by viewModels()
     private lateinit var categoryAdapter: CategoryAdapter
@@ -41,6 +36,29 @@ class CategoryFragment : BaseFragment<FragmentCategoryBinding>(FragmentCategoryB
         super.onViewCreated(view, savedInstanceState)
         implRecycler()
         observes()
+    }
+
+    override fun setupViews() {
+
+    }
+
+    override fun animationStatus(state: BaseViewModel.UiState) {
+        binding.lottieLayer.lottie.isVisible = when (state) {
+            BaseViewModel.UiState.Success -> {
+                binding.lottieLayer.lottie.cancelAnimation()
+                false
+            }
+
+            BaseViewModel.UiState.Loading -> {
+                binding.lottieLayer.lottie.playAnimation()
+                true
+            }
+
+            BaseViewModel.UiState.Error -> {
+                binding.lottieLayer.lottie.cancelAnimation()
+                false
+            }
+        }
     }
 
     private fun implRecycler() {

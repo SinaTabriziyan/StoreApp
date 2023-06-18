@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.sina.domain_main.interactor.InteractState
 import com.sina.domain_main.usecase.AddItemUseCase
 import com.sina.domain_main.usecase.ItemUseCase
+import com.sina.local.data.datastore.AppDataStore
 import com.sina.model.ui.product_details_item.ProductDetails
 import com.sina.ui_components.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -25,9 +26,10 @@ import kotlin.properties.Delegates
 @HiltViewModel
 class ItemViewModel @Inject constructor(
     itemUseCase: ItemUseCase,
-    private val addItemUseCase: AddItemUseCase,
     savedStateHandle: SavedStateHandle,
-) : BaseViewModel() {
+    dataStore: AppDataStore,
+    private val addItemUseCase: AddItemUseCase,
+) : BaseViewModel(dataStore) {
     private var itemId by Delegates.notNull<Int>()
 
     init {
@@ -60,32 +62,4 @@ class ItemViewModel @Inject constructor(
             SharingStarted.WhileSubscribed(5_000),
             InteractState.Loading
         )
-
-    override fun showNetworkStatue(context: Context) {
-        TODO("Not yet implemented")
-    }
-
-    override fun saveBackOnline(backOnline: Boolean) {
-        TODO("Not yet implemented")
-    }
-
-//    init {
-//        getProductDetails()
-//    }
-//
-//    private fun getProductDetails() {
-//        viewModelScope.launch {
-//            productDetails.collectLatest {
-//                when (it) {
-//                    is InteractState.Error -> Timber.d(it.errorMessage)
-//                    is InteractState.Loading -> _uiState.value = UiState.Loading
-//                    is InteractState.Success -> {
-//                        _uiState.value = UiState.Success
-//                        _item.value = it
-//                    }
-//                }
-//            }
-//        }
-//    }
-
 }

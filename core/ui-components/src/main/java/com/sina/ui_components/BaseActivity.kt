@@ -4,8 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-abstract class BaseActivity<VB : ViewBinding>(private val inflate: (LayoutInflater) -> VB): AppCompatActivity() {
+abstract class BaseActivity<VB : ViewBinding>(private val inflate: (LayoutInflater) -> VB) : AppCompatActivity() {
 
     private var _binding: VB? = null
     protected val binding: VB get() = _binding ?: throw IllegalStateException("View binding has not been initialized yet.")

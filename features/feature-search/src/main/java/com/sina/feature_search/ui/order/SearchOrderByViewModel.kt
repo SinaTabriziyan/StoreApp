@@ -14,9 +14,9 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
-class SearchOrderByViewModel @Inject constructor(
-    private val dataStore: AppDataStore
-) : BaseViewModel() {
+class SearchOrderByViewModel @Inject constructor(    dataStore:AppDataStore
+
+) : BaseViewModel(dataStore) {
     fun saveSearchOrderBy(orderTitle: SearchOrderItem) = viewModelScope.launch(Dispatchers.IO) {
         dataStore.saveSearchOrderByType(orderTitle.orderTitle, orderTitle.id)
     }
@@ -30,13 +30,6 @@ class SearchOrderByViewModel @Inject constructor(
         SearchOrderItem(3, "popularity"),
     )
 
-    override fun showNetworkStatue(context: Context) {
-        TODO("Not yet implemented")
-    }
-
-    override fun saveBackOnline(backOnline: Boolean) {
-        TODO("Not yet implemented")
-    }
 
 
 }

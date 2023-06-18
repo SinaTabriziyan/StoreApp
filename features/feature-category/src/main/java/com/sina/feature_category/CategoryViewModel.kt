@@ -7,9 +7,11 @@ import androidx.lifecycle.viewModelScope
 import com.sina.common.responsestate.ResponseState
 import com.sina.domain_main.interactor.InteractState
 import com.sina.domain_main.usecase.CategoryUseCase
+import com.sina.local.data.datastore.AppDataStore
 import com.sina.model.ui.category_item.CategoryItem
 import com.sina.ui_components.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -21,7 +23,9 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
-class CategoryViewModel @Inject constructor(private val categoryUseCase: CategoryUseCase) : BaseViewModel() {
+class CategoryViewModel @Inject constructor(private val categoryUseCase: CategoryUseCase,    dataStore: AppDataStore
+) :
+    BaseViewModel(dataStore) {
     private val TAG = "CategoryViewModel"
 
     private val categoriseProductsParams = CategoryUseCase.Params(1, "")
@@ -42,14 +46,6 @@ class CategoryViewModel @Inject constructor(private val categoryUseCase: Categor
                 }
             }
         }
-    }
-
-    override fun showNetworkStatue(context: Context) {
-        TODO("Not yet implemented")
-    }
-
-    override fun saveBackOnline(backOnline: Boolean) {
-        TODO("Not yet implemented")
     }
 
 //    private val _categoryProducts = MutableStateFlow<List<CategoryItem>>(emptyList())

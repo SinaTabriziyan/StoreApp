@@ -2,6 +2,7 @@ package com.sina.feature_search.ui.main
 
 import android.content.Context
 import android.util.Log
+import android.util.LogPrinter
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.sina.common.constants.Constants.Companion.DEFAULT_SEARCH_ORDER_BY_TYPE
@@ -29,10 +30,11 @@ import javax.inject.Inject
 @HiltViewModel
 class SearchViewModel @Inject constructor(
     private val searchProductsUseCase: SearchProductsUseCase,
-    private val dataStore: AppDataStore,
-    private val savedStateHandle: SavedStateHandle
+    private val savedStateHandle: SavedStateHandle,
+    dataStore: AppDataStore
+
 ) :
-    BaseViewModel() {
+    BaseViewModel(dataStore) {
 
     var searchOrderType = DEFAULT_SEARCH_ORDER_TYPE
     var searchOrderTypeId = DEFAULT_SEARCH_ORDER_TYPE_ID
@@ -93,14 +95,6 @@ class SearchViewModel @Inject constructor(
 
     fun saveSearchOrderType(searchOrderTypeChip: String, searchOrderTypeIdChip: Int) = viewModelScope.launch {
         dataStore.saveSearchOrderType(searchOrderTypeChip, searchOrderTypeIdChip)
-    }
-
-    override fun showNetworkStatue(context: Context) {
-        TODO("Not yet implemented")
-    }
-
-    override fun saveBackOnline(backOnline: Boolean) {
-        TODO("Not yet implemented")
     }
 
 

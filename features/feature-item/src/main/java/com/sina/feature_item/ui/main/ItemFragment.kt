@@ -31,6 +31,14 @@ class ItemFragment : BaseFragment<FragmentItemBinding>(FragmentItemBinding::infl
 
     }
 
+    override fun playAnimate() {
+        TODO("Not yet implemented")
+    }
+
+    override fun cancelAnimate() {
+        TODO("Not yet implemented")
+    }
+
     override fun animationStatus(state: BaseViewModel.UiState) {
         binding.lottie.lottie.isVisible = when (state) {
             BaseViewModel.UiState.Success -> false

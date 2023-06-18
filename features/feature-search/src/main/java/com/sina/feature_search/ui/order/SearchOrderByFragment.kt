@@ -33,6 +33,14 @@ class SearchOrderByFragment : BaseFragment<FragmentSearchOrderByBinding>(Fragmen
         }
     }
 
+    override fun playAnimate() {
+        TODO("Not yet implemented")
+    }
+
+    override fun cancelAnimate() {
+        TODO("Not yet implemented")
+    }
+
     override fun animationStatus(state: BaseViewModel.UiState) {
 
     }

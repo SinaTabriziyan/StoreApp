@@ -45,7 +45,6 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         (activity as AppCompatActivity).setSupportActionBar(binding.toolbar.toolbar)
         (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
         navController = findNavController()
-
         implRecyclerView()
         implObservers()
 //        setPagination()
@@ -64,6 +63,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
                     Timber.d("Query: $encodeQuery")
                     searchAdapter.submitList(emptyList())
                     viewModel.getProductsBySearch(it)
+                    playAnimate()
                 }
                 orderTypeChipGroup.setOnCheckedChangeListener { group, checkedId ->
                     val chip = group.findViewById<Chip>(checkedId)
@@ -81,11 +81,26 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         }
     }
 
+    override fun playAnimate() {
+        binding.lottie.lottie.playAnimation()
+    }
+
+    override fun cancelAnimate() {
+        binding.lottie.lottie.cancelAnimation()
+    }
+
     override fun animationStatus(state: BaseViewModel.UiState) {
         binding.lottie.lottie.isVisible = when (state) {
-            Success -> false
+            Success -> {
+                cancelAnimate()
+                false
+            }
+
             Loading -> true
-            Error -> false
+            Error -> {
+                cancelAnimate()
+                false
+            }
         }
     }
 
@@ -109,7 +124,6 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
                         Error -> {
                             animationStatus(it)
                             showToast(it.name)
-
                         }
                     }
                 }

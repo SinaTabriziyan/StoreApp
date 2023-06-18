@@ -27,6 +27,14 @@ class SearchFiltersFragment : BaseFragment<FragmentSearchFiltersBinding>(Fragmen
 //        binding.rvSearchFilers.layoutManager=LinearLayoutManager(binding.root.context)
     }
 
+    override fun playAnimate() {
+        TODO("Not yet implemented")
+    }
+
+    override fun cancelAnimate() {
+        TODO("Not yet implemented")
+    }
+
     override fun animationStatus(state: BaseViewModel.UiState) {
     }
 

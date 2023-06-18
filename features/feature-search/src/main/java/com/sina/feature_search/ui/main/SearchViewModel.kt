@@ -82,7 +82,6 @@ class SearchViewModel @Inject constructor(
                         Timber.d(it.errorMessage)
                         uiState.value = UiState.Error
                     }
-
                     is InteractState.Loading -> uiState.value = UiState.Loading
                     is InteractState.Success -> {
                         uiState.value = UiState.Success

@@ -15,7 +15,7 @@ abstract class BaseFragment<VB : ViewBinding>(private val inflate: (LayoutInflat
 
     private var _binding: VB? = null
     protected val binding: VB get() = _binding!!
-    private val viewModel: BaseViewModel by viewModels()
+//    protected val viewModel: BaseViewModel by viewModels()
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -29,9 +29,11 @@ abstract class BaseFragment<VB : ViewBinding>(private val inflate: (LayoutInflat
     }
 
     abstract fun setupViews()
+    abstract fun playAnimate()
+    abstract fun cancelAnimate()
+
     abstract fun animationStatus(state: BaseViewModel.UiState)
 
     protected fun showToast(message: String) = Toast.makeText(requireActivity(), message, Toast.LENGTH_SHORT).show()
-
 
 }

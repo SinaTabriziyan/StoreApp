@@ -25,7 +25,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <include
-        android:id="@+id/lottieLayer"
+        android:id="@+id/lottie"
         layout="@layout/layout_lottie"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

@@ -6,9 +6,10 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottie"
+        android:padding="40dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:lottie_autoPlay="true"
+        app:lottie_autoPlay="false"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/response_anim" />
 </FrameLayout>

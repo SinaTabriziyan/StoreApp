@@ -19,6 +19,7 @@ import com.sina.feature_search.SearchActivity
 import com.sina.network.networkListener.NetworkListener
 import com.sina.ui_components.BaseFragment
 import com.sina.ui_components.BaseViewModel
+import com.sina.ui_components.BaseViewModel.UiState.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -36,6 +37,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     private lateinit var homeSliderAdapter: HomeSliderAdapter
     override fun setupViews() {
 
+    }
+
+    override fun playAnimate() {
+        binding.lottie.lottie.playAnimation()
+    }
+
+    override fun cancelAnimate() {
+        binding.lottie.lottie.cancelAnimation()
     }
 
 
@@ -128,11 +137,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     }
 
     override fun animationStatus(state: BaseViewModel.UiState) {
-        binding.lottieLayer.lottie.isVisible = when (state) {
-            BaseViewModel.UiState.Success -> false
-            BaseViewModel.UiState.Loading -> true
-            BaseViewModel.UiState.Error -> {
-                showToast("sth wrong")
+        binding.lottie.lottie.isVisible = when (state) {
+            Success -> {
+                cancelAnimate();false
+            }
+
+            Loading -> {
+                playAnimate();true
+            }
+            Error -> {
+                cancelAnimate()
                 false
             }
         }

@@ -12,5 +12,5 @@ class ItemUseCase(private val itemRepository: ItemRepository) :
     data class Params(val productId: Int)
 
     override fun execute(params: Params): Flow<ProductDetails> =
-        with(params) { itemRepository.getProductDetails(productId) }.open()
+        with(params) { itemRepository.getItemStream(productId) }.open()
 }

@@ -30,12 +30,12 @@
             <option value="$PROJECT_DIR$/features" />
             <option value="$PROJECT_DIR$/features/cart" />
             <option value="$PROJECT_DIR$/features/category" />
-            <option value="$PROJECT_DIR$/features/customer" />
             <option value="$PROJECT_DIR$/features/home" />
             <option value="$PROJECT_DIR$/features/item" />
             <option value="$PROJECT_DIR$/features/main" />
             <option value="$PROJECT_DIR$/features/products" />
             <option value="$PROJECT_DIR$/features/search" />
+            <option value="$PROJECT_DIR$/features/user" />
           </set>
         </option>
       </GradleProjectSettings>

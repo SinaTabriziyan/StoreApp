@@ -6,7 +6,8 @@ import com.sina.model.ui.product_details_item.ProductDetails
 import kotlinx.coroutines.flow.Flow
 
 interface ItemRepository {
-    fun getProductDetails(productId: Int): Flow<ResponseState<ProductDetails>>
-    suspend fun addProduct(productEntity: ProductEntity)
+    fun getItemStream(productId: Int): Flow<ResponseState<ProductDetails>>
+    suspend fun addItemLocal(productEntity: ProductEntity)
+    fun getItemsLocal(): Flow<List<ProductEntity>>
 
 }

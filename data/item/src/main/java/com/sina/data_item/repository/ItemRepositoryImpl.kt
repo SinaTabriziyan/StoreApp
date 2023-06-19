@@ -17,11 +17,10 @@ class ItemRepositoryImpl(
     private val itemLocalDataSource: ItemLocalDataSource,
     private val dispatcher: CoroutineDispatcher,
 ) : ItemRepository {
-    override fun getProductDetails(productId: Int): Flow<ResponseState<ProductDetails>> =
+    override fun getItemStream(productId: Int): Flow<ResponseState<ProductDetails>> =
         flow { emit(itemRemoteDataSource.getProductDetails(productId)) }.asResult().flowOn(dispatcher)
 
-    override suspend fun addProduct(productEntity: ProductEntity) {
-        itemLocalDataSource.addItem(productEntity)
-    }
+    override suspend fun addItemLocal(productEntity: ProductEntity) = itemLocalDataSource.addItemLocal(productEntity)
+    override  fun getItemsLocal(): Flow<List<ProductEntity>> = itemLocalDataSource.getItemsLocal()
 
 }

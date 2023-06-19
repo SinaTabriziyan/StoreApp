@@ -17,4 +17,14 @@
         android:enabled="true"
         android:icon="@drawable/ic_cart"
         android:title="@string/txt_cart" />
+    <item
+        android:id="@+id/userFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_cart"
+        android:title="جاستورمن" />
+    <item
+        android:id="@+id/comingFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_cart"
+        android:title="coming soon:D" />
 </menu>

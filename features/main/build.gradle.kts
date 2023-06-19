@@ -43,6 +43,7 @@ dependencies {
     implementation(project(mapOf("path" to ":core:common")))
     implementation(project(mapOf("path" to ":features:home")))
     implementation(project(mapOf("path" to ":features:category")))
+    implementation(project(mapOf("path" to ":features:user")))
     implementation(project(mapOf("path" to ":features:cart")))
     implementation(project(mapOf("path" to ":core:ui-components")))
 

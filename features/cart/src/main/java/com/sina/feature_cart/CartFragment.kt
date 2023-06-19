@@ -6,26 +6,45 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.lifecycle.viewModelScope
+import com.sina.domain_main.usecase.AddItemUseCase
+import com.sina.feature_cart.databinding.FragmentCartBinding
+import com.sina.ui_components.BaseFragment
+import com.sina.ui_components.BaseViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
+import timber.log.Timber
 
-class CartFragment : Fragment() {
+@AndroidEntryPoint
+class CartFragment : BaseFragment<FragmentCartBinding>(FragmentCartBinding::inflate) {
 
-    companion object {
-        fun newInstance() = CartFragment()
+    private val viewModel: CartViewModel by viewModels()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.getItemsLocal.collectLatest {
+                    Timber.e("______--------------_______$it")
+                }
+            }
+        }
     }
 
-    private lateinit var viewModel: CartViewModel
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View? {
-        return inflater.inflate(R.layout.fragment_cart, container, false)
+    override fun setupViews() {
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(CartViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun playAnimate() {
+    }
+
+    override fun cancelAnimate() {
+    }
+
+    override fun animationStatus(state: BaseViewModel.UiState) {
     }
 
 }

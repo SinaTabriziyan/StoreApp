@@ -54,7 +54,7 @@ dependencies {
     implementation(Preferences.datastorePreferences)
 
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
-    implementation(project(mapOf("path" to ":features:customer")))
+    implementation(project(mapOf("path" to ":features:user")))
     implementation(project(mapOf("path" to ":core:network")))
     implementation(project(mapOf("path" to ":core:local")))
 

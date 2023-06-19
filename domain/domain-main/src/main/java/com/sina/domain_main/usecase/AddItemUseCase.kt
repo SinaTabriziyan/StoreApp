@@ -7,7 +7,7 @@ import com.sina.model.entity.ProductEntity
 class AddItemUseCase(private val itemRepository: ItemRepository) : UseCase<AddItemUseCase.Params, Unit>() {
     data class Params(val userName: String, val productId: Int, val productNumber: Int)
 
-    override suspend fun execute(params: Params) {
-        with(params) { itemRepository.addProduct(ProductEntity(userName, productId, productNumber)) }
-    }
+    override suspend fun execute(params: Params) =
+        with(params) { itemRepository.addItemLocal(ProductEntity(userName, productId, productNumber)) }
+
 }

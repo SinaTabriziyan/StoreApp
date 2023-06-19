@@ -11,6 +11,6 @@ class ProductsByCategoryUseCase(private val productsRepository: ProductsReposito
     data class Params(val page: Int, val category: String)
 
     override fun execute(params: Params): Flow<List<ProductsItem>> {
-        return with(params) { productsRepository.getProductsByCategory(page, category) }.open()
+        return with(params){productsRepository.getProductsByCategory(page,category)}.open()
     }
 }

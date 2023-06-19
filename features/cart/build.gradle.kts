@@ -1,6 +1,8 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -22,11 +24,15 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
+    }
+    buildFeatures {
+        viewBinding = true
+        dataBinding = true
     }
 }
 
@@ -38,6 +44,9 @@ dependencies {
     implementation(Deps.appcompat)
     implementation(Deps.material)
     implementation(Deps.constraintLayout)
+    implementation(project(mapOf("path" to ":core:local")))
+    implementation(project(mapOf("path" to ":domain:domain-main")))
+    implementation(project(mapOf("path" to ":core:model")))
 
     testImplementation(TestImpl.junit)
     androidTestImplementation(TestImpl.testJUnit)
@@ -47,6 +56,11 @@ dependencies {
     implementation(LifeCycle.lifeCycleViewLivedata)
     implementation(Log.timber)
     implementation(Animations.lottie)
+
+    implementation(Navigation.navigationFragment)
+    implementation(Navigation.navigationUi)
+    implementation(DI.hilt)
+    kapt(DI.hiltCompiler)
 
 
 }

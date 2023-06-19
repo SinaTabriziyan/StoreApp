@@ -3,7 +3,7 @@
 
     <application>
         <activity
-            android:name=".CustomerActivity"
+            android:name=".UserActivity"
             android:exported="false" />
     </application>
 

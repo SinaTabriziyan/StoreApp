@@ -26,7 +26,7 @@ import javax.inject.Inject
 class CategoryViewModel @Inject constructor(
     private val categoryUseCase: CategoryUseCase, dataStore: AppDataStore
 ) :
-    BaseViewModel(dataStore) {
+    BaseViewModel() {
     private val TAG = "CategoryViewModel"
 
     private val categoriseProductsParams = CategoryUseCase.Params(1, "")

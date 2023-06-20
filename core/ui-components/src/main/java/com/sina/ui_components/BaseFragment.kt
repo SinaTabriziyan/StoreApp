@@ -1,15 +1,13 @@
 package com.sina.ui_components
 
+import android.content.Context
 import android.os.Bundle
-import android.os.Message
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.viewbinding.ViewBinding
-import dagger.hilt.android.AndroidEntryPoint
 
 abstract class BaseFragment<VB : ViewBinding>(private val inflate: (LayoutInflater, ViewGroup?, Boolean) -> VB) : Fragment() {
 
@@ -37,8 +35,9 @@ abstract class BaseFragment<VB : ViewBinding>(private val inflate: (LayoutInflat
     abstract fun playAnimate()
     abstract fun cancelAnimate()
 
+
     abstract fun animationStatus(state: BaseViewModel.UiState)
 
-    protected fun showToast(message: String) = Toast.makeText(requireActivity(), message, Toast.LENGTH_SHORT).show()
+    protected fun showToast(message: String) = Toast.makeText(requireActivity(), message, Toast.LENGTH_LONG).show()
 
 }

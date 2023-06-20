@@ -26,7 +26,7 @@ class ProductsViewModel @Inject constructor(
     private val productsByCategoryUseCase: ProductsByCategoryUseCase,
     private val savedStateHandle: SavedStateHandle,
     dataStore: AppDataStore
-) : BaseViewModel(dataStore) {
+) : BaseViewModel() {
     private val productsItems = arrayListOf<ProductsItem>()
     private var categoryId by Delegates.notNull<String>()
     private var page = 1

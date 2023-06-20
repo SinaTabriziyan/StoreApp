@@ -9,10 +9,10 @@ import com.sina.domain_main.usecase.AddItemUseCase
 import com.sina.domain_main.usecase.CategoryUseCase
 import com.sina.domain_main.usecase.CreateCustomerUseCase
 import com.sina.domain_main.usecase.GetItemLocalUseCase
-import com.sina.domain_main.usecase.ItemUseCase
+import com.sina.domain_main.usecase.GetItemUseCase
 import com.sina.domain_main.usecase.ProductsByCategoryUseCase
 import com.sina.domain_main.usecase.ProductsUseCase
-import com.sina.domain_main.usecase.SearchProductsUseCase
+import com.sina.domain_main.usecase.search.SearchProductsUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -30,8 +30,8 @@ object DomainModule {
         CategoryUseCase(categoryRepository)
 
     @Provides
-    fun provideItem(itemRepository: ItemRepository): ItemUseCase =
-        ItemUseCase(itemRepository)
+    fun provideItem(itemRepository: ItemRepository): GetItemUseCase =
+        GetItemUseCase(itemRepository)
 
     @Provides
     fun provideAddProduct(itemRepository: ItemRepository): AddItemUseCase =

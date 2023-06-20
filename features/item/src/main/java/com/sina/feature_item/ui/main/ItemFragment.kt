@@ -111,12 +111,10 @@ class ItemFragment : BaseFragment<FragmentItemBinding>(FragmentItemBinding::infl
                     when (it) {
                         true -> {
                             binding.btnAddToCart.text = "برو به سبد خرید"
-
                         }
 
                         false -> {
                             binding.btnAddToCart.text = "خرید"
-
                         }
                     }
                 }

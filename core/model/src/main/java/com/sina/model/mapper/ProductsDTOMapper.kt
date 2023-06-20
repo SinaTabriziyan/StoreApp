@@ -1,6 +1,6 @@
 package com.sina.model.mapper
 
-import com.sina.model.data.products_dto.ProductsDTOItem
+import com.sina.model.network.products_dto.ProductsDTOItem
 import com.sina.model.ui.products_item.ProductsItem
 
 fun mapProductsDtoItemToProductsItem(dto: ProductsDTOItem): ProductsItem = with(dto) {

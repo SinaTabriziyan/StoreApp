@@ -14,9 +14,8 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
-class SearchOrderByViewModel @Inject constructor(    dataStore:AppDataStore
-
-) : BaseViewModel(dataStore) {
+class SearchOrderByViewModel @Inject constructor(    private val dataStore: AppDataStore
+) : BaseViewModel() {
     fun saveSearchOrderBy(orderTitle: SearchOrderItem) = viewModelScope.launch(Dispatchers.IO) {
         dataStore.saveSearchOrderByType(orderTitle.orderTitle, orderTitle.id)
     }
@@ -29,7 +28,6 @@ class SearchOrderByViewModel @Inject constructor(    dataStore:AppDataStore
         SearchOrderItem(2, "rating"),
         SearchOrderItem(3, "popularity"),
     )
-
 
 
 }

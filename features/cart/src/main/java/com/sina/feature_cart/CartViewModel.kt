@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CartViewModel @Inject constructor(datastore: AppDataStore, private val getItemLocalUseCase: GetItemLocalUseCase) :
-    BaseViewModel(datastore) {
+    BaseViewModel() {
 
     val getItemsLocal = getItemLocalUseCase.getItemsLocal().stateIn(
         viewModelScope, SharingStarted.WhileSubscribed(1_000), emptyList<ProductEntity>()

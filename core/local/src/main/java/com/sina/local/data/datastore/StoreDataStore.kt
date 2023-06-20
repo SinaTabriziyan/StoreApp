@@ -30,13 +30,8 @@ import javax.inject.Inject
 
 
 @ActivityRetainedScoped
-class AppDataStore @Inject constructor(
-    private val storeDataStore: DataStore<Preferences>
-) {
-
+class AppDataStore @Inject constructor(private val storeDataStore: DataStore<Preferences>) {
     private object PreferencesKey {
-//        val selectedSearchType = stringPreferencesKey(PREFERENCES_SEARCH_TYPE)
-//        val selectedSearchTypeID = intPreferencesKey(PREFERENCES_SEARCH_TYPE_ID)
 
         val selectedSearchOrderType = stringPreferencesKey(PREFERENCES_SEARCH_ORDER_TYPE)
         val selectedSearchOrderTypeId = intPreferencesKey(PREFERENCES_SEARCH_ORDER_TYPE_ID)
@@ -47,7 +42,7 @@ class AppDataStore @Inject constructor(
         val backOnline = booleanPreferencesKey(PREFERENCES_BACK_ONLINE)
     }
 
-    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(PREFERENCES_NAME)
+//    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(PREFERENCES_NAME)
 
     suspend fun saveSearchOrderType(searchOrderTypeChip: String, searchOrderTypeIdChip: Int) {
         storeDataStore.edit { mutablePreferences ->

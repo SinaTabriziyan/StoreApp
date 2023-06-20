@@ -17,33 +17,31 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-abstract class BaseViewModel  constructor(val dataStore: AppDataStore) : ViewModel() {
-
-
-    val uiState = MutableStateFlow(UiState.Loading)
-
+abstract class BaseViewModel : ViewModel() {
     protected val _netWorkState = MutableStateFlow(false)
-    val netWorkState: StateFlow<Boolean> get() = _netWorkState
+    val uiState = MutableStateFlow(UiState.Loading)
     var networkStatus = false
     var backOnline = false
+    val netWorkState: StateFlow<Boolean> get() = _netWorkState
 
     enum class UiState { Success, Loading, Error }
 
-    fun showNetworkStatue(context: Context) {
-        if (!networkStatus) {
-            Toast.makeText(context, "دسترسی به اینترنت را چک کنید", Toast.LENGTH_SHORT).show()
-            saveBackOnline(true)
+    inline fun <reified T> StateFlow<InteractState<T>>.expand(crossinline action: suspend (T) -> Unit) {
+        viewModelScope.launch {
+            collectLatest {
+                when (it) {
+                    is InteractState.Error -> {
+//                        Timber.e("Error ${it.errorMessage}")
+                        uiState.value = UiState.Error
+                    }
 
-        } else if (networkStatus) {
-            if (backOnline)
-                Toast.makeText(context, "اتصال به شبکه انجام شد", Toast.LENGTH_SHORT).show()
-            saveBackOnline(false)
-        }
-    }
-
-    fun saveBackOnline(backOnline: Boolean) {
-        viewModelScope.launch(Dispatchers.IO) {
-            dataStore.saveBackOnline(backOnline)
+                    is InteractState.Loading -> uiState.value = UiState.Loading
+                    is InteractState.Success -> {
+                        uiState.value = UiState.Success
+                        action(it.data)
+                    }
+                }
+            }
         }
     }
 }

@@ -3,6 +3,7 @@ package com.sina.feature_home
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -25,75 +26,45 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
-    private val TAG = "HomeFragment"
-
     @Inject
     lateinit var networkListener: NetworkListener
 
     private val viewModel: HomeViewModel by viewModels()
     private lateinit var mainHomeAdapter: MainHomeAdapter
     private lateinit var homeSliderAdapter: HomeSliderAdapter
-    override fun setupViews() {
-
-    }
-
-    override fun playAnimate() {
-        binding.lottie.lottie.playAnimation()
-    }
-
-    override fun cancelAnimate() {
-        binding.lottie.lottie.cancelAnimation()
-    }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        observeUiEvents()
-        implRecyclerView()
-        implHomeSlider()
+        setupViews()
         observers()
-        uiEvenet()
     }
-
-    private fun observeUiEvents() {
-//        binding.searchLayer.imgCustomerAvatar.setOnClickListener {
-//            val intent = Intent(requireActivity(), CustomerActivity::class.java)
-//            startActivity(intent)
-//        }
-    }
-
-    private fun implHomeSlider() {
-        homeSliderAdapter = HomeSliderAdapter()
-        // TODO: impl event handle
-        binding.rvSliderHome.apply {
-            adapter = homeSliderAdapter
-            set3DItem(true)
-            setInfinite(true)
-//            setFlat(true)
-        }
-    }
-
-    private fun uiEvenet() {
+    override fun setupViews() {
+        implRecyclerView()
         with(binding) {
             searchLayer.btnSearchHome.setOnClickListener {
-                // TODO: use default navigation later
                 startActivity(Intent(requireActivity(), SearchActivity::class.java))
+            }
+            rvSliderHome.apply {
+                adapter = homeSliderAdapter
+                set3DItem(true)
+                setInfinite(true)
+            }
+            rvMainProducts.apply {
+                adapter = mainHomeAdapter
+                layoutManager = LinearLayoutManager(binding.root.context)
             }
         }
     }
-
+    override fun playAnimate() = binding.lottie.lottie.playAnimation()
+    override fun cancelAnimate() = binding.lottie.lottie.cancelAnimation()
     private fun implRecyclerView() {
         mainHomeAdapter = MainHomeAdapter(onClick = {
             val intent = Intent(requireActivity(), ItemActivity::class.java)
             intent.putExtra("productId", it)
             startActivity(intent)
         }, onReachedEndOfList = {})
-        binding.rvMainProducts.apply {
-            adapter = mainHomeAdapter
-            layoutManager = LinearLayoutManager(binding.root.context)
-        }
+        homeSliderAdapter = HomeSliderAdapter()
     }
-
     private fun observers() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -119,7 +90,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 networkListener.checkNetworkAvailability().collectLatest {
                     viewModel.networkStatus = it
-                    viewModel.showNetworkStatue(binding.root.context)
+                    showNetworkStatue()
                 }
             }
         }
@@ -130,10 +101,18 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                 }
             }
         }
-
-
     }
-
+    private fun showNetworkStatue() {
+        if (!viewModel.networkStatus) {
+            showToast("No Internet conection")
+            viewModel.saveBackOnline(true)
+        } else if (viewModel.networkStatus) {
+            if (viewModel.backOnline) {
+                showToast("Wer back online")
+                viewModel.saveBackOnline(false)
+            }
+        }
+    }
     override fun animationStatus(state: BaseViewModel.UiState) {
         binding.lottie.lottie.isVisible = when (state) {
             Success -> {
@@ -143,6 +122,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             Loading -> {
                 playAnimate();true
             }
+
             Error -> {
                 cancelAnimate()
                 false

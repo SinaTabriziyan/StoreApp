@@ -9,8 +9,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SearchFilterViewModel @Inject constructor(
-    dataStore: AppDataStore
-) : BaseViewModel(dataStore) {
-
+    private val dataStore: AppDataStore
+) : BaseViewModel() {
 
 }

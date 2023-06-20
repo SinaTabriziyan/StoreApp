@@ -1,9 +1,9 @@
 package com.sina.network.services
 
-import com.sina.model.data.category_dto.CategoryDTOItem
-import com.sina.model.data.customer_dto.CustomerDTO
-import com.sina.model.data.product_details_dto.ProductDetailsDto
-import com.sina.model.data.products_dto.ProductsDTOItem
+import com.sina.model.network.category_dto.CategoryDTOItem
+import com.sina.model.network.customer_dto.CustomerDTO
+import com.sina.model.network.product_details_dto.ProductDetailsDto
+import com.sina.model.network.products_dto.ProductsDTOItem
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST

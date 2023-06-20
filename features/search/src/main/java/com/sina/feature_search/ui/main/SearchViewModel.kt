@@ -1,8 +1,6 @@
 package com.sina.feature_search.ui.main
 
-import android.content.Context
 import android.util.Log
-import android.util.LogPrinter
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.sina.common.constants.Constants.Companion.DEFAULT_SEARCH_ORDER_BY_TYPE
@@ -11,9 +9,8 @@ import com.sina.common.constants.Constants.Companion.DEFAULT_SEARCH_ORDER_TYPE
 import com.sina.common.constants.Constants.Companion.DEFAULT_SEARCH_ORDER_TYPE_ID
 import com.sina.common.constants.Constants.Companion.ORDER
 import com.sina.common.constants.Constants.Companion.ORDER_BY
-import com.sina.common.constants.Constants.Companion.SEARCH
 import com.sina.domain_main.interactor.InteractState
-import com.sina.domain_main.usecase.SearchProductsUseCase
+import com.sina.domain_main.usecase.search.SearchProductsUseCase
 import com.sina.local.data.datastore.AppDataStore
 import com.sina.model.ui.products_item.ProductsItem
 import com.sina.ui_components.BaseViewModel
@@ -31,10 +28,8 @@ import javax.inject.Inject
 class SearchViewModel @Inject constructor(
     private val searchProductsUseCase: SearchProductsUseCase,
     private val savedStateHandle: SavedStateHandle,
-    dataStore: AppDataStore
-
-) :
-    BaseViewModel(dataStore) {
+    private val dataStore: AppDataStore
+) : BaseViewModel() {
 
     var searchOrderType = DEFAULT_SEARCH_ORDER_TYPE
     var searchOrderTypeId = DEFAULT_SEARCH_ORDER_TYPE_ID
@@ -82,6 +77,7 @@ class SearchViewModel @Inject constructor(
                         Timber.d(it.errorMessage)
                         uiState.value = UiState.Error
                     }
+
                     is InteractState.Loading -> uiState.value = UiState.Loading
                     is InteractState.Success -> {
                         uiState.value = UiState.Success

@@ -51,6 +51,7 @@ dependencies {
     implementation(Deps.material)
     implementation(Deps.constraintLayout)
     implementation(project(mapOf("path" to ":core:local")))
+    implementation(project(mapOf("path" to ":core:network")))
 
     testImplementation(TestImpl.junit)
     androidTestImplementation(TestImpl.testJUnit)
@@ -62,6 +63,7 @@ dependencies {
 
     implementation(Navigation.navigationFragment)
     implementation(Navigation.navigationUi)
+    implementation(Preferences.datastorePreferences)
 
     implementation(DI.hilt)
     kapt(DI.hiltCompiler)

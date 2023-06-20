@@ -38,6 +38,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         setupViews()
         observers()
     }
+
     override fun setupViews() {
         implRecyclerView()
         with(binding) {
@@ -55,6 +56,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             }
         }
     }
+
     override fun playAnimate() = binding.lottie.lottie.playAnimation()
     override fun cancelAnimate() = binding.lottie.lottie.cancelAnimation()
     private fun implRecyclerView() {
@@ -65,6 +67,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         }, onReachedEndOfList = {})
         homeSliderAdapter = HomeSliderAdapter()
     }
+
     private fun observers() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -73,35 +76,29 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                 }
             }
         }
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.sliderImages.collectLatest { homeSliderAdapter.submitList(it) }
-            }
+        viewLifecycleOwner.launchWhenStarted {
+            viewModel.sliderImages.collectLatest { homeSliderAdapter.submitList(it) }
+
         }
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.uiState.collectLatest {
-                    animationStatus(it)
-                }
+        viewLifecycleOwner.launchWhenStarted {
+            viewModel.uiState.collectLatest {
+                animationStatus(it)
             }
         }
 
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                networkListener.checkNetworkAvailability().collectLatest {
-                    viewModel.networkStatus = it
-                    showNetworkStatue()
-                }
+        viewLifecycleOwner.launchWhenStarted {
+            networkListener.checkNetworkAvailability().collectLatest {
+                viewModel.networkStatus = it
+                showNetworkStatue()
             }
         }
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.readBackOnline.collectLatest {
-                    viewModel.backOnline = it
-                }
+        viewLifecycleOwner.launchWhenStarted {
+            viewModel.readBackOnline.collectLatest {
+                viewModel.backOnline = it
             }
         }
     }
+
     private fun showNetworkStatue() {
         if (!viewModel.networkStatus) {
             showToast("No Internet conection")
@@ -113,6 +110,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             }
         }
     }
+
     override fun animationStatus(state: BaseViewModel.UiState) {
         binding.lottie.lottie.isVisible = when (state) {
             Success -> {
@@ -129,5 +127,4 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             }
         }
     }
-
 }

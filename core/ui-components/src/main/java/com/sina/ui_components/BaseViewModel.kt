@@ -2,6 +2,8 @@ package com.sina.ui_components
 
 import android.content.Context
 import android.widget.Toast
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sina.domain_main.interactor.InteractState
@@ -44,4 +46,6 @@ abstract class BaseViewModel : ViewModel() {
             }
         }
     }
+
+//    abstract fun saveBackOnline(b: Boolean): Job
 }

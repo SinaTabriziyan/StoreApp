@@ -122,8 +122,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             }
 
             Error -> {
-                cancelAnimate()
-                false
+                cancelAnimate();false
             }
         }
     }

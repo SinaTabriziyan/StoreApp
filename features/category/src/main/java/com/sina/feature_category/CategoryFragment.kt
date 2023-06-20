@@ -52,7 +52,6 @@ class CategoryFragment : BaseFragment<FragmentCategoryBinding>(FragmentCategoryB
     override fun playAnimate() = binding.lottie.lottie.playAnimation()
     override fun cancelAnimate() = binding.lottie.lottie.cancelAnimation()
 
-
     override fun animationStatus(state: BaseViewModel.UiState) {
         binding.lottie.lottie.isVisible = when (state) {
             Success -> {

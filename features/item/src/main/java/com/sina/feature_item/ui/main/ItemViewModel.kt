@@ -6,6 +6,7 @@ import com.sina.domain_main.interactor.InteractState
 import com.sina.domain_main.usecase.AddItemUseCase
 import com.sina.domain_main.usecase.GetItemUseCase
 import com.sina.local.data.datastore.AppDataStore
+import com.sina.model.ui.product_details_item.ProductDetails
 import com.sina.ui_components.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -21,7 +22,7 @@ import kotlin.properties.Delegates
 class ItemViewModel @Inject constructor(
     private val getItemUseCase: GetItemUseCase,
     savedStateHandle: SavedStateHandle,
-    dataStore: AppDataStore,
+    private val dataStore: AppDataStore,
     private val addItemUseCase: AddItemUseCase,
 ) : BaseViewModel() {
     private var itemId by Delegates.notNull<Int>()
@@ -36,9 +37,12 @@ class ItemViewModel @Inject constructor(
 
     private val _itemAdded = MutableStateFlow<Boolean>(false)
     val itemAdded: StateFlow<Boolean> = _itemAdded.asStateFlow()
-//
-//    private val _item = MutableStateFlow<InteractState<ProductDetails>>(InteractState.Loading)
+
+    //    private val _item = MutableStateFlow<InteractState<ProductDetails>>(InteractState.Loading)
 //    val item: StateFlow<InteractState<ProductDetails>> = _item.asStateFlow()
+    val readBackOnline = dataStore.readBackOnline.stateIn(
+        viewModelScope, SharingStarted.WhileSubscribed(5_000), false
+    )
 
     fun addItemToCart(id: Int) {
         _itemAdded.value = true
